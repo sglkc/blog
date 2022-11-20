@@ -3,16 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  /* TODO: Responsive scroll table */
-  table {
-    @apply break-all
-  }
-
   ::-webkit-scrollbar-thumb {
     @apply bg-transparent
   }
   ::-webkit-scrollbar {
-    @apply w-3 h-2 bg-transparent
+    @apply w-3 h-3 bg-transparent
   }
   ::-webkit-scrollbar-thumb {
     @apply rounded bg-gray-500

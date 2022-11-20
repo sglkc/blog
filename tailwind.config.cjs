@@ -18,10 +18,16 @@ module.exports = {
             color: theme(colors.primary(800)),
             '--tw-prose-hr': theme(colors.accent(400)),
             '--tw-prose-bullets': theme(colors.accent(400)),
-            '--tw-prose-quotes': theme(colors.accent(800)),
+            '--tw-prose-quotes': theme(colors.accent(700)),
             '--tw-prose-quote-borders': theme(colors.accent(300)),
             '--tw-prose-th-borders': theme(colors.accent(400)),
             '--tw-prose-td-borders': theme(colors.accent(300)),
+            table: {
+              margin: '0'
+            },
+            'div:has(table)': {
+              margin: '2rem 0'
+            }
           }
         },
         invert: {
