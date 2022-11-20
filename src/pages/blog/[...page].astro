@@ -10,33 +10,20 @@ export async function getStaticPaths({ paginate }) {
   allPosts = allPosts.sort(
     (a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
 
-  return paginate(allPosts, { pageSize: 3 });
+  return paginate(allPosts, { pageSize: 10 });
 }
 // All paginated data is passed on the "page" prop
 const { page } = Astro.props;
 
 const title = 'Blog';
 const description = 'This is where I put my thoughts into writing';
-
-// <aside data-pagefind-ignore> is a toggle for pagefind.app to exclude the
-// portion from search result, i.e. in this case to exclude the TOC from being
-// shown again in the result.
 ---
 
 <Page {title} {description}>
   <Header {title} {description} />
   <hr />
-  <main class="flex justify-center">
-    <div>
-      <aside data-pagefind-ignore>
-        <div>
-          <p class="my-6 font-semibold">
-            {description}
-          </p>
-        </div>
-        {page.data.map((p: object) => <PostPreview post={p} />)}
-      </aside>
-    </div>
+  <main>
+    {page.data.map((p: object) => <PostPreview post={p} />)}
   </main>
   <Pagination {page} />
 </Page>

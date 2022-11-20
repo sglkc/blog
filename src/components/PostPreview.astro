@@ -4,20 +4,15 @@ export interface Props {
 }
 
 const { post } = Astro.props;
+const content = post.rawContent().replace(/ +/g, ' ');
+const snippet = content.slice(0, 150) + (content.length > 150 ? '...' : '');
 ---
 
-<div class="my-8 flex justify-between">
-  <div>
-    <a class="underline underline-offset-2" href={post.url}>
-      <h1 class="font-semibold">{post.frontmatter.title}</h1>
-    </a>
-    <h2 class="font-light">{post.frontmatter.description}</h2>
-    <a
-      class="italic font-semibold text-sm text-zinc-600 underline underline-offset-2"
-      href={post.url}>Read more</a
-    >
+<a class="my-6 py-2 flex flex-col gap-4 no-underline" href={post.url}>
+  <div class="flex justify-between">
+    <h2 class="underline font-semibold my-0">{post.frontmatter.title}</h2>
+    <p class="my-0 text-sm">{post.frontmatter.pubDate}</p>
   </div>
-  <div class="font-extralight">
-    {post.frontmatter.pubDate}
-  </div>
-</div>
+  <h4 class="font-light my-0">{post.frontmatter.description}</h4>
+  <blockquote class="my-0">{snippet}</blockquote>
+</a>
