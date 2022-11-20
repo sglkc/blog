@@ -18,8 +18,11 @@
         "tailwindcss": "^3.2.4"
     },
     "dependencies": {
+        "@astrojs/image": "^0.11.6",
+        "@astrojs/prefetch": "^0.1.1",
         "@astrojs/rss": "^0.2.2",
         "@fontsource/nunito": "^4.5.11",
-        "@fontsource/overpass-mono": "^4.5.10"
+        "@fontsource/overpass-mono": "^4.5.10",
+        "sharp": "^0.31.2"
     }
 }

@@ -40,15 +40,15 @@ module.exports = {
             '--tw-prose-invert-bold': theme(colors.primary(200)),
             '--tw-prose-invert-counters': theme(colors.accent(400)),
             '--tw-prose-invert-bullets': theme(colors.accent(600)),
-            '--tw-prose-invert-hr': theme(colors.accent(800)),
+            '--tw-prose-invert-hr': theme(colors.accent(700)),
             '--tw-prose-invert-quotes': theme(colors.accent(300)),
-            '--tw-prose-invert-quote-borders': theme(colors.accent(800)),
+            '--tw-prose-invert-quote-borders': theme(colors.accent(700)),
             '--tw-prose-invert-captions': theme(colors.accent(400)),
             '--tw-prose-invert-code': theme(colors.primary(200)),
             '--tw-prose-invert-pre-code': theme(colors.accent(300)),
             '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
-            '--tw-prose-invert-th-borders': theme(colors.accent(700)),
-            '--tw-prose-invert-td-borders': theme(colors.accent(800)),
+            '--tw-prose-invert-th-borders': theme(colors.accent(600)),
+            '--tw-prose-invert-td-borders': theme(colors.accent(700)),
           }
         }
       })

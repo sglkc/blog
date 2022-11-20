@@ -1,4 +1,5 @@
 ---
+import { Image } from '@astrojs/image/components';
 import Page from '@components/Page.astro';
 
 const title = 'Home // sglkc';
@@ -12,22 +13,25 @@ const description = '@sglkc Personal Website';
     <div>
       <div class="flex justify-between">
         <a class="block w-fit self-end" href="https://github.com/sglkc">
-          <img
-            class="h-32 rounded-full"
-            src="https://avatars.githubusercontent.com/u/31957516?s=400&v=4"
+          <Image
+            class="rounded-full m-0"
+            src="/assets/logo.png"
             draggable="false"
+            alt="GitHub profile"
+            width="150"
+            height="150"
           >
         </a>
         <nav class="flex flex-col gap-3 sm:hidden">
-          <a class="hover:underline" href="/blog">Blog</a>
-          <a class="hover:underline" href="#">Projects</a>
-          <a class="hover:underline" href="/about">About</a>
-          <a class="hover:underline cursor-pointer" onclick="toggleTheme()">
+          <a class="hover:underline" rel="prefetch" href="/blog">Blog</a>
+          <a class="hover:underline" rel="prefetch" href="#">Projects</a>
+          <a class="hover:underline" rel="prefetch" href="/about">About</a>
+          <a class="hover:underline cursor-pointer" href="javascript:toggleTheme()">
             Theme
           </a>
         </nav>
       </div>
-      <main class="flex flex-col mt-5">
+      <main class="flex flex-col mt-8">
         <h1 class="font-bold text-2xl tracking-widest mb-0">
           Hi! I'm <a
             class="underline decoration-dotted"
@@ -45,10 +49,12 @@ const description = '@sglkc Personal Website';
       </main>
     </div>
     <nav class="sm:flex flex-col gap-3 hidden">
-      <a class="hover:underline" href="/blog">Blog</a>
-      <a class="hover:underline" href="#">Projects</a>
-      <a class="hover:underline" href="/about">About</a>
-      <a class="hover:underline cursor-pointer" onclick="toggleTheme()">Theme</a>
+      <a class="hover:underline" rel="prefetch" href="/blog">Blog</a>
+      <a class="hover:underline" rel="prefetch" href="#">Projects</a>
+      <a class="hover:underline" rel="prefetch" href="/about">About</a>
+      <a class="hover:underline cursor-pointer" href="javascript:toggleTheme()">
+        Theme
+      </a>
     </nav>
   </div>
 </Page>
