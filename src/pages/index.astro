@@ -13,22 +13,22 @@ const description = '@sglkc Personal Website';
       <div class="flex justify-between">
         <a class="block w-fit self-end" href="https://github.com/sglkc">
           <img
-            class="h-32 drop-shadow drop-shadow-zinc rounded-full"
+            class="h-32 rounded-full"
             src="https://avatars.githubusercontent.com/u/31957516?s=400&v=4"
             draggable="false"
           >
         </a>
-        <nav class="flex flex-col gap-4 sm:hidden">
-          <a class="hover:underline" href="/">Blog</a>
-          <a class="hover:underline" href="/">Projects</a>
-          <a class="hover:underline" href="/">About</a>
+        <nav class="flex flex-col gap-3 sm:hidden">
+          <a class="hover:underline" href="/blog">Blog</a>
+          <a class="hover:underline" href="#">Projects</a>
+          <a class="hover:underline" href="/about">About</a>
           <a class="hover:underline cursor-pointer" onclick="toggleTheme()">
             Theme
           </a>
         </nav>
       </div>
-      <main class="mt-8 flex flex-col gap-3 pr-5 sm:pr-0">
-        <h1 class="font-bold text-2xl tracking-widest">
+      <main class="flex flex-col mt-5">
+        <h1 class="font-bold text-2xl tracking-widest mb-0">
           Hi! I'm <a
             class="underline decoration-dotted"
             href="https://github.com/sglkc"
@@ -44,10 +44,10 @@ const description = '@sglkc Personal Website';
         </p>
       </main>
     </div>
-    <nav class="sm:flex flex-col gap-4 hidden">
-      <a class="hover:underline" href="/">Blog</a>
-      <a class="hover:underline" href="/">Projects</a>
-      <a class="hover:underline" href="/">About</a>
+    <nav class="sm:flex flex-col gap-3 hidden">
+      <a class="hover:underline" href="/blog">Blog</a>
+      <a class="hover:underline" href="#">Projects</a>
+      <a class="hover:underline" href="/about">About</a>
       <a class="hover:underline cursor-pointer" onclick="toggleTheme()">Theme</a>
     </nav>
   </div>

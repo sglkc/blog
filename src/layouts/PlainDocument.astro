@@ -1,19 +1,23 @@
 ---
-import Page from "../components/Page.astro";
+import Page from '@/components/Page.astro';
 
 const { content } = Astro.props;
-const { title, description, version } = content;
-const displayVersion = version ? "Version " + version : "";
+const { title, description, footer } = content;
 ---
 
 <Page {title} {description}>
-  <div class="flex justify-center text-zinc-700">
-    <div class="text-lg w-5/6 lg:w-3/4 prose">
-      <h1 class="text-2xl font-semibold mt-8">{title}</h1>
-      <slot />
-      <p class="text-sm mt-16">
-        {displayVersion}
-      </p>
-    </div>
-  </div>
+    <h1 class="text-3xl font-semibold mb-2">{title}</h1>
+    <nav class="flex gap-5">
+      <a class="hover:underline" href="/">Home</a>
+      <a class="hover:underline" href="/blog">Blog</a>
+      <a class="hover:underline" href="#">Projects</a>
+      <a class="hover:underline" href="/about">About</a>
+      <a class="hover:underline cursor-pointer" onclick="toggleTheme()">
+        Theme
+      </a>
+    </nav>
+  <hr />
+  <slot />
+  <hr />
+  <p class="text-xs">{footer}</p>
 </Page>
