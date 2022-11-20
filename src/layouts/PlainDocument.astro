@@ -1,23 +1,24 @@
 ---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import Page from '@/components/Page.astro';
+
+export interface Props {
+  content: {
+    title: string,
+    description: string,
+    footer: string
+  };
+}
 
 const { content } = Astro.props;
 const { title, description, footer } = content;
 ---
 
 <Page {title} {description}>
-    <h1 class="text-3xl font-semibold mb-2">{title}</h1>
-    <nav class="flex gap-5">
-      <a class="hover:underline" rel="prefetch" href="/">Home</a>
-      <a class="hover:underline" rel="prefetch" href="/blog">Blog</a>
-      <a class="hover:underline" rel="prefetch" href="#">Projects</a>
-      <a class="hover:underline" rel="prefetch" href="/about">About</a>
-      <a class="hover:underline cursor-pointer" href="javascript:toggleTheme()">
-        Theme
-      </a>
-    </nav>
+  <Header {title} {description} />
   <hr />
   <slot />
   <hr />
-  <p class="text-xs">{footer}</p>
+  <Footer {footer} />
 </Page>

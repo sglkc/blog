@@ -6,10 +6,18 @@
   ::-webkit-scrollbar-thumb {
     @apply bg-transparent
   }
+
   ::-webkit-scrollbar {
-    @apply w-3 h-3 bg-transparent
+    @apply w-2 h-2 bg-transparent
   }
+
   ::-webkit-scrollbar-thumb {
     @apply rounded bg-gray-500
+  }
+
+  @media screen(sm) {
+    ::-webkit-scrollbar {
+      @apply w-3 h-3 bg-transparent
+    }
   }
 }

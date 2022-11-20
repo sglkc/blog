@@ -22,6 +22,9 @@ module.exports = {
             '--tw-prose-quote-borders': theme(colors.accent(300)),
             '--tw-prose-th-borders': theme(colors.accent(400)),
             '--tw-prose-td-borders': theme(colors.accent(300)),
+            h1: {
+              'font-size': '2em'
+            },
             table: {
               margin: '0'
             },
@@ -50,7 +53,7 @@ module.exports = {
             '--tw-prose-invert-th-borders': theme(colors.accent(600)),
             '--tw-prose-invert-td-borders': theme(colors.accent(700)),
           }
-        }
+        },
       })
     },
   },

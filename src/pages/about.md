@@ -1,6 +1,7 @@
 ---
 layout: '@/layouts/PlainDocument.astro'
-title: About Me
+title: About
+description: About this website, and a little about myself (I love gatekeeping)
 footer: 'Last Updated: 19-11-2022'
 ---
 

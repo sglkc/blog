@@ -1,8 +1,8 @@
 ---
-import BlogHeader from '../../components/BlogHeader.astro'
-import BlogPostPreview from '../../components/BlogPostPreview.astro'
-import Page from '../../components/Page.astro'
-import PaginationNavigation from '../../components/PaginationNavigation.astro'
+import Header from '@/components/Header.astro';
+import PostPreview from '@/components/PostPreview.astro';
+import Page from '@/components/Page.astro';
+import Pagination from '@/components/Pagination.astro';
 
 export async function getStaticPaths({ paginate }) {
 
@@ -13,10 +13,10 @@ export async function getStaticPaths({ paginate }) {
   return paginate(allPosts, { pageSize: 3 });
 }
 // All paginated data is passed on the "page" prop
-const { page } = Astro.props
+const { page } = Astro.props;
 
-const title = 'My Blog'
-const description = 'A SAMPLE BLOG'
+const title = 'Blog';
+const description = 'This is where I put my thoughts into writing';
 
 // <aside data-pagefind-ignore> is a toggle for pagefind.app to exclude the
 // portion from search result, i.e. in this case to exclude the TOC from being
@@ -24,24 +24,19 @@ const description = 'A SAMPLE BLOG'
 ---
 
 <Page {title} {description}>
-
-  <BlogHeader title={title} />
-
-  <div class='flex justify-center'>
-    <div class='text-lg w-5/6 lg:w-3/4'>
+  <Header {title} {description} />
+  <hr />
+  <main class="flex justify-center">
+    <div>
       <aside data-pagefind-ignore>
         <div>
-          <p class='my-6 font-semibold'>
+          <p class="my-6 font-semibold">
             {description}
           </p>
         </div>
-
-        {page.data.map((p) =>
-          <BlogPostPreview post={p} />
-        )}
+        {page.data.map((p: object) => <PostPreview post={p} />)}
       </aside>
     </div>
-  </div>
-
-  <PaginationNavigation {page} />
+  </main>
+  <Pagination {page} />
 </Page>

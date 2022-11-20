@@ -1,0 +1,20 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<h1 class="text-3xl font-semibold mb-0">{title}</h1>
+<h2 class="text-xl font-normal my-0">{description}</h2>
+<nav class="flex gap-5 mt-5">
+  <a class="hover:underline" rel="prefetch" href="/">Home</a>
+  <a class="hover:underline" rel="prefetch" href="/blog">Blog</a>
+  <a class="hover:underline" rel="prefetch" href="#">Projects</a>
+  <a class="hover:underline" rel="prefetch" href="/about">About</a>
+  <a class="hover:underline cursor-pointer" href="javascript:toggleTheme()">
+    Theme
+  </a>
+</nav>

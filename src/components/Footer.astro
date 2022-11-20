@@ -1,13 +1,12 @@
-<footer class="flex justify-center px-8 pb-3 pt-16 fixed bottom-2 inset-x-0">
-  <div class="grid grid-cols-3 gap-4">
-    <div class="text-left">
-      <a class="underline underline-offset-2" href="/"> Home</a>
-    </div>
-    <div class="text-center text-sm">Made by <a href="https://github.com/sglkc">sglkc</a></div>
-    <div class="text-right">
-      <a class="underline underline-offset-2" href="/privacy">
-        Data Privacy
-      </a>
-    </div>
-  </div>
+---
+export interface Props {
+  footer: string;
+}
+
+const { footer } = Astro.props;
+---
+
+<footer class="flex justify-between not-prose text-sm">
+  <p>{footer}</p>
+  <p>(c) 2022 sglkc</p>
 </footer>

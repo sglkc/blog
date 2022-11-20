@@ -2,14 +2,14 @@
 import BaseHead from "./BaseHead.astro";
 import '@fontsource/nunito/variable.css';
 import '@fontsource/overpass-mono';
-import '@style.css';
+import '@/style.css';
 
 export interface Props {
   title: string;
   description: string;
 }
-const { title, description } = Astro.props;
 
+const { title, description } = Astro.props;
 const language = "en-us";
 ---
 
@@ -18,9 +18,8 @@ const language = "en-us";
     <BaseHead {title} {description} />
   </head>
 
-  <body class="mx-auto p-8 pt-16 font-overpass bg-stone-100 dark:bg-gray-900 transition-colors prose dark:prose-invert">
+  <body class="mx-auto p-8 pt-16 font-overpass bg-stone-100 dark:bg-gray-900 transition-colors prose text-[0.95em] sm:text-base dark:prose-invert max-w-screen sm:w-[72ch] overflow-x-hidden">
     <slot />
-    <!--<Footer />-->
     <script is:inline>
     const classList = document.documentElement.classList;
 
