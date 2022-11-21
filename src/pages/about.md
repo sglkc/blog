@@ -1,5 +1,5 @@
 ---
-layout: '@/layouts/PlainDocument.astro'
+layout: '@/layouts/Default.astro'
 title: About
 description: About this website, and a little about myself (I love gatekeeping)
 footer: 'Last Updated: 19-11-2022'

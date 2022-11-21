@@ -1,9 +1,8 @@
 ---
-import Header from '@/components/Header.astro';
 import PostPreview from '@/components/PostPreview.astro';
-import Page from '@/components/Page.astro';
 import Pagination from '@/components/Pagination.astro';
 import Search from '@/components/Search.astro';
+import Default from '@/layouts/Default.astro';
 
 export async function getStaticPaths({ paginate }) {
 
@@ -15,16 +14,17 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
-const title = 'Blog';
-const description = 'This is where I put my thoughts into writing';
+const content = {
+  title: 'Blog',
+  description: 'This is where I put my thoughts into writing',
+  footer: ''
+};
 ---
 
-<Page {title} {description}>
-  <Header {title} {description} />
-  <hr />
+<Default {content}>
   <Search />
   <main>
     {page.data.map((post: object) => <PostPreview {post} />)}
     <Pagination {page} />
   </main>
-</Page>
+</Default>

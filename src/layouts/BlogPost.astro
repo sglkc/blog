@@ -1,14 +1,11 @@
 ---
-import BlogHeader from "../components/BlogHeader.astro";
-import Page from "../components/Page.astro";
+import Default from "./Default.astro";
 
 const { content } = Astro.props;
 const { title, description, pubDate, heroImage, alt } = content;
 ---
 
-<Page {title} {description}>
-  <BlogHeader title="My Blog" />
-
+<Default {content}>
   {
   heroImage && (
     <div>
@@ -17,8 +14,8 @@ const { title, description, pubDate, heroImage, alt } = content;
   )
   }
 
-  <div class="flex justify-center text-zinc-700">
-    <div class="text-lg w-5/6 lg:w-3/4 prose">
+  <div class="">
+    <div class="text-lg">
       <h1 class="text-2xl font-semibold mt-8">{title}</h1>
       <p class="font-extralight mb-8">{pubDate}</p>
 
@@ -27,9 +24,9 @@ const { title, description, pubDate, heroImage, alt } = content;
           {description}
         </p>
       </div>
-      <div class="prose text-lg">
+      <div class="text-lg">
         <slot />
       </div>
     </div>
   </div>
-</Page>
+</Default>

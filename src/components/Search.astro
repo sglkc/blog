@@ -1,4 +1,6 @@
-<div class="flex gap-2">
+<div
+  class="flex gap-2 bg-stone-100 dark:bg-gray-900 sticky top-10 pt-2 sm:pt-4 pb-2 -mt-4 transition-[background-color]"
+>
   <p class="my-0">&gt; [</p>
   <input
     id="search"
@@ -89,7 +91,5 @@ searchInput.addEventListener('input', () => {
 
     resultDiv.insertAdjacentHTML('beforeend', elm);
   });
-
-  resultDiv.insertAdjacentHTML('beforeend', '<hr>');
 });
 </script>

@@ -8,8 +8,10 @@ const { title, description } = Astro.props;
 ---
 
 <h1 class="text-3xl font-semibold mb-2">{title}</h1>
-<h2 class="text-xl font-normal my-0">{description}</h2>
-<nav class="flex gap-5 mt-5">
+<h2 class="text-xl font-normal mt-0 mb-2">{description}</h2>
+<nav
+  class="flex gap-5 bg-stone-100 dark:bg-gray-900 sticky top-0 pb-2 pt-3 -mb-2 sm:pt-5 transition-[background-color]"
+>
   <a class="hover:underline" rel="prefetch" href="/">Home</a>
   <a class="hover:underline" rel="prefetch" href="/blog">Blog</a>
   <a class="hover:underline" rel="prefetch" href="#">Projects</a>
@@ -18,3 +20,4 @@ const { title, description } = Astro.props;
     Theme
   </a>
 </nav>
+<hr />
