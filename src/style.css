@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  mark {
+    @apply bg-slate-300;
+  }
+
   ::-webkit-scrollbar-thumb {
     @apply bg-transparent
   }

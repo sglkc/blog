@@ -9,7 +9,6 @@
         "preview": "astro preview"
     },
     "devDependencies": {
-        "@astrojs/mdx": "^0.4.0",
         "@astrojs/sitemap": "^0.2.6",
         "@astrojs/tailwind": "^0.2.5",
         "@tailwindcss/typography": "^0.5.8",
@@ -23,6 +22,7 @@
         "@astrojs/rss": "^0.2.2",
         "@fontsource/nunito": "^4.5.11",
         "@fontsource/overpass-mono": "^4.5.10",
+        "fuzzysort": "^2.0.3",
         "sharp": "^0.31.2"
     }
 }

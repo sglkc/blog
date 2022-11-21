@@ -3,6 +3,7 @@ import Header from '@/components/Header.astro';
 import PostPreview from '@/components/PostPreview.astro';
 import Page from '@/components/Page.astro';
 import Pagination from '@/components/Pagination.astro';
+import Search from '@/components/Search.astro';
 
 export async function getStaticPaths({ paginate }) {
 
@@ -12,9 +13,8 @@ export async function getStaticPaths({ paginate }) {
 
   return paginate(allPosts, { pageSize: 10 });
 }
-// All paginated data is passed on the "page" prop
-const { page } = Astro.props;
 
+const { page } = Astro.props;
 const title = 'Blog';
 const description = 'This is where I put my thoughts into writing';
 ---
@@ -22,8 +22,9 @@ const description = 'This is where I put my thoughts into writing';
 <Page {title} {description}>
   <Header {title} {description} />
   <hr />
+  <Search />
   <main>
-    {page.data.map((p: object) => <PostPreview post={p} />)}
+    {page.data.map((post: object) => <PostPreview {post} />)}
+    <Pagination {page} />
   </main>
-  <Pagination {page} />
 </Page>

@@ -1,0 +1,13 @@
+---
+const posts = await Astro.glob('./blog/*.md');
+const json = JSON.stringify(
+  posts.map((post) => ({
+    title: post.frontmatter.title,
+    description: post.frontmatter.description,
+    pubDate: post.frontmatter.pubDate,
+    tags: post.frontmatter.tags.join(),
+    url: post.url,
+  }))
+);
+---
+<Fragment set:html={json} />

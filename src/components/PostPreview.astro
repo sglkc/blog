@@ -3,16 +3,26 @@ export interface Props {
   post: any;
 }
 
+const defaultPost = {
+  title: null,
+  description: null,
+  pubDate: null,
+  tags: []
+};
 const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.frontmatter ?? defaultPost;
+
+/* TODO: Do something with this or maybe just delete it
 const content = post.rawContent().replace(/ +/g, ' ');
-const snippet = content.slice(0, 150) + (content.length > 150 ? '...' : '');
+const snippet = content.slice(0, 100) + (content.length > 100 ? '...' : '');
+*/
 ---
 
-<a class="my-6 py-2 flex flex-col gap-4 no-underline" href={post.url}>
-  <div class="flex justify-between">
-    <h2 class="underline font-semibold my-0">{post.frontmatter.title}</h2>
-    <p class="my-0 text-sm">{post.frontmatter.pubDate}</p>
+<div class="my-6 py-2 flex flex-col gap-4">
+  <p class="my-0 text-sm -mb-2">{pubDate}</p>
+  <a class="text-xl font-semibold my-0" href={post.url}>{title}</a>
+  <h4 class="font-light my-0 text-sm sm:text-base">{description}</h4>
+  <div class="flex flex-wrap gap-x-4 text-sm">
+    { tags.map((tag: string) => <span>#{tag}</span>) }
   </div>
-  <h4 class="font-light my-0">{post.frontmatter.description}</h4>
-  <blockquote class="my-0">{snippet}</blockquote>
-</a>
+</div>
