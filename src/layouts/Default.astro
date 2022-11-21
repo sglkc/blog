@@ -1,5 +1,5 @@
 ---
-import Header from '@/components/Header.astro';
+import Navbar from '@/components/Navbar.astro';
 import Footer from '@/components/Footer.astro';
 import Page from '@/components/Page.astro';
 
@@ -16,7 +16,10 @@ const { title, description, footer } = content;
 ---
 
 <Page {title} {description}>
-  <Header {title} {description} />
+  <h1 class="text-3xl font-semibold mb-2">{title}</h1>
+  <h2 class="text-xl font-normal mt-0 mb-2">{description}</h2>
+  <Navbar />
+  <hr />
   <slot />
   <Footer {footer} />
 </Page>

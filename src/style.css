@@ -16,7 +16,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded bg-gray-500
+    @apply rounded bg-stone-300
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-gray-500
   }
 
   @media screen(sm) {

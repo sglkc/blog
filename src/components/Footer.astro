@@ -1,9 +1,9 @@
 ---
 export interface Props {
-  footer: string;
+  footer?: string;
 }
 
-const { footer } = Astro.props;
+const { footer = '' } = Astro.props;
 ---
 
 <hr />

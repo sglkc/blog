@@ -1,32 +1,42 @@
 ---
-import Default from "./Default.astro";
+import Navbar from '@/components/Navbar.astro';
+import Footer from '@/components/Footer.astro';
+import Page from '@/components/Page.astro';
+
+export interface Props {
+  content: {
+    title: string,
+    description: string,
+    pubDate: string,
+    tags: Array<string>,
+    heroImage: string,
+    alt: string,
+  };
+}
 
 const { content } = Astro.props;
-const { title, description, pubDate, heroImage, alt } = content;
+const { title, description, tags, pubDate, heroImage, alt } = content;
 ---
 
-<Default {content}>
-  {
-  heroImage && (
+<Page {title} {description}>
+  <Navbar style="-mt-6 justify-center" />
+  <div class="text-center">
+    <h1 class="text-3xl font-semibold mt-8 sm:mt-6">{title}</h1>
+    <h2 class="text-lg font-normal my-6">{description}</h2>
+    <div class="flex flex-wrap gap-x-4 justify-center mb-6">
+      { tags.map((tag: string) => <span>#{tag}</span>) }
+    </div>
+    <div class="mt-4 flex flex-col gap-1">
+      <p class="my-0 text-sm">Date Posted: {pubDate}</p>
+      <p class="my-0 text-sm">Last Updated: 15 June 2022</p>
+    </div>
+  </div>
+  <hr />
+  { heroImage && (
     <div>
       <img class="w-full" loading="eager" src={heroImage} alt={alt} />
     </div>
-  )
-  }
-
-  <div class="">
-    <div class="text-lg">
-      <h1 class="text-2xl font-semibold mt-8">{title}</h1>
-      <p class="font-extralight mb-8">{pubDate}</p>
-
-      <div>
-        <p class="text-lg my-6">
-          {description}
-        </p>
-      </div>
-      <div class="text-lg">
-        <slot />
-      </div>
-    </div>
-  </div>
-</Default>
+  )}
+  <slot />
+  <Footer />
+</Page>

@@ -1,7 +1,7 @@
 <div
   class="flex gap-2 bg-stone-100 dark:bg-gray-900 sticky top-10 pt-2 sm:pt-4 pb-2 -mt-4 transition-[background-color]"
 >
-  <p class="my-0">&gt; [</p>
+  <p class="my-0">[</p>
   <input
     id="search"
     class="bg-transparent outline-0 flex-grow py-2 -my-2"
@@ -10,6 +10,7 @@
     spellcheck="false"
   />
   <p class="my-0">]</p>
+  <small id="results-small" class="my-auto"></small>
 </div>
 <div id="results"></div>
 
@@ -21,6 +22,7 @@ import fuzzysort from 'fuzzysort';
 let blogs = [];
 const searchInput = document.getElementById('search') as HTMLInputElement;
 const resultDiv = document.getElementById('results');
+const resultsSmall = document.getElementById('results-small');
 const mainElm = document.querySelector('main');
 const getHighlight = (result) => {
   if (!result) return null;
@@ -45,11 +47,11 @@ searchInput.addEventListener('input', () => {
 
   const value = searchInput.value.replace('#', '');
 
-  if (!value.length) {
-    mainElm.style.display = '';
-    resultDiv.innerHTML = '';
-    return;
-  }
+  mainElm.style.display = '';
+  resultDiv.innerHTML = '';
+  resultsSmall.innerText = '';
+
+  if (!value.length) return;
 
   const isTag = searchInput.value.startsWith('#');
   const options = isTag ? { key: 'tags' } : { keys: ['title', 'description'] };
@@ -59,18 +61,18 @@ searchInput.addEventListener('input', () => {
     ...options
   });
 
-  resultDiv.innerHTML = `<small>results found: ${results.length}</small>`;
+  resultsSmall.innerText = `${results.length} results found`;
 
   if (results.length) mainElm.style.display = 'none';
   else return mainElm.style.display = '';
 
-  results.forEach((result) => {
+  results.forEach((result: { obj }) => {
     let title = result.obj.title;
     let description = result.obj.description;
     let tagsString = result.obj.tags;
 
     if (isTag) {
-      tagsString = getHighlight(result) ?? tagString;
+      tagsString = getHighlight(result) ?? tagsString;
     } else {
       title = getHighlight(result[0]) ?? title;
       description = getHighlight(result[1]) ?? description;
