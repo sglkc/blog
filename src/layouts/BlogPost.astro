@@ -1,4 +1,5 @@
 ---
+import { Image } from '@astrojs/image/components';
 import Navbar from '@/components/Navbar.astro';
 import Footer from '@/components/Footer.astro';
 import Page from '@/components/Page.astro';
@@ -6,37 +7,43 @@ import Page from '@/components/Page.astro';
 export interface Props {
   content: {
     title: string,
-    description: string,
-    pubDate: string,
+    created: string,
+    updated: string,
     tags: Array<string>,
-    heroImage: string,
-    alt: string,
+    hero?: string,
+    alt?: string
   };
+  rawContent: Function;
 }
 
-const { content } = Astro.props;
-const { title, description, tags, pubDate, heroImage, alt } = content;
+const { content, rawContent } = Astro.props;
+const { title, tags, created, updated, hero, alt } = content;
+const snippet = rawContent().replace(/ +/g, ' ');
+const description = snippet.slice(0, 150) + (snippet.length > 150 ? '...' : '');
 ---
 
-<Page {title} {description}>
+<Page {title} {description} post={content}>
   <Navbar style="-mt-6 justify-center" />
   <div class="text-center">
     <h1 class="text-3xl font-semibold mt-8 sm:mt-6">{title}</h1>
-    <h2 class="text-lg font-normal my-6">{description}</h2>
+    { hero && (
+      <Image
+        src={'/assets/hero/' + hero}
+        alt={alt}
+        width="full"
+        height="full"
+        draggable="false"
+      />
+    )}
     <div class="flex flex-wrap gap-x-4 justify-center mb-6">
       { tags.map((tag: string) => <span>#{tag}</span>) }
     </div>
     <div class="mt-4 flex flex-col gap-1">
-      <p class="my-0 text-sm">Date Posted: {pubDate}</p>
-      <p class="my-0 text-sm">Last Updated: 15 June 2022</p>
+      <p class="my-0 text-sm">Date Posted: {created}</p>
+      <p class="my-0 text-sm">Last Updated: {updated}</p>
     </div>
   </div>
   <hr />
-  { heroImage && (
-    <div>
-      <img class="w-full" loading="eager" src={heroImage} alt={alt} />
-    </div>
-  )}
   <slot />
   <Footer />
 </Page>

@@ -1,9 +1,11 @@
 ---
 layout: '@layouts/BlogPost.astro'
 title: Not how long
-pubDate: 06 June 2022
+created: 06 June 2022
+updated: 07 June 2022
 description: A blog post with hero image
-heroImage: /assets/img/seneca.jpeg
+hero: example.jpeg
+alt: Test example image
 tags:
   - Example
   - Test

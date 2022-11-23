@@ -8,7 +8,7 @@ export async function getStaticPaths({ paginate }) {
 
   let allPosts = await Astro.glob('../blog/*.md')
   allPosts = allPosts.sort(
-    (a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
+    (a, b) => new Date(b.frontmatter.created).valueOf() - new Date(a.frontmatter.created).valueOf())
 
   return paginate(allPosts, { pageSize: 10 });
 }
@@ -17,7 +17,6 @@ const { page } = Astro.props;
 const content = {
   title: 'Blog',
   description: 'This is where I put my thoughts into writing',
-  footer: ''
 };
 ---
 
