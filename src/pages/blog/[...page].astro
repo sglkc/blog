@@ -8,7 +8,8 @@ export async function getStaticPaths({ paginate }) {
 
   let allPosts = await Astro.glob('../blog/*.md')
   allPosts = allPosts.sort(
-    (a, b) => new Date(b.frontmatter.created).valueOf() - new Date(a.frontmatter.created).valueOf())
+    (a, b) => new Date(b.frontmatter.created).valueOf() - new Date(a.frontmatter.created).valueOf()
+  );
 
   return paginate(allPosts, { pageSize: 10 });
 }
@@ -23,7 +24,7 @@ const content = {
 <Default {content}>
   <Search />
   <main>
-    {page.data.map((post: object) => <PostPreview {post} />)}
+    {page.data.map((post: any) => <PostPreview {post} />)}
     <Pagination {page} />
   </main>
 </Default>

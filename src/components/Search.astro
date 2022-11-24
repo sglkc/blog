@@ -66,7 +66,7 @@ searchInput.addEventListener('input', () => {
   if (results.length) mainElm.style.display = 'none';
   else return mainElm.style.display = '';
 
-  results.forEach((result: { obj }) => {
+  results.forEach((result: any) => {
     let title = result.obj.title;
     let description = result.obj.description;
     let tagsString = result.obj.tags;
@@ -79,12 +79,12 @@ searchInput.addEventListener('input', () => {
     }
 
     const tags = tagsString.split(',')
-      .map(tag => `<span>#${tag}</span>`)
+      .map((tag: string) => `<span>#${tag}</span>`)
       .join('');
 
     const elm = `
 <div class="my-6 py-2 flex flex-col gap-4">
-  <p class="my-0 text-sm -mb-2">${result.obj.pubDate}</p>
+  <p class="my-0 text-sm -mb-2">${result.obj.created}</p>
   <a class="text-xl font-semibold my-0" href=${result.obj.url}>${title}</a>
   <h4 class="font-light my-0 text-sm sm:text-base">${description}</h4>
   <div class="flex flex-wrap gap-x-4 text-sm">${tags}</div>
