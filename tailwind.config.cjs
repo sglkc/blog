@@ -8,7 +8,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     fontFamily: {
-      'nunito': 'NunitoVariable',
       'overpass': '"Overpass Mono"',
     },
     extend: {
