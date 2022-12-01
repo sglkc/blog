@@ -1,78 +1,44 @@
 ---
 layout: '@/layouts/Default.astro'
 title: About
-description: About this website, and a little about myself (I love gatekeeping)
-footer: 'Last Updated: 19-11-2022'
+description: this is me and myself
+footer: 'Last Updated: 01-12-2022'
 ---
 
-# One morning, when Gregor Samsa woke from troubled dreams.
-One morning, when Gregor Samsa woke from troubled dreams, he found himself *transformed* in his bed into a horrible  [vermin](http://en.wikipedia.org/wiki/Vermin "Wikipedia Vermin"). He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover **strong** it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, link waved abouthelplessly as he looked. <cite>“What's happened to me?”</cite> he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls.</p>
+Hello, it's me. I go by the alias **sglkc** here because I quite care about my
+online privacy <small>(kind of)</small>. If you know me, you know me.
 
-## The bedding was hardly able to cover it.
+I'm a web developer based in **Indonesia**, I have a passion to get creative and
+innovative ideas to implement them in the web. It's either because I'm bored or
+just because I think my idea could help everyone.
 
-It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer a solid fur muff into which her entire forearm disappeared..
+I got into the coding scene back in elementary school, and formally developed
+my skill as a programmer in vocational high school. I loved web development
+because it was and will always be very easy to get into.
 
-### Things we know about Gregor's sleeping habits.
+My favorite programming language is **JavaScript**. While I don't have a problem
+with **HTML**, it's hard to maintain for bigger projects. The first ever
+front-end framework I got into was **Vue**. Along with that, I have learned
+other frameworks like **React**, **Svelte**, and **Astro**.
 
-- He always slept on his right side.
-- He has to get up early (to start another dreadful day).
-- He has a drawer and a alarm clock next to his bed.
-- His mother calls him when he gets up to late.
+Smaller projects could work with plain **CSS**, but for style consistency and
+better user interfaces, **Bootstrap** is enough. **Tailwind** is used in some
+of my projects, and **Vuetify** for my Vue projects.
 
-<div class="overflow-auto">
-  <table>
-    <tr>
-      <th>Writer</th>
-      <th>Nationality</th>
-      <th>Genre</th>
-      <th>Most famous book</th>
-    </tr>
-    <tr>
-      <td>Franz Kafka</td>
-      <td>Leo Tolstoy</td>
-      <td>F. Scott Fitzgerald</td>
-      <td>H.G. Wells</td>
-    </tr>
-    <tr>
-      <td>Austrian</td>
-      <td>Russia</td>
-      <td>American</td>
-      <td>British</td>
-    </tr>
-    <tr>
-      <td>Literature & Fiction, Philosophy, Short Stories</td>
-      <td>Literature & Fiction, Philosophy</td>
-      <td>Literature & Fiction, Short Stories</td>
-      <td>Science Fiction</td>
-    </tr>
-      <tr>
-      <td>The Metamorphosis</td>
-      <td>War & Piece</td>
-      <td>The Great Gatsby</td>
-      <td>War of the Worlds</td>
-    </tr>
-  </table>
-</div>
+As for the back-end, I have experience working with **PHP** and the framework
+**Laravel**. But it has been so long since I used PHP, that **Express** became
+my best friend for developing **APIs**. I have always used **MySQL** for the
+database, but I plan to use other databases in the future.
 
-First he wanted to stand up quietly and undisturbed, get dressed, above all have breakfast, and only then consider further action, for (he noticed this clearly) by thinking things over in bed he would not reach a reasonable conclusion. He remembered that he had already often felt a light pain or other in bed, perhaps the result of an awkward lying position, which later turned out to be purely imaginary when he stood up, and he was eager to see how his present fantasies would gradually dissipate. That the change in his voice was nothing other than the onset of a real chill, an occupational illness of commercial travelers, of that he had not the slightest doubt.
+Being a **full-stack** developer means I could manage a small Linux server and
+**cPanel** for web hosting, and setting up a domain with a hosting platform
+like **[Netlify](https://netlify.com)** or **[Vercel](https://vercel.net)**.
 
-```javascript
-function metamorphose(protagonist,author){
-  if( protagonist.name.first === 'Gregor' && author.name.last === 'Kafka' ){
-    protagonist.species = 'insect';
-  }
-}
-```
+I used **Linux** daily, my code editor and IDE is **NeoVim**, because I know
+most NeoVim users are always winning. <small>(except i don't)</small>
 
-It was very easy to throw aside the blanket. He needed only to push himself up a little, and it fell by itself. But to continue was difficult, particularly because he was so unusually wide. He needed arms and hands to push himself upright. Instead of these, however, he had only many small limbs which were incessantly moving with very different motions and which, in addition, he was unable to control. If he wanted to bend one of them, then it was the first to extend itself, and if he finally succeeded doing with this limb what he wanted, in the meantime all the others, as if left free, moved around in an excessively painful agitation. "But I must not stay in bed uselessly," said Gregor to himself.
+Anyway as you can read. I speak English too. I took the **TOIEC** test back in
+high school and I got a total score of **885**.
 
-> At first he wanted to get off the bed with the lower part of his body, but this lower part (which he incidentally had not yet looked at and which he also couldn't picture clearly) proved itself too difficult to move. The attempt went so slowly. When, having become almost frantic, he finally hurled himself forward with all his force and without thinking, he chose his direction incorrectly, and he hit the lower bedpost hard. The violent pain he felt revealed to him that the lower part of his body was at the moment probably the most sensitive.
-
-Thus, he tried to get his upper body out of the bed first and turned his head carefully toward the edge of the bed. He managed to do this easily, and in spite of its width and weight his body mass at last slowly followed the turning of his head. But as he finally raised his head outside the bed in the open air, he became anxious about moving forward any further in this manner, for if he allowed himself eventually to fall by this process, it would take a miracle to prevent his head from getting injured. And at all costs he must not lose consciousness right now. He preferred to remain in bed.
-
-#### First five selected publications in English
-1. The Castle
-2. The Great Wall of China
-3. The Trial
-4. America
-5. The Diaries Of Franz Kafka
+That's all. I think it has more than enough information for you to know, thanks
+for coming and maybe reading, have a good day!

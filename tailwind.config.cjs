@@ -14,6 +14,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            'max-width': '72ch',
             color: theme(colors.primary(800)),
             '--tw-prose-hr': theme(colors.accent(400)),
             '--tw-prose-bullets': theme(colors.accent(400)),
@@ -23,6 +24,10 @@ module.exports = {
             '--tw-prose-td-borders': theme(colors.accent(300)),
             h1: {
               'font-size': '2em'
+            },
+            a: {
+              'font-weight': 'inherit',
+              color: 'inherit'
             },
             table: {
               margin: '0'
