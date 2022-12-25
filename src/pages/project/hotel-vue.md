@@ -1,0 +1,51 @@
+---
+layout: '@layouts/Project.astro'
+title: Hotel Vue (Ujikom Hotel)
+created: 10 March 2022
+description: For high school competency test, the first project to feature an API
+thumbnail: hotel-vue/thumbnail.png
+source: https://github.com/sglkc/hotel-vue
+demo: https://sglkc.github.io/hotel-vue
+stack:
+  - Vite
+  - Vue.js 3
+  - Vuetify
+  - Express
+  - MySQL
+---
+
+## Story
+
+So this test I'm talking about was in 11-14 April, we were taking written test
+and a case study where we have to make a website about Hotels.
+
+I will include a quite important note that you, as a developer, has to remember.
+Atleast that was what the examiner said.
+
+## Admin Panel
+
+![An admin panel](/assets/project/hotelvue/admin.png)
+
+The site has an admin panel inside of it, where you can play around with the API
+and while the design is very bland and basic, I think the functionality is
+enough to make it usable.
+
+**So what was the important note?**
+
+I completely forgot to add pagination. Yep, I think that was the only reason on
+why I got smaller grade than I expected, so don't forget to have pagination if
+you're dealing with a lot of data!
+
+## API
+
+[Source code for Hotel API](https://github.com/sglkc/hotel-api)
+
+Yet another thing that was introduced to me, a JavaScript framework for Back-End
+development. My close friends used this on their internship, so I got into it as
+well.
+
+This was the time I'm familiar with Laravel, the design pattern is quite similar
+to it: controllers, middlewares, migrations. and routes.
+
+I can say the security is too elaborate thanks to the best practices I've read
+online.

@@ -10,6 +10,36 @@ stack:
   - HTML
   - Bootstrap
   - JavaScript
+  - jQuery
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque in dictum non consectetur a erat nam at. Quisque sagittis purus sit amet volutpat consequat mauris. Quam id leo in vitae turpis massa sed. Vulputate dignissim suspendisse in est ante in. Mauris ultrices eros in cursus turpis. Nisl nisi scelerisque eu ultrices. Odio pellentesque diam volutpat commodo sed egestas. Fames ac turpis egestas maecenas pharetra convallis posuere. Urna nunc id cursus metus. Nunc id cursus metus aliquam eleifend mi in nulla. Aenean sed adipiscing diam donec adipiscing. Nunc sed velit dignissim sodales ut eu sem integer. Turpis egestas pretium aenean pharetra. At quis risus sed vulputate odio ut enim blandit.
+I think it's obvious on why I made this, right?
+
+I used JavaScript with jQuery for everything because it'll be easier. Also, I
+don't like to use any frameworks back then.
+
+<hr />
+
+### A minimal website to practice reading Japanese kana!
+
+#### Game Options
+- Four different fonts
+- Light and dark theme
+- Show Kanji
+- Hiragana, Katakana, or both
+- Toggle Dakuten and Handakuten
+- Random or JLPT N5-N4 words
+
+#### Gameplay
+- Correct and skipped words counter
+- Time counter
+- Keyboard shortcuts
+
+#### Results
+- Average time to answer
+- Words table with kana link to Jisho, romaji and meaning
+- Copy Table button complete with kanji, kana, romaji and meaning
+- Share button to copy latest game statistics
+
+#### License
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.

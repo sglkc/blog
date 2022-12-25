@@ -1,0 +1,51 @@
+---
+layout: '@layouts/Project.astro'
+title: Japanese Assistant
+created: 14 July 2022
+description: Assistance on Japanese characters, verb conjugations, and romanization
+thumbnail: jp-assistant.png
+source: https://github.com/sglkc/jp-assistant
+demo: https://sglkc.github.io/jp-assistant
+stack:
+  - HTML
+  - CSS
+  - JavaScript
+  - Browserify
+---
+
+Another Japanese-centered website, I made because I'm a fanboy of Japan.
+
+As mentioned in the README, I don't recommend this website if you really are
+trying to learn Japanese, this is just a tech-demo for I was having fun with
+these JavaScript Japanese libraries.
+
+### Uhh why Browserify?
+
+I kinda regret this decision, it made the development much slower. I didn't
+know at the time that there are much better build tools than having to manually
+build the script for every changes.
+
+So as a personal note here: **DO NOT** use Browserify again, and just stick with a
+better build tool like Vite.
+
+<hr />
+
+#### Japanese language assistant website from an input method to a converter.
+
+> Basically a web version of (https://github.com/sglkc/joshu-bot)
+
+Sadly, this website is not for complete beginners, most of the features are
+experimental and mostly optimized for offline use. Please find more reliable
+sources to cover any mistakes.
+
+### Features
+
+More features are definitely coming! The features for now are the following:
+- Input Method Editor
+- Verb Conjugation Tool
+- Verb Deconjugation Tool
+- Japanese Text Converter
+
+### License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.

@@ -1,0 +1,33 @@
+---
+layout: '@layouts/Project.astro'
+title: svknd.id
+created: 6 November 2021
+description: First internship project and also the first step in my career as a web developer
+thumbnail: svkndid.png
+source: https://github.com/sglkc/svknd.id
+demo: https://svknd.netlify.app
+stack:
+  - Nuxt.js
+  - Vue.js 2
+  - Vuetify
+---
+
+## Story
+
+This was my first ever time getting into a front-end framework, me and my
+friends were told to learn Vue and make a website for the company.
+
+We were very confused of course, since we didn't have any experience with
+anything related to Node.js nor deploying a website to the internet. The
+challenge given was just right, we didn't take it easy and we weren't
+overwhelmed.
+
+## Why the teck stack?
+
+On why it's Nuxt, Vue, and Vuetify specifically is because "they" said it's the
+easiest framework to learn for beginners. I mean, we couldn't refuse too, so
+why not?
+
+## Last words
+
+I will and always miss those times. Shout out to the everyone behind Savikindo!
