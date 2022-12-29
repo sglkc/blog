@@ -28,6 +28,18 @@ export default defineConfig({
     },
   },
   shortcuts: {
-    'background': 'bg-zinc-100 dark:bg-zinc-800 transition-[background\-color] duration-300 ease-in-out',
-  }
+    'background': 'bg-zinc-100 dark:bg-zinc-800 transition-property-[background-color] duration-300 ease-in-out',
+  },
+  preflights: [
+    {
+      getCSS: () => `
+      .unloaded * {
+        transition: none!important;
+        transition-property: none!important;
+        transition-duration: 0ms!important;
+        transition-timing-function: none!important;
+      }
+      `
+    }
+  ]
 });
