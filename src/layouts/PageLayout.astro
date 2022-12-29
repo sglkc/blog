@@ -20,7 +20,7 @@ const { title, description, footer } = Astro.props.content;
   <h1 class="text-3xl font-semibold mb-2">{title}</h1>
   <h2 class="text-xl font-normal mt-0 mb-2">{description}</h2>
   <Navbar
-    class="background sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5"
+    class="background flex sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5 overflow-y-auto"
     grow={true}
   />
   <hr />

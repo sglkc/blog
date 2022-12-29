@@ -13,9 +13,11 @@
   "dependencies": {
     "@astrojs/image": "^0.12.1",
     "@astrojs/mdx": "^0.14.0",
+    "@astrojs/preact": "^1.2.0",
     "@astrojs/prefetch": "^0.1.1",
     "@fontsource/overpass-mono": "^4.5.10",
     "astro": "^1.8.0",
+    "preact": "^10.6.5",
     "sharp": "^0.31.3",
     "typescript": "^4.9.4"
   },
