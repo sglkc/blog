@@ -1,0 +1,26 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import '@fontsource/overpass-mono';
+---
+
+<html lang="en">
+  <BaseHead {...Astro.props} />
+  <body class="bg-zinc-100 dark:bg-zinc-800 transition-[background-color] duration-300 ease-in-out">
+    <div class="mx-auto p-8 pt-16 font-overpass prose prose-zinc dark:prose-invert overflow-x-hidden">
+      <slot />
+    </div>
+  </body>
+  <script>
+  const classList = document.documentElement.classList;
+
+  if (
+    localStorage.theme === 'dark' ||
+      (
+        !localStorage.theme &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+      )
+  ) {
+    classList.add('dark');
+  }
+  </script>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "blog",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.12.1",
+    "@astrojs/mdx": "^0.14.0",
+    "@astrojs/prefetch": "^0.1.1",
+    "@fontsource/overpass-mono": "^4.5.10",
+    "astro": "^1.8.0",
+    "sharp": "^0.31.3",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@unocss/preset-typography": "^0.48.0",
+    "@unocss/preset-wind": "^0.48.0",
+    "@unocss/reset": "^0.48.0",
+    "unocss": "^0.48.0"
+  }
+}

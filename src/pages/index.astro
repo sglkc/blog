@@ -1,0 +1,59 @@
+---
+import { Image } from '@astrojs/image/components';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ThemeButton from '@/components/ThemeButton.astro';
+---
+
+<BaseLayout title="Home" description="sglkc Personal Website">
+  <div
+    class="fixed max-w-[768px] h-fit inset-0 bottom-0 sm:bottom-8 m-auto px-8 flex gap-8"
+  >
+    <div>
+      <div class="flex justify-between">
+        <a class="block w-fit self-end" href="https://github.com/sglkc">
+          <Image
+            class="rounded-full m-0 drop-shadow-xl"
+            src="/assets/logo.png"
+            draggable="false"
+            alt="GitHub profile"
+            width="150"
+            height="150"
+          >
+        </a>
+        <nav class="flex flex-col gap-3 sm:hidden">
+          <a rel="prefetch" href="/blog">Blog</a>
+          <a rel="prefetch" href="/project">Project</a>
+          <a rel="prefetch" href="/about">About</a>
+          <ThemeButton class="underline cursor-pointer">
+            Theme
+          </ThemeButton>
+        </nav>
+      </div>
+      <main class="flex flex-col mt-8">
+        <h1 class="font-bold text-2xl tracking-widest mb-0">
+          Hi! I'm <a
+            class="underline decoration-dotted"
+            href="https://github.com/sglkc"
+          >@sglkc</a>.
+        </h1>
+        <h2 class="font-semibold text-xl whitespace-nowrap">
+          A <span title="I just love it too much">JavaScript-based</span> <wbr>
+            Full-stack Developer
+        </h2>
+        <p class="text-lg text-justify">
+          I'm an undergraduate who loves Web Development! I like to explore the
+          various things that you can do within a website. I speak English and
+          Bahasa Indonesia. Nice to meet you!
+        </p>
+      </main>
+    </div>
+    <nav class="sm:flex flex-col gap-3 hidden">
+      <a rel="prefetch" href="/blog">Blog</a>
+      <a rel="prefetch" href="/project">Project</a>
+      <a rel="prefetch" href="/about">About</a>
+      <ThemeButton class="underline cursor-pointer">
+        Theme
+      </ThemeButton>
+    </nav>
+  </div>
+</BaseLayout>
