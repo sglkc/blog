@@ -1,0 +1,12 @@
+---
+export interface Props {
+  footer?: string;
+}
+
+const { footer = '' } = Astro.props;
+---
+
+<footer class="flex justify-between not-prose text-sm">
+  <p>{footer}</p>
+  <p>(c) 2022 sglkc</p>
+</footer>

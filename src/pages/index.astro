@@ -1,10 +1,15 @@
 ---
 import { Image } from '@astrojs/image/components';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import ThemeButton from '@/components/ThemeButton.astro';
+import Navbar from '@/components/Navbar.astro';
+
+const props = {
+  title: 'Home',
+  description: 'My personal website'
+};
 ---
 
-<BaseLayout title="Home" description="sglkc Personal Website">
+<BaseLayout {...props}>
   <div
     class="fixed max-w-[768px] h-fit inset-0 bottom-0 sm:bottom-8 m-auto px-8 flex gap-8"
   >
@@ -20,14 +25,7 @@ import ThemeButton from '@/components/ThemeButton.astro';
             height="150"
           >
         </a>
-        <nav class="flex flex-col gap-3 sm:hidden">
-          <a rel="prefetch" href="/blog">Blog</a>
-          <a rel="prefetch" href="/project">Project</a>
-          <a rel="prefetch" href="/about">About</a>
-          <ThemeButton class="underline cursor-pointer">
-            Theme
-          </ThemeButton>
-        </nav>
+        <Navbar class="sm:hidden flex-col gap-3" />
       </div>
       <main class="flex flex-col mt-8">
         <h1 class="font-bold text-2xl tracking-widest mb-0">
@@ -47,13 +45,6 @@ import ThemeButton from '@/components/ThemeButton.astro';
         </p>
       </main>
     </div>
-    <nav class="sm:flex flex-col gap-3 hidden">
-      <a rel="prefetch" href="/blog">Blog</a>
-      <a rel="prefetch" href="/project">Project</a>
-      <a rel="prefetch" href="/about">About</a>
-      <ThemeButton class="underline cursor-pointer">
-        Theme
-      </ThemeButton>
-    </nav>
+    <Navbar class="hidden sm:flex flex-col gap-3" />
   </div>
 </BaseLayout>

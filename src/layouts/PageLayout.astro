@@ -1,0 +1,30 @@
+---
+import Footer from '@/components/Footer.astro';
+import Navbar from '@/components/Navbar.astro';
+import BaseLayout from './BaseLayout.astro';
+
+export interface LayoutProps {
+  title: string;
+  description: string;
+  footer?: string;
+}
+
+type Props = {
+  content: LayoutProps;
+}
+
+const { title, description, footer } = Astro.props.content;
+---
+
+<BaseLayout {...Astro.props}>
+  <h1 class="text-3xl font-semibold mb-2">{title}</h1>
+  <h2 class="text-xl font-normal mt-0 mb-2">{description}</h2>
+  <Navbar
+    class="background sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5"
+    grow={true}
+  />
+  <hr />
+  <slot />
+  <hr />
+  <Footer {footer} />
+</BaseLayout>
