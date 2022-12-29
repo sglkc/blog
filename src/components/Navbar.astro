@@ -1,0 +1,36 @@
+---
+import ThemeButton from './ThemeButton.astro';
+
+export interface Props {
+  class?: string;
+  grow?: boolean;
+}
+
+const { class: className, grow } = Astro.props;
+---
+
+<nav class:list={[ 'flex z-5 group', className ]}>
+  { grow &&
+    <span
+      class="-mr-5 transition-[flex-grow] group-[.sticked]:grow-[0.5] duration-300 ease-in-out"
+    ></span>
+  }
+  <a rel="prefetch" href="/">Home</a>
+  <a rel="prefetch" href="/blog">Blog</a>
+  <a rel="prefetch" href="/project">Project</a>
+  <a rel="prefetch" href="/about">About</a>
+  <ThemeButton class="underline cursor-pointer">Theme</ThemeButton>
+</nav>
+
+<script>
+const nav = document.querySelector('nav') as HTMLElement;
+const observer = new IntersectionObserver(
+  ([e]) => e.target.classList.toggle(
+    'sticked',
+    e.intersectionRatio < 1
+  ),
+  { threshold: [1] }
+);
+
+observer.observe(nav);
+</script>

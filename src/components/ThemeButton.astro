@@ -1,13 +1,13 @@
 ---
 // TODO: use framework?
 const { props } = Astro;
-const className = 'w-full text-inherit ' + props.class;
+const classes = ['w-full text-inherit', props.class];
 
 delete props.class;
 ---
 
 <theme-button>
-  <button {...props} class={className}>
+  <button class:list={classes} {...props}>
     <slot />
   </button>
 </theme-button>
