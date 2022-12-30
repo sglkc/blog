@@ -11,7 +11,7 @@ const { title, description, footer } = Astro.props.frontmatter ?? Astro.props;
 
 <BaseLayout {title} {description}>
   <header>
-    <h1 class="text-3xl font-semibold mb-2">{ title }</h1>
+    <h1 class="text-3xl font-semibold mt-0 mb-2">{ title }</h1>
     <h2 class="text-xl font-normal mt-0 mb-2">{ description }</h2>
   </header>
   <Navbar sticky={true} grow={true} />

@@ -6,7 +6,7 @@ type DefaultProps = {
   footer?: string;
 };
 
-type PageProps = DefaultProps & MDXLayoutProps<{
+type PageProps = DefaultProps | MDXLayoutProps<{
   title: string;
   description: string;
   footer?: string;
