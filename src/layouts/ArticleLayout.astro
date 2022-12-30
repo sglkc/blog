@@ -1,5 +1,6 @@
 ---
 import type ArticleProps from '@/types/Article';
+import Footer from '@/components/Footer.astro';
 import Navbar from '@/components/Navbar.astro';
 import BaseLayout from './BaseLayout.astro';
 
@@ -8,7 +9,13 @@ const props = Astro.props as ArticleProps;
 
 <BaseLayout {...props}>
   <Navbar class="justify-center" sticky={true} />
-  <main class="tracking-tight">
-    <slot />
+  <main>
+    <slot name="header" />
+    <hr />
+    <article class="tracking-tighter sm:tracking-tight">
+      <slot />
+    </article>
+    <hr />
+    <Footer />
   </main>
 </BaseLayout>

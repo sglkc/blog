@@ -1,15 +1,15 @@
 import type { MDXLayoutProps } from 'astro';
 
-type DefaultProps = {
+interface Page {
   title: string;
   description: string;
   footer?: string;
 };
 
-type PageProps = DefaultProps | MDXLayoutProps<{
+interface PageProps extends MDXLayoutProps<Page> {
   title: string;
   description: string;
   footer?: string;
-}>;
+};
 
 export default PageProps;

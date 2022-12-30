@@ -1,0 +1,34 @@
+---
+import type { PostProps } from '@/types/Post';
+import { Image } from '@astrojs/image/components';
+import ArticleLayout from './ArticleLayout.astro';
+
+type Props = PostProps;
+
+const post = Astro.props.frontmatter;
+const { title, description, tags, created, updated, hero, alt } = post;
+---
+
+<ArticleLayout {title} {description} {post}>
+  <header slot="header" class="text-center">
+    <h1 class="text-3xl font-semibold mt-8">{title}</h1>
+    { hero && (
+      <Image
+        src={'/assets/hero/' + hero}
+        alt={alt}
+        height="1000"
+        aspectRatio="16:9"
+        draggable="false"
+      />
+    )}
+    <h2 class="mx-8 my-6 font-italic text-xl">{ description }</h2>
+    <ul class="pl-0 my-6 flex flex-wrap gap-x-4 justify-center">
+      { tags.map((tag: string) => <li class="list-none">#{ tag }</li>) }
+    </ul>
+    <ul class="pl-0 mt-4 flex flex-col gap-1">
+      <li class="list-none">Date Posted: { created }</li>
+      <li class="list-none">Last Updated: { updated }</li>
+    </ul>
+  </header>
+  <slot />
+</ArticleLayout>
