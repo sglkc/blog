@@ -10,6 +10,14 @@ export default defineConfig({
         button: {
           color: 'var(--un-prose-links)'
         },
+        h1: {
+          margin: '1.75em 0 0.75em',
+          'font-size': '1.825em'
+        },
+        h2: {
+          margin: '1.5em 0 0.5em',
+          'font-size': '1.625em'
+        },
         hr: {
           border: 'unset',
           'border-top': 'solid 2px var(--un-prose-hr)',
