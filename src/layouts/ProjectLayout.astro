@@ -11,32 +11,32 @@ const { title, created, description, stack, source, demo, thumbnail } = project;
 ---
 
 <ArticleLayout {title} {description} {project}>
-  <article class="tracking-tight">
-    <div class="text-center">
-      <h1 class="text-3xl font-semibold mt-8">{title}</h1>
-      { thumbnail && (
-        <Image
-          src={'/assets/project/' + thumbnail}
-          alt={title + ' thumbnail image'}
-          height="1000"
-          aspectRatio="16:9"
-          draggable="false"
-          />
-      )}
-      <p class="mt-4">Initiated: { created }</p>
-      <ul class="pl-0 mt-4 flex flex-wrap gap-x-2 justify-center">
-        { stack.map((s: string) => <li class="list-none">[{s}]</li>) }
-      </ul>
-      <ul class="pl-0 mt-4 flex justify-center gap-4">
-        <li class="list-none">
-          <a rel="prefetch" href={source}>Source</a>
-        </li>
-        <li class="list-none">
-          <a rel="prefetch" href={demo}>Demo</a>
-        </li>
-      </ul>
-    </div>
-    <hr />
+  <header class="text-center">
+    <h1 class="text-3xl font-semibold mt-8">{title}</h1>
+    { thumbnail && (
+      <Image
+        src={'/assets/project/' + thumbnail}
+        alt={title + ' thumbnail image'}
+        height="1000"
+        aspectRatio="16:9"
+        draggable="false"
+        />
+    )}
+    <p class="mt-4">Initiated: { created }</p>
+    <ul class="pl-0 mt-4 flex flex-wrap gap-x-2 justify-center">
+      { stack.map((s: string) => <li class="list-none">[{s}]</li>) }
+    </ul>
+    <ul class="pl-0 mt-4 flex justify-center gap-4">
+      <li class="list-none">
+        <a rel="prefetch" href={source}>Source</a>
+      </li>
+      <li class="list-none">
+        <a rel="prefetch" href={demo}>Demo</a>
+      </li>
+    </ul>
+  </header>
+  <hr />
+  <article class="tracking-tighter sm:tracking-tight">
     <slot />
   </article>
   <hr />
