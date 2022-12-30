@@ -43,7 +43,7 @@ export default defineConfig({
     },
   },
   shortcuts: {
-    'background': 'bg-zinc-100 dark:bg-zinc-800 transition-property-[background-color] duration-300 ease-in-out',
+    'background': 'bg-zinc-100 dark:bg-dark-500 transition-property-[background-color] duration-300 ease-in-out',
   },
   preflights: [
     {

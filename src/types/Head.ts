@@ -1,9 +1,11 @@
-import type { ProjectProps } from "./Project";
+import type { Post } from './Post';
+import type { Project } from './Project';
 
 type HeadProps = {
   title: string;
   description: string;
-  project?: ProjectProps;
+  post?: Post;
+  project?: Project;
 };
 
 export default HeadProps;

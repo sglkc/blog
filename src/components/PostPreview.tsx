@@ -1,11 +1,7 @@
 import type { ExtractedPost } from "@/types/Post";
 
-type Props = ExtractedPost;
-
-export default function PostPreview(props: Props) {
+export default function PostPreview(props: ExtractedPost) {
   const { url, title, description, created, tags } = props;
-  const snippet =
-    description.slice(0, 100) + (description.length > 100 ? '...' : '');
 
   return (
     <div class="my-6 py-2 flex flex-col gap-4">
@@ -17,7 +13,7 @@ export default function PostPreview(props: Props) {
       />
       <h4
         class="font-light my-0 text-sm sm:text-base"
-        dangerouslySetInnerHTML={{ __html: snippet }}
+        dangerouslySetInnerHTML={{ __html: description }}
       />
       <div
         class="flex flex-wrap gap-x-4 text-sm"
