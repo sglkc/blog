@@ -3,16 +3,12 @@ import { Image } from '@astrojs/image/components';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Navbar from '@/components/Navbar.astro';
 
-const props = {
-  title: 'Home',
-  description: 'My personal website'
-};
+const title = 'Home';
+const description = 'Welcome to my personal website where I write things';
 ---
 
-<BaseLayout {...props}>
-  <div
-    class="fixed max-w-[768px] h-fit inset-0 bottom-0 sm:bottom-8 m-auto px-8 flex gap-8"
-  >
+<BaseLayout {title} {description}>
+  <div class="fixed max-w-[768px] h-fit inset-0 bottom-0 sm:bottom-8 m-auto px-8 flex gap-8">
     <div>
       <div class="flex justify-between">
         <a class="block w-fit self-end" href="https://github.com/sglkc">
