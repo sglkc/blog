@@ -1,6 +1,7 @@
 ---
 import type { PostProps } from '@/types/Post';
 import { Image } from '@astrojs/image/components';
+import Giscus from '@/components/Giscus.astro';
 import ArticleLayout from './ArticleLayout.astro';
 
 type Props = PostProps;
@@ -21,7 +22,9 @@ const { title, description, tags, created, updated, hero, alt } = post;
         draggable="false"
       />
     )}
-    <h2 class="mx-8 my-6 font-italic text-xl">{ description }</h2>
+    <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-lg sm:text-xl">
+      { description }
+    </h2>
     <ul class="pl-0 my-6 flex flex-wrap gap-x-4 justify-center">
       { tags.map((tag: string) => <li class="list-none">#{ tag }</li>) }
     </ul>
@@ -31,4 +34,8 @@ const { title, description, tags, created, updated, hero, alt } = post;
     </ul>
   </header>
   <slot />
+  <section slot="footer">
+    <hr />
+    <Giscus />
+  </section>
 </ArticleLayout>

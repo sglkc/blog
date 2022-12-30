@@ -1,0 +1,57 @@
+<div class="giscus mt-8 mb-10 text-center animate-pulse">
+  <p>Loading comments...</p>
+</div>
+
+<script type="module">
+const giscus = document.querySelector('.giscus');
+
+function load() {
+  const theme = window.localStorage.getItem('theme');
+  const giscusTheme = theme === 'dark' ? 'transparent_dark' : 'light';
+  const props = {
+    'src': 'https://giscus.app/client.js',
+    'data-repo': 'sglkc/blog',
+    'data-repo-id': 'R_kgDOIdgpXA',
+    'data-category': 'Announcements',
+    'data-category-id': 'DIC_kwDOIdgpXM4CSsGQ',
+    'data-mapping': 'pathname',
+    'data-strict': '0',
+    'data-reactions-enabled': '1',
+    'data-emit-metadata': '0',
+    'data-input-position': 'bottom',
+    'data-theme': giscusTheme,
+    'data-lang': 'en',
+    'data-loading': 'lazy',
+    'crossorigin': 'anonymous',
+    'async': true
+  };
+
+  const giscusScript = document.createElement('script');
+
+  Object.entries(props)
+    .forEach(([key, value]) => giscusScript.setAttribute(key, value));
+
+  giscus.appendChild(giscusScript);
+}
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(load, 500));
+
+function handleMessage(event) {
+  if (event.origin !== 'https://giscus.app') return;
+  if (!(typeof event.data === 'object' && event.data.giscus)) return;
+
+  const { resizeHeight } = event.data.giscus;
+
+  if (!resizeHeight) return;
+
+  giscus.classList.remove('animate-pulse');
+  window.removeEventListener('message', handleMessage);
+}
+
+window.addEventListener('message', handleMessage);
+window.giscusSend = (message) => {
+  const iframe = document.querySelector('iframe.giscus-frame');
+  if (!iframe) return;
+  iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+}
+</script>

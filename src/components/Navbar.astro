@@ -10,12 +10,16 @@ export interface Props {
 const { class: className, grow, sticky } = Astro.props;
 ---
 
-<nav class:list={[
-  'z-5 group',
-  className,
-  sticky &&
-    'background flex sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5 overflow-x-auto'
-]}>
+<nav
+  class:list={[
+    'z-5',
+    className,
+    (grow || sticky) && 'overflow-x-auto',
+    grow && 'group',
+    sticky &&
+      'background flex sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5'
+  ]}
+>
   { grow &&
     <span
       class="-mr-5 transition-[flex-grow] group-[.sticked]:grow-[0.5] duration-300 ease-out"

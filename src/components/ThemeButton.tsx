@@ -9,12 +9,17 @@ export type Props = {
 export default function ThemeButton(props: Props) {
   const classes = ['text-inherit', props.class].join(' ');
   const onClick = () => {
-    const classList = document.documentElement.classList;
+    const theme = localStorage.getItem('theme') === 'light' ? 'dark' : 'light';
+    const isDark = theme === 'dark';
 
-    localStorage.theme = localStorage.theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    document.documentElement.classList.toggle('dark', isDark);
 
-    if (localStorage.theme === 'dark') classList.add('dark');
-    else classList.remove('dark');
+    if ('giscusSend' in window) {
+      const giscusTheme = isDark ? 'transparent_dark' : 'light';
+      // @ts-ignore
+      window.giscusSend({ setConfig: { theme: giscusTheme } });
+    }
   }
 
   return (

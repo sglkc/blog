@@ -1,5 +1,5 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
+import BaseHead from '@/components/BaseHead.astro';
 import '@fontsource/overpass-mono';
 
 const props = Astro.props.frontmatter ?? Astro.props;
@@ -9,26 +9,20 @@ const props = Astro.props.frontmatter ?? Astro.props;
   <head>
     <BaseHead {...props} />
     <script is:inline>
+    const classList = document.documentElement.classList;
+    const prefer = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = localStorage.getItem('theme');
+
+    if (theme === 'dark' || (!theme && prefer)) classList.add('dark');
+
     document.addEventListener(
       'DOMContentLoaded',
-      () => document.documentElement.classList.remove('unloaded')
+      () => classList.remove('unloaded')
     );
-
-    const classList = document.documentElement.classList;
-
-    if (
-      localStorage.theme === 'dark' ||
-        (
-          !localStorage.theme &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches
-        )
-    ) {
-      classList.add('dark');
-    }
     </script>
   </head>
   <body class="background font-overpass">
-    <div class="mx-auto p-8 prose prose-zinc dark:prose-invert">
+    <div class="mx-auto p-8 prose prose-zinc dark:prose-invert max-w-[66ch]">
       <slot />
     </div>
   </body>
