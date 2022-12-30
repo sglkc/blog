@@ -1,4 +1,4 @@
-import type { Post } from '@/types/Post';
+import type { ExtractedPost } from '@/types/Post';
 import { useRef, useState } from 'preact/hooks';
 import fuzzysort from 'fuzzysort';
 import PostPreview from './PostPreview';
@@ -9,7 +9,7 @@ type Props = {
 
 export default function SearchPost({ main }: Props) {
   const [message, _setMessage] = useState<string | false>(false);
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<ExtractedPost[]>([]);
   const resultDiv = useRef<HTMLDivElement>(null);
   const loading = useRef(false);
   const data = useRef(null);
@@ -111,7 +111,7 @@ export default function SearchPost({ main }: Props) {
       </div>
       { message &&
         <div ref={resultDiv}>
-          { posts.map((post: Post) => <PostPreview {...post} />) }
+          { posts.map((post: ExtractedPost) => <PostPreview {...post} />) }
         </div>
       }
     </section>

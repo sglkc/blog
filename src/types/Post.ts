@@ -1,6 +1,6 @@
 import type { MDXLayoutProps } from 'astro';
 
-type Post = {
+type ExtractedPost = {
   url: string,
   title: string,
   description: string,
@@ -8,11 +8,16 @@ type Post = {
   tags: string,
 };
 
-type PostProps = MDXLayoutProps<{
-  title: string;
-  description: string;
-  created: string;
-  tags: Array<string>;
-}>;
+type Post = {
+  title: string,
+  created: string,
+  description: string,
+  updated: string,
+  tags: Array<string>,
+  hero?: string,
+  alt?: string
+};
 
-export type { Post, PostProps };
+type PostProps = MDXLayoutProps<Post>;
+
+export type { ExtractedPost, Post, PostProps };

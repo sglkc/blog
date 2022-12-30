@@ -11,7 +11,7 @@ const { title, created, description, stack, source, demo, thumbnail } = project;
 ---
 
 <ArticleLayout {title} {description} {project}>
-  <header class="text-center">
+  <header slot="header" class="text-center">
     <h1 class="text-3xl font-semibold mt-8">{title}</h1>
     { thumbnail && (
       <Image
@@ -22,7 +22,7 @@ const { title, created, description, stack, source, demo, thumbnail } = project;
         draggable="false"
         />
     )}
-    <p class="mt-4">Initiated: { created }</p>
+    <p class="mt-6">Date Initiated: { created }</p>
     <ul class="pl-0 mt-4 flex flex-wrap gap-x-2 justify-center">
       { stack.map((s: string) => <li class="list-none">[{s}]</li>) }
     </ul>
@@ -35,10 +35,5 @@ const { title, created, description, stack, source, demo, thumbnail } = project;
       </li>
     </ul>
   </header>
-  <hr />
-  <article class="tracking-tighter sm:tracking-tight">
-    <slot />
-  </article>
-  <hr />
-  <Footer />
+  <slot />
 </ArticleLayout>

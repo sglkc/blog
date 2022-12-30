@@ -1,6 +1,6 @@
-import type { Post } from "@/types/Post";
+import type { ExtractedPost } from "@/types/Post";
 
-type Props = Post;
+type Props = ExtractedPost;
 
 export default function PostPreview(props: Props) {
   const { url, title, description, created, tags } = props;
