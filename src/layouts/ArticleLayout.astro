@@ -1,19 +1,14 @@
 ---
-import PageLayout from './PageLayout.astro';
+import type ArticleProps from '@/types/Article';
+import Navbar from '@/components/Navbar.astro';
+import BaseLayout from './BaseLayout.astro';
 
-export interface ArticleProps {
-  frontmatter: {
-    title: string;
-    description: string;
-    footer?: string;
-  };
-};
-
-type Props = ArticleProps;
+const props = Astro.props as ArticleProps;
 ---
 
-<PageLayout {...Astro.props}>
+<BaseLayout {...props}>
+  <Navbar class="justify-center" sticky={true} />
   <article class="tracking-tight">
     <slot />
   </article>
-</PageLayout>
+</BaseLayout>

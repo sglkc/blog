@@ -1,15 +1,17 @@
 ---
-export interface HeadProps {
-  title: string;
-  description: string;
-  image?: string;
-};
+import type HeadProps from '@/types/Head';
 
 type Props = HeadProps;
 
-const { title, description, image } = Astro.props;
-const url = new URL(Astro.url.pathname, Astro.site).toString();
+const { title, description, project } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = project
+  ? '/assets/project/' + project.thumbnail
+    : '/assets/logo.png';
 
+const image = new URL(imageUrl, Astro.site).href;
+
+const datetime = (date: string) => new Date(date).toISOString();
 // TODO: canonical meta etc
 ---
 
@@ -19,18 +21,28 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 
 <title>{title} // sglkc</title>
 
-<meta name="title" content={title + ' // sglkc'} />
+<meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="theme-color" content="#ECC7BC" />
 
-<meta property="og:type" content="website" />
+<meta property="og:type" content={project ? 'article' : 'website'} />
 <meta property="og:url" content={url} />
-<meta property="og:title" content={title + ' // sglkc'} />
+<meta property="og:title" content={title} />
+<meta property="og:site_name" content="sglkc.my.id">
 <meta property="og:description" content={description} />
-{ image && <meta property="og:image" content={image} /> }
+{ project && <meta property="og:image" content={image} /> }
 
-<meta property="twitter:card" content="summary" />
+<meta property="twitter:card" content={project ? 'summary_large' : 'summary'} />
 <meta property="twitter:url" content={url} />
-<meta property="twitter:title" content={title + ' // sglkc'} />
+<meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-{ image && <meta property="twitter:image" content={image} /> }
+{ project && <meta property="twitter:image" content={image} /> }
+
+{ project && (
+  <>
+    <meta property="article:published_time" content={datetime(project.created)} />
+    <meta property="article:author" content="sglkc" />
+    <meta property="article:section" content="Project" />
+    <meta property="article:tag" content={project.stack.join(',')} />
+  </>
+)}

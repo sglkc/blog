@@ -1,18 +1,8 @@
 ---
+import type PageProps from '@/types/Page';
 import Footer from '@/components/Footer.astro';
 import Navbar from '@/components/Navbar.astro';
 import BaseLayout from './BaseLayout.astro';
-
-export interface PageProps {
-  frontmatter: {
-    title: string;
-    description: string;
-    footer?: string;
-  };
-  title?: string;
-  description?: string;
-  footer?: string;
-};
 
 type Props = PageProps;
 
@@ -21,13 +11,10 @@ const { title, description, footer } = Astro.props.frontmatter ?? Astro.props;
 
 <BaseLayout {title} {description}>
   <header>
-    <h1 class="text-3xl font-semibold mb-2">{title}</h1>
-    <h2 class="text-xl font-normal mt-0 mb-2">{description}</h2>
+    <h1 class="text-3xl font-semibold mb-2">{ title }</h1>
+    <h2 class="text-xl font-normal mt-0 mb-2">{ description }</h2>
   </header>
-  <Navbar
-    class="background flex sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5 overflow-y-auto"
-    grow={true}
-  />
+  <Navbar sticky={true} grow={true} />
   <hr />
   <main>
     <slot />
