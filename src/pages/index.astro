@@ -1,12 +1,10 @@
 ---
 import { Image } from '@astrojs/image/components';
-import Page from '@components/Page.astro';
-
-const title = 'Home';
-const description = '@sglkc Personal Website';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ThemeButton from '@/components/ThemeButton.astro';
 ---
 
-<Page {title} {description}>
+<BaseLayout title="Home" description="sglkc Personal Website">
   <div
     class="fixed max-w-[768px] h-fit inset-0 bottom-0 sm:bottom-8 m-auto px-8 flex gap-8"
   >
@@ -14,7 +12,7 @@ const description = '@sglkc Personal Website';
       <div class="flex justify-between">
         <a class="block w-fit self-end" href="https://github.com/sglkc">
           <Image
-            class="rounded-full m-0"
+            class="rounded-full m-0 drop-shadow-xl"
             src="/assets/logo.png"
             draggable="false"
             alt="GitHub profile"
@@ -23,12 +21,12 @@ const description = '@sglkc Personal Website';
           >
         </a>
         <nav class="flex flex-col gap-3 sm:hidden">
-          <a class="hover:underline" rel="prefetch" href="/blog">Blog</a>
-          <a class="hover:underline" rel="prefetch" href="/project">Project</a>
-          <a class="hover:underline" rel="prefetch" href="/about">About</a>
-          <a class="hover:underline cursor-pointer" href="javascript:toggleTheme()">
+          <a rel="prefetch" href="/blog">Blog</a>
+          <a rel="prefetch" href="/project">Project</a>
+          <a rel="prefetch" href="/about">About</a>
+          <ThemeButton class="underline cursor-pointer">
             Theme
-          </a>
+          </ThemeButton>
         </nav>
       </div>
       <main class="flex flex-col mt-8">
@@ -40,23 +38,22 @@ const description = '@sglkc Personal Website';
         </h1>
         <h2 class="font-semibold text-xl whitespace-nowrap">
           A <span title="I just love it too much">JavaScript-based</span> <wbr>
-          Full-stack Developer
+            Full-stack Developer
         </h2>
         <p class="text-lg text-justify">
           I'm an undergraduate who loves Web Development! I like to explore the
-          various things that you can do within a website, that's why most of
-          my projects are made just for fun. I speak English and Bahasa
-          Indonesia. Nice to meet you!
+          various things that you can do within a website. I speak English and
+          Bahasa Indonesia. Nice to meet you!
         </p>
       </main>
     </div>
     <nav class="sm:flex flex-col gap-3 hidden">
-      <a class="hover:underline" rel="prefetch" href="/blog">Blog</a>
-      <a class="hover:underline" rel="prefetch" href="/project">Project</a>
-      <a class="hover:underline" rel="prefetch" href="/about">About</a>
-      <a class="hover:underline cursor-pointer" href="javascript:toggleTheme()">
+      <a rel="prefetch" href="/blog">Blog</a>
+      <a rel="prefetch" href="/project">Project</a>
+      <a rel="prefetch" href="/about">About</a>
+      <ThemeButton class="underline cursor-pointer">
         Theme
-      </a>
+      </ThemeButton>
     </nav>
   </div>
-</Page>
+</BaseLayout>

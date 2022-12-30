@@ -2,16 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@*": ["src/*"],
-      "public/*": ["public/*"],
-    },
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "types": [
-      "vite/client"
-    ]
-  }
+      "@/*": ["src/*"]
+    }
+  },
+  "extends": "astro/tsconfigs/strict"
 }
