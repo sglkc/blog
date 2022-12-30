@@ -1,0 +1,19 @@
+---
+import PageLayout from './PageLayout.astro';
+
+export interface ArticleProps {
+  frontmatter: {
+    title: string;
+    description: string;
+    footer?: string;
+  };
+};
+
+type Props = ArticleProps;
+---
+
+<PageLayout {...Astro.props}>
+  <article class="tracking-tight">
+    <slot />
+  </article>
+</PageLayout>

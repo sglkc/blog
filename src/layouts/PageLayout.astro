@@ -3,28 +3,35 @@ import Footer from '@/components/Footer.astro';
 import Navbar from '@/components/Navbar.astro';
 import BaseLayout from './BaseLayout.astro';
 
-export interface LayoutProps {
-  title: string;
-  description: string;
+export interface PageProps {
+  frontmatter: {
+    title: string;
+    description: string;
+    footer?: string;
+  };
+  title?: string;
+  description?: string;
   footer?: string;
-}
+};
 
-type Props = {
-  content: LayoutProps;
-}
+type Props = PageProps;
 
-const { title, description, footer } = Astro.props.content;
+const { title, description, footer } = Astro.props.frontmatter ?? Astro.props;
 ---
 
-<BaseLayout {...Astro.props}>
-  <h1 class="text-3xl font-semibold mb-2">{title}</h1>
-  <h2 class="text-xl font-normal mt-0 mb-2">{description}</h2>
+<BaseLayout {title} {description}>
+  <header>
+    <h1 class="text-3xl font-semibold mb-2">{title}</h1>
+    <h2 class="text-xl font-normal mt-0 mb-2">{description}</h2>
+  </header>
   <Navbar
     class="background flex sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5 overflow-y-auto"
     grow={true}
   />
   <hr />
-  <slot />
+  <main>
+    <slot />
+  </main>
   <hr />
   <Footer {footer} />
 </BaseLayout>
