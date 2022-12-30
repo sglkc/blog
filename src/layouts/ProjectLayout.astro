@@ -1,0 +1,55 @@
+---
+import { Image } from '@astrojs/image/components';
+import ArticleLayout from './ArticleLayout.astro';
+
+export interface ProjectProps {
+  frontmatter: {
+    title: string;
+    created: string;
+    description: string;
+    source: string;
+    demo: string;
+    stack: Array<string>;
+    thumbnail?: string;
+  }
+}
+
+type Props = ProjectProps;
+
+const { frontmatter } = Astro.props as Props;
+const { title, created, stack, source, demo, thumbnail } = frontmatter;
+
+const props = {
+  title: 'Projects',
+  description: 'List of my projects that are worth mentioning'
+}
+---
+
+<ArticleLayout {...props}>
+  <div class="text-center">
+    <h1 class="text-3xl font-semibold mt-8">{title}</h1>
+    { thumbnail && (
+      <Image
+        src={'/assets/project/' + thumbnail}
+        alt={title + ' thumbnail image'}
+        height="1000"
+        aspectRatio="16:9"
+        draggable="false"
+        />
+    )}
+    <p class="mt-4">Initiated: { created }</p>
+    <ul class="pl-0 mt-4 flex flex-wrap gap-x-2 justify-center">
+      { stack.map((s: string) => <li class="list-none">[{s}]</li>) }
+    </ul>
+    <ul class="pl-0 mt-4 flex justify-center gap-4">
+      <li class="list-none">
+        <a rel="prefetch" href={source}>Source</a>
+      </li>
+      <li class="list-none">
+        <a rel="prefetch" href={demo}>Demo</a>
+      </li>
+    </ul>
+  </div>
+  <hr />
+  <slot />
+</ArticleLayout>
