@@ -1,9 +1,9 @@
-import type { ProjectProps } from './Project';
+import type { Project } from './Project';
 
 type ArticleProps = {
   title: string;
   description: string;
-  project?: ProjectProps;
+  project?: Project;
 };
 
 export default ArticleProps;

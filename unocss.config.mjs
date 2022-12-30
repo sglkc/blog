@@ -26,7 +26,14 @@ export default defineConfig({
         },
         '.dark hr': {
           filter: 'brightness(1)'
-        }
+        },
+        mark: {
+          'background-color': '#dadadd',
+          transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1)',
+        },
+        '.dark mark': {
+          'background-color': '#e4e4e7',
+        },
       }
     })
   ],

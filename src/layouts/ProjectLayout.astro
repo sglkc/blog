@@ -1,10 +1,10 @@
 ---
-import type { MDXProjectProps } from '@/types/Project';
+import type { ProjectProps } from '@/types/Project';
 import { Image } from '@astrojs/image/components';
 import Footer from '@/components/Footer.astro';
 import ArticleLayout from './ArticleLayout.astro';
 
-type Props = MDXProjectProps;
+type Props = ProjectProps;
 
 const project = Astro.props.frontmatter;
 const { title, created, description, stack, source, demo, thumbnail } = project;

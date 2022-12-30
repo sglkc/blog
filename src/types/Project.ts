@@ -1,6 +1,6 @@
 import type { MDXLayoutProps } from 'astro';
 
-type ProjectProps = {
+type Project = {
   title: string;
   created: string;
   description: string;
@@ -10,6 +10,6 @@ type ProjectProps = {
   thumbnail?: string;
 };
 
-type MDXProjectProps = MDXLayoutProps<ProjectProps>;
+type ProjectProps = MDXLayoutProps<Project>;
 
-export type { ProjectProps, MDXProjectProps };
+export type { Project, ProjectProps };
