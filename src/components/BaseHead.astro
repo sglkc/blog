@@ -9,7 +9,7 @@ const imageUrl = (project && project.thumbnail)
   ? '/assets/project/' + project.thumbnail
   : (post && post.hero)
     ? '/assets/hero/' + post.hero
-    : '/assets/logo.png';
+    : '/assets/logo.webp';
 
 const image = new URL(imageUrl, Astro.site).href;
 const date = (date: string) => new Date(date).toISOString();

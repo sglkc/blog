@@ -1,6 +1,5 @@
 ---
 import type { PostProps } from '@/types/Post';
-import { Image } from '@astrojs/image/components';
 import Giscus from '@/components/Giscus.astro';
 import ArticleLayout from './ArticleLayout.astro';
 
@@ -15,12 +14,13 @@ const { title, description, tags, created, updated, hero, alt } = post;
   <header slot="header" class="text-center">
     <h1 class="text-3xl font-semibold mt-8">{title}</h1>
     { hero && (
-      <Image
+      <img
+        class="aspect-video object-contain"
         src={'/assets/hero/' + hero}
         alt={alt}
-        height="1000"
-        aspectRatio="16:9"
         draggable="false"
+        width="100%"
+        height="100%"
       />
     )}
     <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-lg sm:text-xl">
