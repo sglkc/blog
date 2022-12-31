@@ -18,17 +18,26 @@ export default defineConfig({
           margin: '1.5em 0 0.5em',
           'font-size': '1.625em'
         },
+        'blockquote, hr, th, td': {
+          transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        },
+        'tr': {
+          transition: 'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        },
         hr: {
           border: 'unset',
           'border-top': 'solid 2px var(--un-prose-hr)',
-          transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
         mark: {
           'background-color': '#dadadd',
-          transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
         '.dark mark': {
           'background-color': '#e4e4e7',
+        },
+        'ol, ul': {
+          margin: '0',
+          padding: '0',
+          'list-style-position': 'inside',
         },
       }
     })

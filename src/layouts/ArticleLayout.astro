@@ -1,18 +1,21 @@
 ---
 import type ArticleProps from '@/types/Article';
 import Footer from '@/components/Footer.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
 import Navbar from '@/components/Navbar.astro';
 import BaseLayout from './BaseLayout.astro';
 
 const props = Astro.props as ArticleProps;
+const headings = Astro.props.headings;
 ---
 
 <BaseLayout {...props}>
   <Navbar class="justify-center" sticky={true} />
   <main class="mt-12">
     <slot name="header" />
-    <hr class="mt-12 mb-14" />
+    <hr class="my-12" />
     <article class="tracking-tighter sm:tracking-tight">
+      <TableOfContents {headings} />
       <slot />
     </article>
     <slot name="footer" />

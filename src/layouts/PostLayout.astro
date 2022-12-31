@@ -7,10 +7,11 @@ import ArticleLayout from './ArticleLayout.astro';
 type Props = PostProps;
 
 const post = Astro.props.frontmatter;
+const headings = Astro.props.headings;
 const { title, description, tags, created, updated, hero, alt } = post;
 ---
 
-<ArticleLayout {title} {description} {post}>
+<ArticleLayout {title} {description} {headings} {post}>
   <header slot="header" class="text-center">
     <h1 class="text-3xl font-semibold mt-8">{title}</h1>
     { hero && (

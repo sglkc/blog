@@ -6,10 +6,11 @@ import ArticleLayout from './ArticleLayout.astro';
 type Props = ProjectProps;
 
 const project = Astro.props.frontmatter;
+const headings = Astro.props.headings;
 const { title, created, description, stack, source, demo, thumbnail } = project;
 ---
 
-<ArticleLayout {title} {description} {project}>
+<ArticleLayout {title} {description} {headings} {project}>
   <header slot="header" class="text-center">
     <h1 class="text-3xl font-semibold mt-8">{title}</h1>
     { thumbnail && (
