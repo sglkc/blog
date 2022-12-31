@@ -26,14 +26,20 @@ const { title, created, description, stack, source, demo, thumbnail } = project;
     <ul class="pl-0 mt-4 flex flex-wrap gap-x-2 justify-center">
       { stack.map((s: string) => <li class="list-none">[{s}]</li>) }
     </ul>
-    <ul class="pl-0 mt-4 flex justify-center gap-4">
-      <li class="list-none">
-        <a rel="prefetch" href={source}>Source</a>
-      </li>
-      <li class="list-none">
-        <a rel="prefetch" href={demo}>Demo</a>
-      </li>
-    </ul>
+    { (demo || source) &&
+      <ul class="pl-0 mt-4 flex justify-center gap-4">
+        { source &&
+          <li class="list-none">
+            <a rel="prefetch" href={source}>Source</a>
+          </li>
+      }
+        { demo &&
+          <li class="list-none">
+            <a rel="prefetch" href={demo}>Demo</a>
+          </li>
+      }
+      </ul>
+    }
   </header>
   <slot />
 </ArticleLayout>

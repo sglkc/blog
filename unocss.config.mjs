@@ -39,6 +39,9 @@ export default defineConfig({
           padding: '0',
           'list-style-position': 'inside',
         },
+        code: {
+          'font-size': '1em'
+        }
       }
     })
   ],

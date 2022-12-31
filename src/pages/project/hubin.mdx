@@ -1,0 +1,88 @@
+---
+layout: '@/layouts/ProjectLayout.astro'
+title: Hubin
+created: 27 January 2022
+description: Web application to help with internship mapping for my high school
+thumbnail: hubin/thumbnail.png
+source:
+demo:
+stack:
+  - PHP
+  - Bootstrap
+  - Laravel
+  - MySQL
+---
+
+# Story
+
+Me and 5 of my friends were chosen by our teacher to join in a **Project-Based
+Learning (PJBL)**. We were given a task to make something, an application, or a
+website that could be useful, our idea was to make a warehousing web app since
+a teacher showed us an example project from last year. But another class took
+the idea and started first before us.
+
+So then our next idea was to make this. An industrial relation helper website,
+hence the name **Hubin** as in *Hubungan Industri*.
+
+# Design
+
+I was never in charge of designing (even though I do the Front-End too) so I
+cannot explain what's behind all this clearly. Anyway, we had 2 designs: first
+was when the project was made and second when it was going to be used by school.
+
+## Old Design
+
+The old design has a very deep purple color scheme.
+
+![Old design of the dashboard](/assets/project/hubin/design-old.png)
+
+## New Design
+
+The new design now uses a more formal color scheme with brown accents.
+
+![New design of the dashboard](/assets/project/hubin/dashboard.png)
+
+![New design in Figma](/assets/project/hubin/design.png)
+
+# Tech Stack
+
+This project is made with **Laravel 7** framework and obviously the language
+**PHP**. This was actually our first time ever to work with Laravel, so you
+might find obscene things happening in the development phase.
+
+## Front-End
+
+### Bootstrap
+
+This project entirely relies on Bootstrap, and to make it worse we didn't even
+try to compile the styles ourselves, we used the CDN version instead and style
+them manually with CSS.
+
+A nightmare has come true as Bootstrap uses `!important` in most utility
+classes. We have to tinker Bootstrap itself to change this behavior, making it
+different from the base file.
+
+### Blade
+
+Templating engine provided with Laravel. This helps us a lot considering the
+project has a lot of views. At first, we used this just to match the `<head>`
+across views and we still copy-paste everything inside the `<body>`. Only then
+we do a redesign and fully utiize the much easier layout-based design system.
+
+## Back-End
+
+### MySQL
+
+Using a relational database for a quite big project is very overwhelming. It is
+my experience as ***the only sole person as the Back-End Developer***. I had to
+migrate the database for every little changes. What makes it easier though, is
+just because I only know MySQL back then.
+
+# My Personal Thoughts
+
+As I've written earlier, I was the *only one* to do the Back-End, not only that;
+I had to painfully "convert" plain HTMLs to Blade templates myself as my friends
+don't want to use Laravel. They said it's difficult to set up, which I
+understand myself.
+
+Well, it's just sad to be honest but I have to take the positive things ;/
