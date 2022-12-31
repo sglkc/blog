@@ -4,8 +4,11 @@
 
 <script type="module">
 const giscus = document.querySelector('.giscus');
+const observer = new IntersectionObserver(([e]) => {
+  if (!e.isIntersecting) return;
 
-function load() {
+  observer.unobserve(giscus);
+
   const theme = window.localStorage.getItem('theme');
   const giscusTheme = theme === 'dark' ? 'transparent_dark' : 'light';
   const props = {
@@ -31,24 +34,16 @@ function load() {
   Object.entries(props)
     .forEach(([key, value]) => giscusScript.setAttribute(key, value));
 
-  giscus.appendChild(giscusScript);
-}
+  setTimeout(() => {
+    giscus.appendChild(giscusScript);
+    giscus.classList.remove('animate-pulse');
+  }, 1000);
+},
+  { threshold: [0] }
+);
 
-document.addEventListener('DOMContentLoaded', () => setTimeout(load, 500));
+observer.observe(giscus);
 
-function handleMessage(event) {
-  if (event.origin !== 'https://giscus.app') return;
-  if (!(typeof event.data === 'object' && event.data.giscus)) return;
-
-  const { resizeHeight } = event.data.giscus;
-
-  if (!resizeHeight) return;
-
-  giscus.classList.remove('animate-pulse');
-  window.removeEventListener('message', handleMessage);
-}
-
-window.addEventListener('message', handleMessage);
 window.giscusSend = (message) => {
   const iframe = document.querySelector('iframe.giscus-frame');
   if (!iframe) return;

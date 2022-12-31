@@ -28,7 +28,7 @@ const { title, description, tags, created, updated, hero, alt } = post;
     <ul class="pl-0 my-6 flex flex-wrap gap-x-4 justify-center">
       { tags.map((tag: string) => <li class="list-none">#{ tag }</li>) }
     </ul>
-    <ul class="pl-0 mt-4 flex flex-col gap-1">
+    <ul class="pl-0 mt-4 flex flex-col gap-1 text-sm">
       <li class="list-none">Date Posted: { created }</li>
       <li class="list-none">Last Updated: { updated }</li>
     </ul>

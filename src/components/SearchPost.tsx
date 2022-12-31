@@ -99,7 +99,7 @@ export default function SearchPost({ main }: Props) {
       <div class="background flex gap-2 sticky top-10 pt-2 sm:pt-4 pb-2 -mt-4">
         <span class="my-0">[</span>
         <input
-          class="bg-transparent outline-0 flex-grow py-2 -my-2"
+          class="bg-transparent outline-0 flex-grow py-2 -my-2 min-w-[0]"
           type="text"
           placeholder="search posts | # for tags"
           spellcheck={false}
@@ -107,7 +107,9 @@ export default function SearchPost({ main }: Props) {
           onInput={onInput}
         />
         <span class="my-0">]</span>
-        { message && <small class="my-auto">{ message }</small> }
+        { message &&
+          <small class="my-auto whitespace-nowrap">{ message }</small>
+        }
       </div>
       { message &&
         <div ref={resultDiv}>
