@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon';
 import ThemeButton from './ThemeButton.jsx';
 
 export interface Props {
@@ -14,33 +15,82 @@ const { class: className, grow, sticky } = Astro.props;
   class:list={[
     'z-5',
     className,
-    (grow || sticky) && 'overflow-x-auto',
-    grow && 'group',
+    (grow || sticky) && 'overflow-x-auto group',
     sticky &&
-      'background flex sticky top-[-1px] pb-2 pt-3 -mb-2 sm:pb-4 sm:pt-5 gap-5'
+      'background flex sticky top-[-1px] mt-4 sm:mt-2 py-2 sm:py-4 gap-5'
   ]}
+  data-sticky={sticky}
 >
   { grow &&
     <span
       class="-mr-5 transition-[flex-grow] group-[.sticked]:grow-[0.5] duration-300 ease-out"
     ></span>
   }
-  <a rel="prefetch" href="/">Home</a>
-  <a rel="prefetch" href="/blog">Blog</a>
-  <a rel="prefetch" href="/projects">Projects</a>
-  <a rel="prefetch" href="/about">About</a>
-  <ThemeButton class="underline cursor-pointer" client:load>Theme</ThemeButton>
+  <a class="animate-margin" rel="prefetch" href="/">
+    <Icon class="hidden group-[.sticked]:block" name="iconoir:home" size="32" />
+    <span class="group-[.sticked]:hidden">Home</span>
+  </a>
+  <a class="animate-margin" rel="prefetch" href="/blog">
+    <Icon
+      class="hidden group-[.sticked]:block"
+      name="iconoir:multiple-pages"
+      size="30"
+    />
+    <span class="group-[.sticked]:hidden">Blog</span>
+  </a>
+  <a class="animate-margin" rel="prefetch" href="/projects">
+    <Icon
+      class="hidden group-[.sticked]:block"
+      name="iconoir:code-brackets-square"
+      size="32"
+    />
+    <span class="group-[.sticked]:hidden">Projects</span>
+  </a>
+  <a class="animate-margin" rel="prefetch" href="/about">
+    <Icon class="hidden group-[.sticked]:block" name="iconoir:user" size="32" />
+    <span class="group-[.sticked]:hidden">About</span>
+  </a>
+  <ThemeButton
+    class="underline cursor-pointer animate-margin"
+    client:load
+  >
+    <span class="hidden group-[.sticked]:block">
+      <Icon class="dark:hidden" name="iconoir:sun-light" size="28" />
+      <Icon class="hidden dark:block" name="iconoir:half-moon" size="28" />
+    </span>
+    <span class="group-[.sticked]:hidden">Theme</span>
+  </ThemeButton>
 </nav>
+
+<style is:global>
+.group.sticked {
+  border-bottom: 2px solid var(--un-prose-hr);
+  transition-property: background-color, border-color;
+}
+
+.group.sticked .animate-margin {
+  margin: 0 0.35rem;
+  animation: margin 300ms ease-out;
+}
+
+@keyframes margin {
+  from { margin: 0 0rem; }
+  to { margin: 0 0.35rem; }
+}
+</style>
 
 <script>
 const nav = document.querySelector('nav') as HTMLElement;
-const observer = new IntersectionObserver(
-  ([e]) => e.target.classList.toggle(
-    'sticked',
-    e.intersectionRatio < 1
-  ),
-  { threshold: [1] }
-);
 
-observer.observe(nav);
+if ('sticky' in nav.dataset) {
+  const observer = new IntersectionObserver(
+    ([e]) => e.target.classList.toggle(
+      'sticked',
+      e.intersectionRatio < 1
+    ),
+    { threshold: [1] }
+  );
+
+  observer.observe(nav);
+}
 </script>

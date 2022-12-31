@@ -6,20 +6,20 @@ import '@/styles/scrollbar.css';
 const props = Astro.props.frontmatter ?? Astro.props;
 ---
 
-<html lang="en" class="unloaded">
+<html lang="en" class="no-transitions">
   <head>
     <BaseHead {...props} />
     <script is:inline>
     const classList = document.documentElement.classList;
-    const prefer = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const theme = localStorage.getItem('theme');
 
-    if (theme === 'dark' || (!theme && prefer)) classList.add('dark');
+    if (theme === 'dark' || (!theme && prefDark)) classList.add('dark');
 
-    document.addEventListener(
-      'DOMContentLoaded',
-      () => classList.remove('unloaded')
-    );
+    document.addEventListener('DOMContentLoaded', () => {
+      const prefMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!prefMotion.matches) classList.remove('no-transitions');
+    });
     </script>
   </head>
   <body class="background font-overpass">

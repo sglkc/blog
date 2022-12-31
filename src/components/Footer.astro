@@ -6,7 +6,14 @@ export interface Props {
 const { footer = '' } = Astro.props;
 ---
 
-<footer class="flex justify-between not-prose text-sm">
-  <p>{footer}</p>
-  <p>(c) 2022 sglkc</p>
+<footer>
+  <hr />
+  <span class="flex flex-col sm:flex-row justify-between not-prose text-sm gap-2">
+    <p>{footer}</p>
+    <p>
+      <a class="underline" href="https://github.com/sglkc/blog/blob/master/LICENSE"
+      >MIT License</a>
+      <span>(c) 2022 sglkc</span>
+    </p>
+  </span>
 </footer>

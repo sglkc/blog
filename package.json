@@ -17,6 +17,7 @@
     "@astrojs/prefetch": "^0.1.1",
     "@fontsource/overpass-mono": "^4.5.10",
     "astro": "^1.8.0",
+    "astro-icon": "^0.8.0",
     "fuzzysort": "^2.0.4",
     "preact": "^10.11.3",
     "sharp": "^0.31.3",
@@ -27,5 +28,10 @@
     "@unocss/preset-wind": "^0.48.0",
     "@unocss/reset": "^0.48.0",
     "unocss": "^0.48.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "json5@<2.2.2": ">=2.2.2"
+    }
   }
 }

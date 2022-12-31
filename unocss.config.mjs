@@ -22,10 +22,6 @@ export default defineConfig({
           border: 'unset',
           'border-top': 'solid 2px var(--un-prose-hr)',
           transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
-          filter: 'brightness(0.925)'
-        },
-        '.dark hr': {
-          filter: 'brightness(1)'
         },
         mark: {
           'background-color': '#dadadd',
@@ -48,11 +44,12 @@ export default defineConfig({
   preflights: [
     {
       getCSS: () => `
-      .unloaded * {
+      .no-transitions * {
         transition: none!important;
         transition-property: none!important;
         transition-duration: 0ms!important;
         transition-timing-function: none!important;
+        animation: none!important;
       }
       `
     }
