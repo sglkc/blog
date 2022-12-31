@@ -26,23 +26,22 @@ const date = (date: string) => new Date(date).toISOString();
 <meta name="description" content={description} />
 <meta name="theme-color" content="#ECC7BC" />
 
-<meta property="og:type" content={project ? 'article' : 'website'} />
+<meta property="og:type" content={(post || project) ? 'article' : 'website'} />
 <meta property="og:url" content={url} />
 <meta property="og:title" content={title} />
 <meta property="og:site_name" content="sglkc.my.id">
 <meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
 
-<meta property="twitter:card" content={project ? 'summary_large' : 'summary'} />
+<meta
+  property="twitter:card"
+  content={(post || project) ? 'summary_large_image' : 'summary'}
+/>
 <meta property="twitter:url" content={url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />
 
-{ (post || project) &&
-  <>
-    <meta property="twitter:image" content={image} />
-    <meta property="og:image" content={image} />
-  </>
-}
 
 { post && (
   <>

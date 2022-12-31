@@ -17,13 +17,13 @@ const { class: className, grow, sticky } = Astro.props;
     className,
     (grow || sticky) && 'overflow-x-auto group',
     sticky &&
-      'background flex sticky top-[-1px] mt-4 sm:mt-2 py-2 sm:py-4 gap-5'
+      'background flex gap-5 sticky top-[-1px] mt-4 sm:mt-2 py-2 sm:py-4 border-2 border-transparent'
   ]}
   data-sticky={sticky}
 >
   { grow &&
     <span
-      class="-mr-5 transition-[flex-grow] group-[.sticked]:grow-[0.5] duration-300 ease-out"
+      class="-mr-5 group-[.sticked]:grow-[0.5] transition-[flex-grow] duration-300 ease-out"
     ></span>
   }
   <a class="animate-margin" rel="prefetch" href="/">
@@ -62,7 +62,7 @@ const { class: className, grow, sticky } = Astro.props;
   </ThemeButton>
 </nav>
 
-<style is:global>
+<style>
 .group.sticked {
   border-bottom: 2px solid var(--un-prose-hr);
   transition-property: background-color, border-color;
