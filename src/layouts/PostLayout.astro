@@ -8,6 +8,7 @@ type Props = PostProps;
 const post = Astro.props.frontmatter;
 const headings = Astro.props.headings;
 const { title, description, tags, created, updated, thumbnail } = post;
+const showComment = !(import.meta.env.DEV || post.draft);
 ---
 
 <ArticleLayout {title} {description} {headings} {post}>
@@ -37,8 +38,8 @@ const { title, description, tags, created, updated, thumbnail } = post;
     </ul>
   </header>
   <slot />
-  <section slot="footer">
-    <hr />
-    <Giscus />
+  <section slot="footer" class="text-center">
+    <hr class="mb-12" />
+    { showComment ? <Giscus /> : <p>Comments disabled in development</p> }
   </section>
 </ArticleLayout>

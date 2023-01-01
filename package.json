@@ -14,6 +14,7 @@
     "@astrojs/mdx": "^0.14.0",
     "@astrojs/preact": "^1.2.0",
     "@astrojs/prefetch": "^0.1.1",
+    "@astrojs/sitemap": "^1.0.0",
     "@fontsource/overpass-mono": "^4.5.10",
     "astro": "^1.8.0",
     "astro-icon": "^0.8.0",

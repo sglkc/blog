@@ -7,12 +7,14 @@ import PageLayout from '@/layouts/PageLayout.astro';
 
 export async function getStaticPaths({ paginate }: any) {
   const posts = await Astro.glob('../post/*.mdx')
-  const sorted = posts.sort((a, b) => {
-    const first = new Date(b.frontmatter.created).valueOf();
-    const last = new Date(a.frontmatter.created).valueOf();
+  const sorted = posts
+    .filter((post) => !(import.meta.env.PROD && post.frontmatter.draft))
+    .sort((a, b) => {
+      const first = new Date(b.frontmatter.created).valueOf();
+      const last = new Date(a.frontmatter.created).valueOf();
 
-    return first - last;
-  });
+      return first - last;
+    });
 
   return paginate(sorted, { pageSize: 10 });
 }

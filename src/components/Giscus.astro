@@ -1,4 +1,4 @@
-<div class="giscus mt-8 mb-10 text-center animate-pulse">
+<div class="giscus animate-pulse">
   <p>Loading comments...</p>
 </div>
 
@@ -37,6 +37,7 @@ const observer = new IntersectionObserver(([e]) => {
   setTimeout(() => {
     giscus.appendChild(giscusScript);
     giscus.classList.remove('animate-pulse');
+    giscus.style.marginTop = '-1rem';
   }, 1000);
 },
   { threshold: [0] }
