@@ -7,17 +7,17 @@ type Props = PostProps;
 
 const post = Astro.props.frontmatter;
 const headings = Astro.props.headings;
-const { title, description, tags, created, updated, hero, alt } = post;
+const { title, description, tags, created, updated, thumbnail } = post;
 ---
 
 <ArticleLayout {title} {description} {headings} {post}>
   <header slot="header" class="text-center">
     <h1 class="text-3xl font-semibold mt-8">{title}</h1>
-    { hero && (
+    { thumbnail && (
       <img
         class="aspect-video object-contain"
-        src={'/assets/hero/' + hero}
-        alt={alt}
+        src={'/assets/post/' + thumbnail}
+        alt={title + ' thumbnail image'}
         draggable="false"
         width="100%"
         height="100%"
@@ -29,9 +29,11 @@ const { title, description, tags, created, updated, hero, alt } = post;
     <ul class="pl-0 my-6 flex flex-wrap gap-x-4 justify-center">
       { tags.map((tag: string) => <li class="list-none">#{ tag }</li>) }
     </ul>
-    <ul class="pl-0 mt-4 flex flex-col gap-1 text-sm">
+    <ul class="pl-0 mt-4 flex flex-col gap-1 text-sm sm:text-base">
       <li class="list-none">Date Posted: { created }</li>
-      <li class="list-none">Last Updated: { updated }</li>
+      { updated &&
+        <li class="list-none">Last Updated: { updated }</li>
+      }
     </ul>
   </header>
   <slot />

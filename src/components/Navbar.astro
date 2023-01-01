@@ -13,7 +13,7 @@ const { class: className, grow, sticky } = Astro.props;
 
 <nav
   class:list={[
-    'z-5',
+    'z-5 text-base sm:text-lg',
     className,
     (grow || sticky) && 'overflow-x-auto group',
     sticky &&

@@ -1,21 +1,19 @@
 import type { MDXLayoutProps } from 'astro';
 
-type ExtractedPost = {
-  url: string,
-  title: string,
-  description: string,
-  created: string,
-  tags: string,
-};
+type Overwrite<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U;
 
 type Post = {
-  title: string,
-  created: string,
-  description: string,
-  updated: string,
-  tags: Array<string>,
-  hero?: string,
-  alt?: string
+  title: string;
+  description: string;
+  thumbnail?: string;
+  language: 'en' | 'id';
+  created: string;
+  updated?: string;
+  tags: Array<string>;
+};
+
+type ExtractedPost = Overwrite<Post, { tags: string; }> & {
+  url: string;
 };
 
 type PostProps = MDXLayoutProps<Post>;

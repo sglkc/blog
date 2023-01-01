@@ -3,6 +3,12 @@ import { useRef, useState } from 'preact/hooks';
 import fuzzysort from 'fuzzysort';
 import PostPreview from './PostPreview';
 
+type fuzzysort = {
+  options: Fuzzysort.KeysOptions<ExtractedPost>;
+  results: Fuzzysort.KeysResults<ExtractedPost>;
+  result: Fuzzysort.KeysResult<ExtractedPost>;
+}
+
 type Props = {
   main: string;
 };
@@ -11,8 +17,8 @@ export default function SearchPost({ main }: Props) {
   const [message, _setMessage] = useState<string | false>(false);
   const [posts, setPosts] = useState<ExtractedPost[]>([]);
   const resultDiv = useRef<HTMLDivElement>(null);
-  const loading = useRef(false);
-  const data = useRef(null);
+  const loading = useRef<boolean>(false);
+  const data = useRef<ExtractedPost[] | null>(null);
   const mainDiv = document.getElementById(main);
 
   const setMessage = (message: string | false) => {
@@ -48,48 +54,55 @@ export default function SearchPost({ main }: Props) {
     if (loading.current || !data.current) return;
 
     const target = e.target as HTMLInputElement;
-    const value = target.value.replace('#', '');
+    const value: string = target.value.replace('#', '');
 
     if (!value.length) return setMessage(false);
 
-    const isTag = target.value.startsWith('#');
-    const options = isTag
-      ? { key: 'tags' }
-      : { keys: ['title', 'description'] };
+    const isTag: boolean = target.value.startsWith('#');
+    const keys: string[] = isTag
+      ? ['tags']
+      : ['title', 'description'];
 
-    const results = fuzzysort.go(value, data.current, {
+    const options: fuzzysort['options'] = {
       limit: 20,
       threshold: -10000,
-      ...options
-    });
+      keys
+    }
+
+    const results: fuzzysort['results'] = fuzzysort.go<ExtractedPost>(
+      value, data.current, options
+    );
 
     setMessage(results.length + ' results found');
 
-    const mapped = results.map((result: any) => {
-      let title = result.obj.title;
-      let description = result.obj.description;
-      let tagsString = result.obj.tags;
+    const mapped: ExtractedPost[] = results.map(
+      (result: fuzzysort['result']) => {
+        let title: string = result.obj.title;
+        let description: string = result.obj.description;
+        let tagsString: string = result.obj.tags;
 
-      if (isTag) {
-        tagsString = getHighlight(result) ?? tagsString;
-      } else {
-        title = getHighlight(result[0]) ?? title;
-        description = getHighlight(result[1]) ?? description;
+        if (isTag) {
+          tagsString = getHighlight(result) ?? tagsString;
+        } else {
+          title = getHighlight(result[0]) ?? title;
+          description = getHighlight(result[1]) ?? description;
+        }
+
+        const tags: string = tagsString.split(',')
+          .map((tag: string) => `<span>#${tag}</span>`)
+          .join('');
+
+        return {
+          title,
+          description,
+          language: result.obj.language,
+          thumbnail: result.obj.thumbnail,
+          created: result.obj.created,
+          tags,
+          url: result.obj.url
+        };
       }
-
-      const tags = tagsString
-        .split(',')
-        .map((tag: string) => `<span>#${tag}</span>`)
-        .join('');
-
-      return {
-        created: result.obj.created,
-        url: result.obj.url,
-        title,
-        description,
-        tags
-      };
-    });
+    );
 
     setPosts(mapped);
   }

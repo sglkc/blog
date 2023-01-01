@@ -2,14 +2,28 @@
 import type { PostProps } from '@/types/Post';
 
 const props = Astro.props as PostProps;
-const { title, description, created, tags } = props.frontmatter;
+const { title, description, created, thumbnail, tags } = props.frontmatter;
 ---
 
-<div class="my-6 py-2 flex flex-col gap-4">
-  <p class="my-0 text-sm -mb-2">{created}</p>
-  <a class="text-xl font-semibold my-0" href={props.url}>{title}</a>
-  <h4 class="font-light my-0 text-sm sm:text-base">{description}</h4>
-  <div class="flex flex-wrap gap-x-4 text-sm">
-    { tags.map((tag: string) => <span>#{tag}</span>) }
+<div class="my-6 py-2 flex gap-6 justify-between w-full">
+  <div class="flex flex-col">
+    <p class="mt-0 text-xs sm:text-sm">{created}</p>
+    <p class="my-0 text-lg sm:text-xl">
+      <a class="font-bold" href={props.url}>{title}</a>
+    </p>
+    <p class="mt-2 text-sm sm:text-base">{description}</p>
+    <div class="my-0 flex flex-wrap gap-x-4 text-sm">
+      { tags.map((tag: string) => <span>#{tag}</span>) }
+    </div>
   </div>
+  { thumbnail &&
+    <img
+      class="my-auto aspect-square object-cover"
+      src={'/assets/post/' + thumbnail}
+      alt={title + ' thumbnail image'}
+      draggable="false"
+      width="25%"
+      height="100%"
+    />
+  }
 </div>

@@ -1,24 +1,36 @@
 import type { ExtractedPost } from "@/types/Post";
 
 export default function PostPreview(props: ExtractedPost) {
-  const { url, title, description, created, tags } = props;
+  const { url, title, description, created, thumbnail, tags } = props;
 
   return (
-    <div class="my-6 py-2 flex flex-col gap-4">
-      <p class="my-0 text-sm -mb-2">{ created }</p>
-      <a
-        class="text-xl font-semibold my-0"
-        href={url}
-        dangerouslySetInnerHTML={{ __html: title }}
-      />
-      <h4
-        class="font-light my-0 text-sm sm:text-base"
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
-      <div
-        class="flex flex-wrap gap-x-4 text-sm"
-        dangerouslySetInnerHTML={{ __html: tags }}
-      />
+    <div class="my-6 py-2 flex gap-6 justify-between w-full">
+      <div class="flex flex-col">
+        <p class="mt-0 text-xs sm:text-sm">{created}</p>
+        <a
+          class="text-lg sm:text-xl font-bold"
+          href={url}
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+        <p
+          class="mt-2 text-sm sm:text-base"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+        <div
+          class="my-0 flex flex-wrap gap-x-4 text-sm"
+          dangerouslySetInnerHTML={{ __html: tags }}
+        />
+      </div>
+      { thumbnail &&
+        <img
+          class="my-auto aspect-square object-cover w-[25%]"
+          src={'/assets/post/' + thumbnail}
+          alt={title + ' thumbnail image'}
+          draggable={false}
+          width="25%"
+          height="100%"
+        />
+      }
     </div>
   );
 }

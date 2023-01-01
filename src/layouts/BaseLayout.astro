@@ -1,12 +1,16 @@
 ---
+import type HeadProps from '@/types/Head';
 import BaseHead from '@/components/BaseHead.astro';
 import '@fontsource/overpass-mono';
 import '@/styles/scrollbar.css';
 
-const props = Astro.props.frontmatter ?? Astro.props;
+const props = Astro.props as HeadProps;
 ---
 
-<html lang="en" class="no-transitions">
+<html
+  class="no-transitions"
+  lang={(props && props.post) ? props.post.language : 'en'}
+>
   <head>
     <BaseHead {...props} />
     <script is:inline>
