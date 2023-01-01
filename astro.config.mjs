@@ -5,11 +5,19 @@ import preact from "@astrojs/preact";
 import prefetch from '@astrojs/prefetch';
 import sitemap from "@astrojs/sitemap";
 import Unocss from 'unocss/astro';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://sglkc.my.id",
-  integrations: [mdx(), preact(), prefetch(), sitemap(), Unocss()],
+  markdown: {
+    extendDefaultPlugins: true,
+    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]]
+  },
+  integrations: [
+    mdx(), preact(), prefetch(), sitemap(), Unocss()
+  ],
   vite: {
     resolve: {
       alias: {

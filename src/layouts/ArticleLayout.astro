@@ -4,6 +4,7 @@ import Footer from '@/components/Footer.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import Navbar from '@/components/Navbar.astro';
 import BaseLayout from './BaseLayout.astro';
+import '@/styles/headings.css';
 
 const props = Astro.props as ArticleProps;
 const headings = Astro.props.headings;
@@ -15,7 +16,7 @@ const headings = Astro.props.headings;
     <slot name="header" />
     <hr class="my-12" />
     <article class="tracking-tighter sm:tracking-tight">
-      <TableOfContents {headings} />
+      { !!(headings.length) && <TableOfContents {headings} /> }
       <slot />
     </article>
     <slot name="footer" />

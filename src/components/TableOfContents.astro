@@ -16,30 +16,27 @@ const padding = (depth: number) => {
 };
 ---
 
-{ !!headings.length &&
-  <>
-    <blockquote class="pl-6 sm:pl-8 my-12 font-not-italic">
-      <h1 class="mb-2 text-2xl">Table of Contents</h1>
-      <ol>
-        { headings.map(({ depth, slug, text }) => (
-          <li class:list={[ 'mb-1 ', padding(depth) ]}>
-            <a class="underline-dotted" href={'#' + slug} smooth>{ text }</a>
-          </li>
-        ))
-      }
-      </ol>
-    </blockquote>
-    <script>
-      document.querySelectorAll('a[smooth]').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
-        e.preventDefault();
+<blockquote class="pl-6 sm:pl-8 my-12 font-not-italic">
+  <h1 class="mb-2 text-2xl">Table of Contents</h1>
+  <ol>
+    { headings.map(({ depth, slug, text }) => (
+      <li class:list={[ 'mb-1 ', padding(depth) ]}>
+        <a class="underline-dotted" href={'#' + slug} data-toc>{text}</a>
+      </li>
+    ))
+    }
+  </ol>
+</blockquote>
+<script>
+document.querySelectorAll('a[data-toc]').forEach((anchor: any) => {
+  anchor.addEventListener('click', (e: PointerEvent) => {
+    e.preventDefault();
 
-        const elm = document.querySelector(anchor.getAttribute('href'));
+    const id = anchor.getAttribute('href');
+    const elm = document.querySelector(id);
 
-        elm.style.scrollMarginTop = '5.5rem';
-        elm.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-    </script>
-  </>
-}
+    elm.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState('', '', id);
+  });
+});
+</script>
