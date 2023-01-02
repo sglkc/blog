@@ -21,6 +21,7 @@
     "fuzzysort": "^2.0.4",
     "preact": "^10.11.3",
     "rehype-autolink-headings": "^6.1.1",
+    "rehype-figure": "^1.0.1",
     "rehype-slug": "^5.1.0",
     "typescript": "^4.9.4"
   },

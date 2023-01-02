@@ -8,7 +8,8 @@ const { footer = '' } = Astro.props;
 
 <footer>
   <hr class="mt-12" />
-  <span class="flex flex-col sm:flex-row justify-between not-prose text-sm gap-2">
+  <span class="flex flex-col gap-2 not-prose text-sm text-right">
+    <p><a class="underline" href="#" data-to-top>Scroll to Top</a></p>
     <p>{footer}</p>
     <p>
       <a class="underline" href="https://github.com/sglkc/blog/blob/master/LICENSE"
@@ -17,3 +18,12 @@ const { footer = '' } = Astro.props;
     </p>
   </span>
 </footer>
+
+<script>
+const anchor = document.querySelector('a[data-to-top]') as HTMLAnchorElement;
+
+anchor.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scroll({ top: 0, behavior: 'smooth' });
+});
+</script>

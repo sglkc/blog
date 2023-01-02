@@ -11,12 +11,15 @@ export default defineConfig({
           color: 'var(--un-prose-links)'
         },
         h1: {
-          margin: '1.75em 0 0.75em',
+          margin: '1.6em 0 0.75em',
           'font-size': '1.825em'
         },
         h2: {
-          margin: '1.5em 0 0.5em',
+          margin: '1.4em 0 0.5em',
           'font-size': '1.625em'
+        },
+        h3: {
+          margin: '1.25em 0 0.5em',
         },
         'blockquote, hr, th, td': {
           transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -39,8 +42,16 @@ export default defineConfig({
           padding: '0',
           'list-style-position': 'inside',
         },
-        code: {
-          'font-size': '1em'
+        figcaption: {
+          'margin-top': '0.5rem',
+          'text-align': 'center',
+          'font-size': '0.875rem'
+        },
+        pre: {
+          padding: '1rem 1.25rem'
+        },
+        'pre.astro-code': {
+          'line-height': '1.5'
         }
       }
     })

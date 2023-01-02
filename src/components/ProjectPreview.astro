@@ -23,8 +23,8 @@ const { title, description, source, demo, thumbnail, stack } = frontmatter;
   <div class="flex flex-wrap gap-x-2 gap-y-1 text-sm mt-auto">
     { stack.map((s: string) => <span>[{s}]</span>) }
   </div>
-  <div class="text-right m-0">
-    <a class="mr-2 p-2" rel="prefetch" href={source}>Source</a>
-    <a class="p-2" rel="prefetch" href={demo}>Demo</a>
+  <div class="text-right m-0 min-h-6">
+    { source && <a class="mr-2 p-2" href={source}>Source</a> }
+    { demo && <a class="p-2" href={demo}>Demo</a> }
   </div>
 </div>

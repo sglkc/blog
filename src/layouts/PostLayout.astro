@@ -24,17 +24,18 @@ const showComment = !(import.meta.env.DEV || post.draft);
         height="100%"
       />
     )}
-    <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-lg sm:text-xl">
+    <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-base sm:text-lg">
       { description }
     </h2>
     <ul class="pl-0 my-6 flex flex-wrap gap-x-4 justify-center">
       { tags.map((tag: string) => <li class="list-none">#{ tag }</li>) }
     </ul>
     <ul class="pl-0 mt-4 flex flex-col gap-1 text-sm sm:text-base">
-      <li class="list-none">Date Posted: { created }</li>
+      <li class="list-none">Posted on { created }</li>
       { updated &&
-        <li class="list-none">Last Updated: { updated }</li>
+        <li class="list-none">Last Updated on { updated }</li>
       }
+      <li class="list-none" data-read-time></li>
     </ul>
   </header>
   <slot />
@@ -43,3 +44,12 @@ const showComment = !(import.meta.env.DEV || post.draft);
     { showComment ? <Giscus /> : <p>Comments disabled in development</p> }
   </section>
 </ArticleLayout>
+
+<script>
+const timeElm = document.querySelector('[data-read-time]') as HTMLElement;
+const article = document.querySelector('article') as HTMLElement;
+const words = article.innerText.trim().split(/\W+/).length;
+const time = (words / 200).toString().substring(0, 3);
+
+timeElm.innerText = time + ' min read';
+</script>

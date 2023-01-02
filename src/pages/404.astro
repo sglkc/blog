@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navbar from '@/components/Navbar.astro';
+
+const title = 'Page Not Found';
+const description = 'Page Not Found';
+---
+
+<BaseLayout {title} {description}>
+  <div class="m-auto p-8 fixed max-w-[60ch] h-fit inset-0">
+    <h1 class="mt-0 mb-8">Page Not Found</h1>
+    <Navbar class="mb-8 flex gap-5" />
+    <blockquote>
+      <p class="mb-2 font-bold italic" data-quote></p>
+      <p class="my-0" data-author></p>
+    </blockquote>
+  </div>
+</BaseLayout>
+
+<script lang="js">
+const data = await fetch('https://api.quotable.io/random?maxLength=50');
+const quote = await data.json();
+
+document.querySelector('p[data-quote]').innerText = `"${quote.content}"`;
+document.querySelector('p[data-author]').innerText = `- ${quote.author}`;
+</script>

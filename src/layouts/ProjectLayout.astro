@@ -22,7 +22,7 @@ const { title, created, description, stack, source, demo, thumbnail } = project;
         height="100%"
       />
     )}
-    <p class="mt-6">Date Initiated: { created }</p>
+    <p class="mt-6 text-sm sm:text-base">Initiated on { created }</p>
     <ul class="pl-0 mt-4 flex flex-wrap gap-x-2 justify-center">
       { stack.map((s: string) => <li class="list-none">[{s}]</li>) }
     </ul>
