@@ -28,7 +28,7 @@ export default function SearchPost({ main }: Props) {
     else mainDiv!.style.display = '';
   };
 
-  const getHighlight = (result: any) => {
+  const getHighlight = (result: Fuzzysort.Result) => {
     if (!result) return null;
 
     return fuzzysort
@@ -82,7 +82,7 @@ export default function SearchPost({ main }: Props) {
         let tagsString: string = result.obj.tags;
 
         if (isTag) {
-          tagsString = getHighlight(result) ?? tagsString;
+          tagsString = getHighlight(result[0]) ?? tagsString;
         } else {
           title = getHighlight(result[0]) ?? title;
           description = getHighlight(result[1]) ?? description;

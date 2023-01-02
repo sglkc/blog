@@ -18,9 +18,11 @@ const description = 'Page Not Found';
 </BaseLayout>
 
 <script lang="js">
-const data = await fetch('https://api.quotable.io/random?maxLength=50');
-const quote = await data.json();
+fetch('https://api.quotable.io/random?maxLength=50')
+  .then(async (data) => {
+    const quote = await data.json();
 
-document.querySelector('p[data-quote]').innerText = `"${quote.content}"`;
-document.querySelector('p[data-author]').innerText = `- ${quote.author}`;
+    document.querySelector('p[data-quote]').innerText = `"${quote.content}"`;
+    document.querySelector('p[data-author]').innerText = `- ${quote.author}`;
+  });
 </script>
