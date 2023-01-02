@@ -26,5 +26,5 @@
 }
 
 .prose :not(nav)::-webkit-scrollbar-thumb {
-  background-color: rgba(var(--scrollbar-dark), 50%);
+  background-color: rgba(var(--scrollbar-dark), 25%);
 }

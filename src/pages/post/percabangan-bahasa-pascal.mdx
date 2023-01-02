@@ -1,0 +1,127 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Percabangan dalam Bahasa Pemrograman Pascal
+description: |
+  Pembahasan tentang percabangan if, if-else, dan else-if dalam bahasa
+  pemrograman Pascal dilengkapi dengan flowchart dan contohnya
+language: id
+created: 2 January 2023
+tags:
+  - programming
+  - pascal
+  - indonesian
+---
+
+# Pengertian
+
+**Percabangan** atau bisa disebut juga **pernyataan/ekspresi kondisional**
+*(conditional statement)* adalah sebuah pernyataan untuk mengatur alur program
+dengan menyediakan sebuah **kondisi Boolean**.
+
+# Macam-macam percabangan
+
+Percabangan memiliki 2 macam: ***if*** dan ***if-else***. ***Else-if*** pun
+masuk kedalam salah satu macamnya, namun *else-if* merupakan *if-else* dengan
+pernyataan *if* lagi didalamnya. Tidak paham? Saya juga. Baca sampai bawah kuy!
+
+## If
+
+Bentuk percabangan paling sederhana.
+
+```pascal
+if CONDITION then STATEMENT;
+```
+
+CONDITION adalah kondisi untuk memicu STATEMENT. Jika kondisi menghasilkan
+*true*, program akan beralih ke pernyataan didalamnya, sebaliknya jika *false*
+maka program akan melewati keseluruhannya.
+
+### Flowchart
+
+![Flowchart percabangan if](/assets/post/percabangan-bahasa-pascal/if.webp)
+
+### Contoh
+
+```pascal
+if i > 0 then write('angka lebih dari 0');
+```
+
+1. Jika i lebih dari 0, maka program akan mengeluarkan `angka lebih dari 0`.
+2. Jika i kurang atau sama dengan 0, program akan melewati bagian ini.
+
+## If-Else
+
+Bentuk kedua mempunyai pernyataan kedua untuk mengatasi jika kondisi yang
+diberikan bernilai *false*.
+
+```pascal
+if CONDITION then STATEMENT else STATEMENT_2;
+```
+
+Sama seperti *if*, namun jika kondisi bernilai *false* program akan menjalankan
+pernyataan kedua STATEMENT_2.
+
+### Flowchart
+
+![Flowchart percabangan if-else](/assets/post/percabangan-bahasa-pascal/if-else.webp)
+
+### Contoh
+
+```pascal
+if i > 0 then write('angka lebih dari 0')
+else write('angka kurang sama dengan 0');
+```
+
+1. Jika i lebih dari 0, maka program akan mengeluarkan `angka lebih dari 0`.
+2. Jika i kurang atau sama dengan 0, program akan mengeluarkan `angka kurang
+sama dengan 0`.
+
+## Else-If
+
+Bentuk ini sama persis dengan bentuk kedua, namun *else* dilanjutkan lagi dengan
+*if* seakan-akan membuat bentuk baru.
+
+```pascal
+if CONDITION then STATEMENT
+else if CONDITION_2 then STATEMENT_2;
+```
+
+Sama seperti *if*, namun jika sebelumnya program melewati seluruhnya, dengan ini
+program akan menjalankan pernyataan kedua STATEMENT_2.
+
+### Flowchart
+
+Semakin dalam sebuah percabangan, semakin rumit pula flowchart-nya, *design
+pattern* seperti ini sangat tidak dianjurkan. Disebut juga dalam bahasa Inggris
+*Don't Repeat Yourself (DRY)*.
+
+![Flowchart percabangan else-if](/assets/post/percabangan-bahasa-pascal/else-if.webp)
+
+### Contoh
+
+```pascal
+if i > 0 then write('angka lebih dari 0')
+else if i < 0 then write('angka kurang dari 0');
+```
+
+1. Jika i lebih dari 0, program akan mengeluarkan `angka lebih dari 0`.
+2. Jika i kurang dari 0, program akan mengeluarkan `angka kurang dari 0`.
+3. Jika i sama dengan 0, program akan melewati percabangan ini.
+
+Disini dapat ditambahkan lagi pernyataan *else* untuk menangkap jika i sama
+dengan 0.
+
+```pascal
+if i > 0 then write('angka lebih dari 0')
+else if i < 0 then write('angka kurang dari 0')
+else write('angka sama dengan 0');
+```
+
+# Akhir Kata
+
+Semoga post ini bisa membantu, jangan lupakan penempatan titik koma yang baik
+dan benar. Perbanyak membaca dan praktek karena kita semua tahu kalau otak
+manusia ga bisa yang namanya *compile* kode komputer.
+<small>(sarkasin tugas ngoding di kertas)</small>
+
+**Sekian terima kasih.**

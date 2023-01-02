@@ -24,7 +24,7 @@ export default defineConfig({
         'blockquote, hr, th, td': {
           transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
-        'tr': {
+        'tr, :not(pre.astro-code) > code': {
           transition: 'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
         hr: {
@@ -38,21 +38,26 @@ export default defineConfig({
           'background-color': '#e4e4e7',
         },
         'ol, ul': {
-          margin: '0',
-          padding: '0',
-          'list-style-position': 'inside',
+          margin: '0 auto',
+          'margin-left': '1em',
+          padding: '0 auto',
         },
         figcaption: {
           'margin-top': '0.5rem',
           'text-align': 'center',
           'font-size': '0.875rem'
         },
+        ':not(pre.astro-code) > code': {
+          'background-color': 'var(--un-prose-bg-soft)!important',
+          'font-size': '1em',
+          filter: 'invert(0.15)'
+        },
         pre: {
           padding: '1rem 1.25rem'
         },
         'pre.astro-code': {
           'line-height': '1.5'
-        }
+        },
       }
     })
   ],

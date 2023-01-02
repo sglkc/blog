@@ -35,7 +35,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
       { updated &&
         <li class="list-none">Last Updated on { updated }</li>
       }
-      <li class="list-none" data-read-time></li>
+      <li class="list-none" data-read-time>.. min read</li>
     </ul>
   </header>
   <slot />
@@ -49,7 +49,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
 const timeElm = document.querySelector('[data-read-time]');
 const article = document.querySelector('article');
 const words = article.innerText.trim().split(/\W+/).length;
-const time = (words / 200).toString().substring(0, 3);
+const time = (words / 175).toString().substring(0, 3);
 
 timeElm.innerText = time + ' min read';
 </script>
