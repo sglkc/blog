@@ -42,6 +42,9 @@ export default defineConfig({
           'margin-left': '1em',
           padding: '0 auto',
         },
+        'article img': {
+          'margin-top': '1.5rem'
+        },
         figcaption: {
           'margin-top': '0.5rem',
           'text-align': 'center',
@@ -58,6 +61,10 @@ export default defineConfig({
         'pre.astro-code': {
           'line-height': '1.5'
         },
+        table: {
+          margin: 'auto auto 2em',
+          display: 'table'
+        }
       }
     })
   ],

@@ -21,22 +21,9 @@ const padding = (depth: number) => {
   <ol>
     { headings.map(({ depth, slug, text }) => (
       <li class:list={[ 'mb-1 ', padding(depth) ]}>
-        <a class="underline-dotted" href={'#' + slug} data-toc>{text}</a>
+        <a class="underline-dotted" href={'#' + slug}>{text}</a>
       </li>
     ))
     }
   </ol>
 </blockquote>
-<script>
-document.querySelectorAll('a[data-toc]').forEach((anchor: any) => {
-  anchor.addEventListener('click', (e: PointerEvent) => {
-    e.preventDefault();
-
-    const id = anchor.getAttribute('href');
-    const elm = document.querySelector(id);
-
-    elm.scrollIntoView({ behavior: 'smooth' });
-    history.replaceState('', '', id);
-  });
-});
-</script>

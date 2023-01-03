@@ -1,0 +1,256 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: 3 Macam Perulangan dalam Bahasa Pemrograman Pascal
+description: |
+  Menjeleaskan apa itu perulangan dan perbedaan antara for, while-do, dan
+  repeat-until dalam bahasa pemrograman Pascal dengan flowchart dan contohnya
+language: id
+created: 3 January 2023
+tags:
+  - programming
+  - pascal
+  - indonesian
+---
+
+# Pengertian
+
+**Perulangan** atau *loop/looping* seperti namanya adalah sebuah pernyataan yang
+digunakan untuk mengulang sebuah blok kode beberapa kali yang ditentukan, atau
+sampai kondisinya terpenuhi *(true)*.
+
+# Macam-macam Perulangan
+
+Perulangan dibagi menjadi 2 jenis: ***Count-controlled loop*** atau biasa
+disebut *for*, dan ***Condition-controlled loop*** yang memiliki 2 macam yaitu
+***while-do*** dan ***repeat-until***.
+
+## Count-controlled loop
+
+Jenis perulangan ini sering ditemui dalam bahasa pemrograman lainnya, namun
+ada sebuah perbedaan khusus untuk for dalam bahasa pemrograman Pascal.
+
+```pascal
+for VARIABLE := START to FINISH do STATEMENT;
+```
+
+Dimana:
+
+- VARIABLE adalah variabel integer sebagai penghitung *(counter)* perulangan.
+  Umumnya menggunakan variabel *i*.
+- START adalah nilai integer awal untuk penghitungnya.
+- FINISH adalah nilai integer akhir untuk mengakhiri perulangan.
+- STATEMENT adalah pernyataan yang ingin dijalankan dalam perulangan.
+
+Dalam bahasa Pascal secara spesifik, perulangan for hanya bisa melangkah *(step)*
+sekali kedepan +1 dengan ***TO*** atau kebelakang -1 dengan ***DOWNTO***. Dalam
+artian jika awalnya 1 dan akhirnya 5, maka perulangan terjadi berurutan secara
+berurutan 1, 2, 3, 4, 5.
+
+Untuk mengubah jumlah step ini hanya bisa dilakukan menggunakan
+[condition-controlled loop](#condition-controlled-loop).
+
+### For loop sederhana
+
+```pascal
+for i := 1 to 10 do writeln(i);
+```
+
+Bentuk perulangan paling sederhana ini akan mengeluarkan angka 1 sampai 10.
+
+![Flowchart perulangan for](/assets/post/perulangan-bahasa-pascal/for.webp)
+
+### For loop dengan percabangan
+
+```pascal
+for i := 1 to 10 do
+  begin
+    if i < 5 then writeln(i, ' kurang dari 5')
+    else if i = 5 then writeln(i, ' adalah 5')
+    else writeln(i, ' lebih dari 5');
+  end;
+```
+
+Percabangan dalam perulangan ini akan mengeluarkan kalimat yang berbeda dengan
+kondisi:
+
+- i kurang dari lima akan mengeluarkan `i kurang dari 5`
+- i sama dengan lima akan mengeluarkan `i adalah 5`
+- jika kedua kondisi tidak terpenuhi maka akan mengeluarkan `i lebih dari 5`
+
+![Flowchart perulangan for dengan percabangan else-if](/assets/post/perulangan-bahasa-pascal/for-percabangan.webp)
+
+### For loop rekursif
+
+Sederhananya, perulangan rekursif adalah perulangan yang memiliki perulangan
+lagi didalamnya.
+
+```pascal
+for i := 1 to 10 do
+  begin
+    writeln('BAB ', i);
+    for j := 1 to 3 do writeln('BAB ', i, 'SUB BAB ', j);
+  end;
+```
+
+Jika dilihat sekilas, dapat dianalisis bahwa:
+
+1. Perulangan pertama dari 1 sampai 10,
+2. Perulangan pertama mengeluarkan `BAB i` untuk setiap angka dalam perulangan,
+3. Perulangan kedua dari 1 sampai 3, dan
+4. Perulangan kedua mengeluarkan `BAB i SUB BAB j` untuk setiap angka dalam
+   perulangan.
+
+![Flowchart perulangan for rekursif](/assets/post/perulangan-bahasa-pascal/for-rekursif.webp)
+
+## Condition-controlled loop
+
+Condition-controlled loop atau perulangan yang dikontrol oleh suatu kondisi
+seperti namanya, mempunyai kondisi yang harus dipenuhi *(true)*. Jika kondisi
+bernilai *false* maka perulangan akan dilanjutkan.
+
+Perulangan ini dapat menyebabkan ***infinite loop*** jika kondisi yang diberikan
+tidak pernah dipenuhi, namun beberapa kegunaan dari infinite loop yaitu untuk
+memastikan bahwa program tidak akan pernah berhenti berjalan.
+
+### While-do
+
+```pascal
+while CONDITION do STATEMENT;
+```
+
+Perulangan while-do mempunyai struktur yang serupa seperti for, namun untuk
+memberhentikan perulangan diperlukan kondisi yang dapat berupa apapun yang
+menghasilkan nilai Boolean true atau false.
+
+Jika kondisi tidak dipenuhi, maka perulangan akan dilanjutkan, namun jika
+kondisi sudah dipenuhi, maka perulangan selesai. Karena perulangan while-do
+melakukan pengecekan kondisi sebelum menjalankan pernyataan, maka perulangan itu
+sendiri bisa terlewatkan jika kondisi sudah terpenuhi.
+
+![Flowchart perulangan while-do](/assets/post/perulangan-bahasa-pascal/while-do.webp)
+
+#### Contoh while-do
+
+```pascal
+readln(i);
+while i < 100 do
+  begin
+    writeln(i);
+    i := i * 2;
+  end;
+```
+
+Contoh perulangan ini, jika variabel *i* bernilai dibawah 100, maka variabel *i*
+akan dikalikan dengan 2. Jika input yang dimasukkan tidak bernilai dibawah 100
+maka perulangan akan dilewat seluruhnya.
+
+| Input | Output          |
+|-------|-----------------|
+| 2     | 2 4 8 16 32 64  |
+| 3     | 3 6 12 24 48 96 |
+
+![Flowchart contoh perulangan while-do](/assets/post/perulangan-bahasa-pascal/while-do-example.webp)
+
+### Repeat-until
+
+```pascal
+repeat STATEMENT until CONDITION;
+```
+
+Berbalikan dengan while-do, jika kondisi pada repeat-until bernilai true maka
+perulangan akan dilanjutkan, jika kondisi bernilai false maka akan perulangan
+berhenti.
+
+Perulangan repeat-until juga akan menjalankan pernyataan sebelum melakukan
+pengecekan kondisi, sehingga bisa dipastikan bahwa perulangan akan berjalan
+minimal 1 kali.
+
+![Flowchart perulangan repeat-until](/assets/post/perulangan-bahasa-pascal/repeat-until.webp)
+
+#### Contoh repeat-until
+
+```pascal
+repeat
+  begin
+    writeln('masukkan dengan benar');
+    readln(i);
+  end;
+until i = 'benar';
+```
+
+Pada contoh ini, perulangan akan:
+- Mengeluarkan `masukkan dengan benar`,
+- Membaca *input user* ke variabel string *i*, dan
+- Mengulang perulangan sampai variabel *i* bernilai 'benar'.
+
+![Flowchart contoh perulangan repeat-until](/assets/post/perulangan-bahasa-pascal/repeat-until-example.webp)
+
+### Perbedaan while-do dengan repeat-until
+
+Perhatikan dua potongan kode berikut dengan algoritma yang sama persis.
+
+1. Diberikan input untuk variabel *i*,
+2. Masuk kedalam bagian perulangan dengan kondisi jika *i* kurang dari 100 maka
+   ulang perulangan,
+3. Mengeluarkan variabel *i*,
+4. Mengalikan variabel *i* dengan 2,
+5. Setelah perulangan selesai, keluarkan variabel *i*.
+
+```pascal
+readln(i);
+while i < 100 do
+  begin
+    writeln(i);
+    i := i * 2;
+  end;
+```
+
+```pascal
+readln(i);
+repeat
+  begin
+    writeln(i);
+    i := i * 2;
+  end;
+until i >= 100;
+```
+
+| Perbedaan                               | While-do    | Repeat-until    |
+|-----------------------------------------|-------------|-----------------|
+| Letak pengecekan kondisi                | Awal        | Akhir           |
+| Jika kondisi bernilai true              | Melanjutkan | Selesai         |
+| Jika kondisi sudah terpenuhi sebelumnya | Dilewati    | Berjalan sekali |
+
+## Perbedaan for dengan perulangan lain
+
+Perbedaan yang didapat dari for dengan perulangan lain yaitu:
+
+| Perbedaan | For                                        | Lainnya                                     |
+|-----------|--------------------------------------------|---------------------------------------------|
+| Sintaksis | Wajib memiliki variabel integer penghitung | Hanya berupa kondisi boolean                |
+| Kondisi   | Berupa integer yang bernilai jelas         | Bisa dengan operator dan tipe data lain     |
+| Langkah   | Hanya bisa naik atau turun sebanyak 1      | Tidak ada langkah tertentu (sesuai kondisi) |
+
+Jadi dengan perbedaan yang sudah disebutkan,
+1. Perulangan for lebih cocok digunakan jika awal dan akhirnya sudah pasti,
+   contohnya 1 sampai 10, atau -100 sampai 0.
+2. Karena limitasi dalam menentukan jumlah langkah, perulangan for tidak cocok
+   jika digunakan seperti halnya mengalikan variabel i dengan 2.
+3. Jika ingin menggunakan operator dan tipe data selain integer, bisa menggunakan
+   perulangan lainnya.
+
+# Catatan
+
+Dalam post ini digunakan bentuk flowchart paling sederhana dimana perulangan
+menggunakan blok percabangan untuk mengecek kondisi.
+
+Namun seiring perkembangan zaman, ada pula bentuk flowchart lainnya seperti yang
+ada pada aplikasi Flowgorithm.
+
+![Flowgorithm](/assets/post/perulangan-bahasa-pascal/flowgorithm.webp)
+
+Lalu flowchart manakah yang lebih benar dan tepat? Tidak ada, karena flowchart
+sendiri digunakan untuk mempermudah dalam membaca kode, jadi tidak ada yang
+lebih benar dan tepat kecuali disuruh untuk membuatnya secara spesifik.
+
+<small>*Just my 2 cents.*</small>

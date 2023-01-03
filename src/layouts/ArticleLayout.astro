@@ -24,3 +24,20 @@ const headings = Astro.props.headings;
     <Footer />
   </main>
 </BaseLayout>
+
+<script lang="js">
+document.querySelectorAll('article a').forEach((anchor) => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const id = anchor.getAttribute('href');
+
+    if (!id.startsWith('#')) return;
+
+    const elm = document.querySelector(id);
+
+    elm.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState('', '', id);
+  });
+});
+</script>
