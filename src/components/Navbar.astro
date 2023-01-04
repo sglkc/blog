@@ -26,11 +26,11 @@ const { class: className, grow, sticky } = Astro.props;
       class="-mr-3 sm:-mr-5 group-[.sticked]:grow-[0.5] transition-[flex-grow] duration-300 ease-out"
     ></span>
   }
-  <a class="animate-margin" rel="prefetch" href="/">
+  <a class="animate-margin" rel="prefetch" href="/" target="_self">
     <Icon class="hidden group-[.sticked]:block" name="iconoir:home" size="32" />
     <span class="group-[.sticked]:hidden">Home</span>
   </a>
-  <a class="animate-margin" rel="prefetch" href="/blog">
+  <a class="animate-margin" rel="prefetch" href="/blog" target="_self">
     <Icon
       class="hidden group-[.sticked]:block"
       name="iconoir:multiple-pages"
@@ -38,7 +38,7 @@ const { class: className, grow, sticky } = Astro.props;
     />
     <span class="group-[.sticked]:hidden">Blog</span>
   </a>
-  <a class="animate-margin" rel="prefetch" href="/projects">
+  <a class="animate-margin" rel="prefetch" href="/projects" target="_self">
     <Icon
       class="hidden group-[.sticked]:block"
       name="iconoir:code-brackets-square"
@@ -46,12 +46,12 @@ const { class: className, grow, sticky } = Astro.props;
     />
     <span class="group-[.sticked]:hidden">Projects</span>
   </a>
-  <a class="animate-margin" rel="prefetch" href="/about">
+  <a class="animate-margin" rel="prefetch" href="/about" target="_self">
     <Icon class="hidden group-[.sticked]:block" name="iconoir:user" size="32" />
     <span class="group-[.sticked]:hidden">About</span>
   </a>
   <ThemeButton
-    class="underline cursor-pointer animate-margin"
+    class="cursor-pointer animate-margin"
     client:load
   >
     <span class="hidden group-[.sticked]:block">

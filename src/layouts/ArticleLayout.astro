@@ -27,12 +27,12 @@ const headings = Astro.props.headings;
 
 <script lang="js">
 document.querySelectorAll('article a').forEach((anchor) => {
+  const id = anchor.getAttribute('href');
+
+  if (!id.startsWith('#')) return;
+
   anchor.addEventListener('click', (e) => {
     e.preventDefault();
-
-    const id = anchor.getAttribute('href');
-
-    if (!id.startsWith('#')) return;
 
     const elm = document.querySelector(id);
 

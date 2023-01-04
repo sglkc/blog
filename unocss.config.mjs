@@ -7,6 +7,10 @@ export default defineConfig({
     presetWind(),
     presetTypography({
       cssExtend: {
+        a: {
+          'text-decoration-thickness': '1px',
+          'text-underline-position': 'under'
+        },
         button: {
           color: 'var(--un-prose-links)'
         },
