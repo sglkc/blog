@@ -2,10 +2,11 @@
 layout: '@/layouts/PostLayout.astro'
 title: Percabangan dalam Bahasa Pemrograman Pascal
 description: |
-  Pembahasan tentang percabangan if, if-else, dan else-if dalam bahasa
+  Percabangan if, if-else, else-if, dan case-of dalam bahasa
   pemrograman Pascal dilengkapi dengan flowchart dan contohnya
 language: id
 created: 2 January 2023
+updated: 5 January 2023
 tags:
   - programming
   - pascal
@@ -20,9 +21,9 @@ dengan menyediakan sebuah **kondisi Boolean**.
 
 # Macam-macam percabangan
 
-Percabangan memiliki 2 macam: ***if*** dan ***if-else***. ***Else-if*** pun
-masuk kedalam salah satu macamnya, namun *else-if* merupakan *if-else* dengan
-pernyataan *if* lagi didalamnya. Tidak paham? Saya juga. Baca sampai bawah kuy!
+Percabangan memiliki 3 macam: ***if***, ***if-else***, dan ***case-of***.
+***Else-if*** pun masuk kedalam salah satu macamnya, namun *else-if* merupakan
+*if-else* dengan pernyataan *if* lagi didalamnya. Kurang paham? Baca sampai bawah kuy!
 
 ## If
 
@@ -36,11 +37,11 @@ CONDITION adalah kondisi untuk memicu STATEMENT. Jika kondisi menghasilkan
 *true*, program akan beralih ke pernyataan didalamnya, sebaliknya jika *false*
 maka program akan melewati keseluruhannya.
 
-### Flowchart
+### Flowchart If
 
 ![Flowchart percabangan if](/assets/post/percabangan-bahasa-pascal/if.webp)
 
-### Contoh
+### Contoh If
 
 ```pascal
 if i > 0 then write('angka lebih dari 0');
@@ -61,11 +62,11 @@ if CONDITION then STATEMENT else STATEMENT_2;
 Sama seperti *if*, namun jika kondisi bernilai *false* program akan menjalankan
 pernyataan kedua STATEMENT_2.
 
-### Flowchart
+### Flowchart If-Else
 
 ![Flowchart percabangan if-else](/assets/post/percabangan-bahasa-pascal/if-else.webp)
 
-### Contoh
+### Contoh If-Else
 
 ```pascal
 if i > 0 then write('angka lebih dari 0')
@@ -89,7 +90,7 @@ else if CONDITION_2 then STATEMENT_2;
 Sama seperti *if*, namun jika sebelumnya program melewati seluruhnya, dengan ini
 program akan menjalankan pernyataan kedua STATEMENT_2.
 
-### Flowchart
+### Flowchart Else-If
 
 Semakin dalam sebuah percabangan, semakin rumit pula flowchart-nya, *design
 pattern* seperti ini sangat tidak dianjurkan. Disebut juga dalam bahasa Inggris
@@ -97,7 +98,7 @@ pattern* seperti ini sangat tidak dianjurkan. Disebut juga dalam bahasa Inggris
 
 ![Flowchart percabangan else-if](/assets/post/percabangan-bahasa-pascal/else-if.webp)
 
-### Contoh
+### Contoh Else-If
 
 ```pascal
 if i > 0 then write('angka lebih dari 0')
@@ -116,6 +117,71 @@ if i > 0 then write('angka lebih dari 0')
 else if i < 0 then write('angka kurang dari 0')
 else write('angka sama dengan 0');
 ```
+
+## Case-Of
+
+Case-of biasanya dikenal dengan nama *switch-case* pada bahasa pemrograman lain.
+Berbeda dengan if, case-of tidak memiliki kondisi yang bisa diatur sendiri,
+case-of akan selalu mengecek jika **suatu variabel mempunyai nilai yang sama**.
+
+```pascal
+case SELECTOR of
+  VALUE: STATEMENT;
+  VALUE_2: STATEMENT_2;
+  ...
+  else ELSE_STATEMENT; { opsional }
+end;
+```
+
+Jika dilihat sekilas bahwa case-of mempunyai struktur yang lebih sederhana dimana:
+
+- *SELECTOR* adalah variabel yang digunakan untuk melakukan komparasi, selain
+  variabel pun bisa menggunakan fungsi,
+- *VALUE* adalah nilai yang ingin dibandingkan dengan SELECTOR,
+- *STATEMENT* adalah kode yang dijalankan jika SELECTOR dan VALUE bernilai sama,
+- *ELSE_STATEMENT* adalah kode yang dijalankan jika SELECTOR tidak memiliki
+  nilai yang sama dengan yang dicantumkan, statement ini bersifat opsional.
+
+### Flowchart Case-Of
+
+Flowchart ini dapat memperjelas cara kerja sebuah pernyataan case-of. Bisa
+dilihat bahwa flowchart percabangan case-of memiliki persamaan dengan flowchart
+percabangan if-else.
+
+![Flowchart percabangan case-of](/assets/post/percabangan-bahasa-pascal/case-of.webp)
+
+### Contoh Case-Of
+
+```pascal
+program case_of;
+var i : string;
+
+begin
+  write('masukkan perintah: (maju/mundur/belok) ');
+  readln(i);
+  case i of
+    'maju': writeln('sedang maju');
+    'mundur': writeln('mundur ke belakang');
+    'belok':
+      begin
+        write('belok kemana? (kiri/kanan) ');
+        readln(i);
+        case i of
+          'kiri': writeln('membelok kiri');
+          'kanan': writeln('belok ke kanan');
+          else writeln('tidak bisa belok');
+        end;
+      end;
+  else
+    begin
+      writeln('tidak ada pilihan ', i);
+      writeln('selamat tinggal');
+    end;
+  end;
+end.
+```
+
+Contoh case-of ini melakukan perbandingan string dengan kata-kata lain.
 
 # Akhir Kata
 

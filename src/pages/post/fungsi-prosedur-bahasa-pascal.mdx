@@ -1,0 +1,221 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Fungsi dan Prosedur dalam Bahasa Pascal
+description: |
+  Apa itu fungsi dan prosedur, apa saja perbedaan diantara keduanya, dan juga
+  masing-masing contohnya
+language: en
+created: 5 January 2023
+updated:
+tags:
+  - programming
+  - pascal
+  - indonesian
+---
+
+import K from '@/components/Katex.astro';
+
+# Fungsi
+
+Fungsi atau ***function***, layaknya sebuah fungsi dalam matematika, digunakan
+untuk menjalankan kode dan juga **mengembalikan** nilai. Nilai ini dapat berupa
+dalam tipe data apapun (integer, string, boolean, dll).
+
+## Dalam Matematika
+
+Perhatikan contoh sebuah fungsi matematika berikut:
+
+<K block={true}>f(x) = x + 1</K>
+
+Dalam fungsi tersebut, <K>x</K> dapat diisi dengan angka berapapun, dan hasil
+dari perhitungan tersebut akan dikembalikan oleh <K>f.</K> Misalkan jika
+<K>x = 1</K> maka dapat diketahui bahwa <K>f(1) = 1 + 1 = 2.</K>
+
+## Sintaksis Fungsi
+
+```pascal
+function NAME(PARAMETER): TYPE;
+{ definisi variabel lokal }
+begin
+  STATEMENT; { opsional }
+  NAME := VALUE;
+end;
+```
+
+Fungsi dalam bahasa Pascal memiliki bentuk seperti diatas, dimana:
+
+- *NAME* adalah nama dari fungsi tersebut,
+- *PARAMETER* adalah kumpulan variabel yang bisa dimasukkan, parameter dalam
+  fungsi harus berurutan,
+- *TYPE* adalah tipe data dari nilai yang dikembalikan,
+- Deklarasi variabel lokal jika diperlukan,
+- *STATEMENT* adalah kode yang akan dieksekusi, dan
+- *VALUE* adalah nilai yang dikembalikan oleh fungsi.
+
+Seluruh fungsi dalam kode Pascal harus didefinisikan sebelum kode utama dan jika
+fungsi digunakan dalam fungsi lain, maka fungsi harus sesuai dengan urutan
+penggunaannya.
+
+## Contoh Fungsi
+
+### f(x) = x + 1
+
+<K>f(x) = x + 1</K> jika diimplementasikan ke dalam bahasa Pascal.
+
+```pascal
+program f;
+var i : integer;
+
+function f(x: integer): integer;
+begin
+  f := x + 1;
+end;
+
+begin
+  write('x = '); readln(i);
+  writeln('f(', i,') =', ' ', i, ' + 1 = ', f(i));
+end.
+```
+
+### Angka ganjil
+
+Fungsi `adalahGanjil` akan mengembalikan *true* jika angka yang dimasukkan
+adalah ganjil, dan *false* jika genap. Pada contoh ini fungsi mengembalikan
+tipe data boolean sehingga dapat digunakan dalam percabangan.
+
+```pascal
+program ganjil;
+var i : integer;
+
+function adalahGanjil(x: integer): boolean;
+begin
+  adalahGanjil := (x mod 2 = 1);
+end;
+
+begin
+  write('masukkan angka '); readln(i);
+  if adalahGanjil(i) then
+    writeln('angka ', i, ' adalah ganjil')
+  else
+    writeln('angka ', i, ' adalah genap');
+end.
+```
+
+### Kalkulator
+
+Fungsi `kalkulator` mengambil 2 buah parameter integer x & y, dan 1 parameter
+string operasi, parameter operasi ini menentukan operasi yang dilakukan pada
+x & y yang telah dimasukkan ke dalam fungsi.
+
+```pascal
+program kalkulator;
+var
+  a, b : real;
+  c : string;
+
+function kalkulator(x, y: real; operasi: string): real;
+begin
+  case operasi of
+    'tambah': kalkulator := x + y;
+    'kurang': kalkulator := x - y;
+    'kali': kalkulator := x * y;
+    'bagi': kalkulator := x / y;
+  end;
+end;
+
+begin
+  write('a = '); readln(a);
+  write('b = '); readln(b);
+  write('operasi? (tambah/kurang/kali/bagi) '); readln(c);
+  writeln('hasilnya ', kalkulator(a, b, c):1:3);
+end.
+```
+
+### Fungsi rekursif
+
+Fungsi rekursif adalah fungsi yang memanggil dirinya sendiri. Contoh ini
+mempunyai fungsi fibonacci untuk menghasilkan barisan angka fibonacci.
+
+```pascal
+program fibonacci;
+var n, i: integer;
+
+function fibonacci(n: integer): integer;
+begin
+  if n = 0 then
+    fibonacci := 0
+  else if n = 1 then
+    fibonacci := 1
+  else
+    fibonacci := fibonacci(n-2) + fibonacci(n-1)
+end;
+
+begin
+  readln(n);
+  write(fibonacci(0));
+  for i := 1 to n do write(', ', fibonacci(i));
+end.
+```
+
+# Prosedur
+
+Prosedur atau ***procedure*** sangatlah serupa dengan fungsi, tapi bedanya suatu
+prosedur **tidak dapat mengembalikan nilai**. Oleh karena itu, prosedur lebih
+sering digunakan untuk menjalankan kode yang dijalankan sendiri.
+
+## Sintaksis Prosedur
+
+```pascal
+procedure NAME(PARAMETER);
+{ definisi variabel lokal }
+begin
+  STATEMENT;
+end;
+```
+
+Prosedur mempunyai sintaksis yang serupa pula dengan [sintaksis fungsi](#sintaksis).
+
+- *NAME* adalah nama dari fungsi tersebut,
+- *PARAMETER* adalah kumpulan variabel yang bisa dimasukkan, parameter dalam
+  fungsi harus berurutan,
+- *STATEMENT* adalah kode yang akan dieksekusi, dan
+
+## Contoh Prosedur
+
+### Menukar dua variabel
+
+```pascal
+program tukar;
+var a, b: integer;
+
+procedure tukar(var x, y: integer);
+var z: integer;
+begin
+  z := x;
+  x := y;
+  y := z;
+end;
+
+begin
+  write('a = '); readln(a);
+  write('b = '); readln(b);
+  tukar(a, b);
+  writeln('setelah ditukar:');
+  writeln('a = ', a, ', b = ', b);
+end.
+```
+
+### Menampilkan array integer
+
+```pascal
+procedure tampil(data: array of integer);
+var i: integer;
+begin
+  for i := 1 to n do write(data[i]:3);
+end;
+```
+
+# Perbedaan Fungsi dan Prosedur
+
+Satu-satunya perbedaan fungsi dan prosedur ialah **pengembalian nilai**. Jika
+fungsi dikembalikan nilainya, jika prosedur tidak.
