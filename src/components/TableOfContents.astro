@@ -1,29 +1,43 @@
 ---
 import type { MDXLayoutProps } from 'astro';
+import RecursiveList from './RecursiveList.astro';
 
 type Props = {
   headings: MDXLayoutProps<{}>['headings'];
 }
 
 const { headings } = Astro.props;
-const padding = (depth: number) => {
-  switch(depth) {
-    case 2: return 'ml-4';
-    case 3: return 'ml-8';
-    case 4: return 'ml-12';
-    case 5: return 'ml-16';
+
+function convertToNestedArray(input: MDXLayoutProps<{}>['headings']): any[] {
+  const output: any[] = [];
+
+  let currentArray: any[] = output;
+  let currentDepth = 0;
+
+  for (const item of input) {
+    while (item.depth < currentDepth) {
+      currentArray = output;
+      currentDepth--;
+      for (let i = 0; i < currentDepth; i++) {
+        currentArray = currentArray[currentArray.length - 1];
+      }
+    }
+    while (item.depth > currentDepth) {
+      const newArray: any[] = [];
+      currentArray.push(newArray);
+      currentArray = newArray;
+      currentDepth++;
+    }
+    currentArray.push(item);
   }
-};
+
+  return output;
+}
+
+const heads = convertToNestedArray(headings);
 ---
 
-<blockquote class="pl-6 sm:pl-8 my-12 font-not-italic">
+<blockquote id="toc" class="pl-6 sm:pl-8 my-12 font-not-italic">
   <h1 class="mb-2 text-2xl">Table of Contents</h1>
-  <ol>
-    { headings.map(({ depth, slug, text }) => (
-      <li class:list={[ 'mb-1 ', padding(depth) ]}>
-        <a class="underline-dotted" href={'#' + slug}>{text}</a>
-      </li>
-    ))
-    }
-  </ol>
+  <RecursiveList items={heads[0] ?? heads} />
 </blockquote>

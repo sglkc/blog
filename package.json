@@ -19,6 +19,7 @@
     "astro": "^1.8.0",
     "astro-icon": "^0.8.0",
     "fuzzysort": "^2.0.4",
+    "katex": "^0.16.4",
     "preact": "^10.11.3",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-figure": "^1.0.1",

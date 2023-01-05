@@ -41,7 +41,7 @@ export default defineConfig({
         '.dark mark': {
           'background-color': '#e4e4e7',
         },
-        'ol, ul': {
+        'article ol, article ul': {
           margin: '0 auto',
           'margin-left': '1em',
           padding: '0 auto',

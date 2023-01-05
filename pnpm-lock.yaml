@@ -15,6 +15,7 @@ specifiers:
   astro: ^1.8.0
   astro-icon: ^0.8.0
   fuzzysort: ^2.0.4
+  katex: ^0.16.4
   preact: ^10.11.3
   rehype-autolink-headings: ^6.1.1
   rehype-figure: ^1.0.1
@@ -31,6 +32,7 @@ dependencies:
   astro: 1.8.0
   astro-icon: 0.8.0
   fuzzysort: 2.0.4
+  katex: 0.16.4
   preact: 10.11.3
   rehype-autolink-headings: 6.1.1
   rehype-figure: 1.0.1
@@ -1555,6 +1557,11 @@ packages:
     engines: {node: '>= 10'}
     dev: false
 
+  /commander/8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+    dev: false
+
   /common-ancestor-path/1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
     dev: false
@@ -2703,6 +2710,13 @@ packages:
 
   /jsonc-parser/3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
+    dev: false
+
+  /katex/0.16.4:
+    resolution: {integrity: sha512-WudRKUj8yyBeVDI4aYMNxhx5Vhh2PjpzQw1GRu/LVGqL4m1AxwD1GcUp0IMbdJaf5zsjtj8ghP0DOQRYhroNkw==}
+    hasBin: true
+    dependencies:
+      commander: 8.3.0
     dev: false
 
   /kind-of/6.0.3:

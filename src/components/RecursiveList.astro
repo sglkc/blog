@@ -1,0 +1,17 @@
+---
+const { items } = Astro.props;
+const { depth } = items[0];
+const List = depth < 4 ? 'ol' : 'ul';
+---
+
+<List class={depth < 2 ? '' : 'ml-0'}>
+  {items.map((item: any) => (
+    Array.isArray(item)
+      ? (<Astro.self items={item} />)
+      : (
+        <li>
+          <a class="underline-dotted" href={'#' + item.slug}>{item.text}</a>
+        </li>
+      )
+  ))}
+</List>

@@ -1,0 +1,23 @@
+---
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+type Props = {
+  block?: true;
+  class?: string;
+}
+
+const { block, class: className } = Astro.props;
+const render = await Astro.slots.render('default');
+const isBlock = block || render.includes('<p>');
+const text = render.replace(/^<p>|<\/p>$/g, '');
+const html = katex.renderToString(text);
+---
+
+{ isBlock ?
+  <div class={className || 'my-2 text-center'}>
+    <Fragment set:html={html} />
+  </div>
+  :
+  <Fragment set:html={html} />
+}
