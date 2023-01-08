@@ -1,0 +1,24 @@
+---
+type Props = {
+  youtube_id: string;
+};
+
+const { youtube_id } = Astro.props as Props;
+const slot = await Astro.slots.render('default');
+---
+
+<details id={youtube_id} class="my-6">
+  <summary>{ slot || 'YouTube Video' }</summary>
+  <div class="mt-2 relative pb-[56.25%] h-0 overflow-hidden max-w-full">
+    <iframe class="absolute inset-0 w-full h-full" />
+  </div>
+</details>
+
+<script define:vars={{ youtube_id }} lang="js">
+function addSrc() {
+  this.querySelector('iframe').src = 'https://youtube.com/embed/' + this.id;
+  this.removeEventListener('click', addSrc);
+}
+
+document.getElementById(youtube_id).addEventListener('click', addSrc);
+</script>

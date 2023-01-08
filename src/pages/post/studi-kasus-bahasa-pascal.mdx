@@ -1,0 +1,283 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Studi Kasus Program Piramida menggunakan Bahasa Pascal
+description: Cara membuat sebuah program untuk mencetak pola piramida menggunakan bahasa pemrograman Pascal
+thumbnail: studi-kasus-bahasa-pascal.webp
+language: id
+created: 8 January 2023
+updated:
+tags:
+  - programming
+  - pascal
+  - indonesian
+---
+
+import K from '@/components/Katex.astro';
+
+# Soal
+
+Buatkan sebuah program yang mencetak sebuah piramida dengan karakter \*.
+Variabel *jumlah_baris* merupakan input yang menentukan jumlah baris pada
+piramida. Dengan contoh input jumlah_baris=5 adalah sebagai berikut:
+
+```
+    *
+   ***
+  *****
+ *******
+*********
+```
+
+# Pengerjaan
+
+## Membuat Boilerplate
+
+*Boilerplate* adalah bagian kode yang biasa digunakan dimanapun. Pada pemrograman
+bahasa Pascal kita biasa untuk menuliskan struktur awal sederhananya seperti ini:
+
+```pascal
+program nama_program;
+
+begin
+end.
+```
+
+
+## Deklarasi Variabel dari Soal
+
+Dari soal bisa diketahui bahwa *jumlah_baris* adalah variabel integer positif
+yang bisa di input oleh pengguna. Kita bisa memasukkan variabel dan inputan ke
+boilerplate yang dibuat sebelumnya:
+
+```pascal
+program piramida;
+var jumlah_baris : integer;
+
+begin
+  write('masukkan jumlah baris: ');
+  readln(jumlah_baris);
+  writeln('jumlah baris: ', jumlah_baris);
+end.
+```
+
+Kode tersebut digunakan untuk mencoba jika variabel *jumlah_baris* sesuai
+dengan input yang dimasukkan.
+
+
+## Perulangan Baris
+
+Setelah membuat input variabel *jumlah_baris*, kita bisa menggunakan
+[perulangan for](/post/perulangan-bahasa-pascal#for-loop-sederhana) untuk
+membuatkan masing-masing baris.
+
+Deklarasikan variabel *baris* untuk digunakan di perulangan for. Pada perulangan
+ini, variabel *baris* dimulai dari 1 dan berakhir sampai *jumlah_baris*.
+
+```pascal
+program piramida;
+var jumlah_baris, baris : integer;
+
+begin
+  write('masukkan jumlah baris: ');
+  readln(jumlah_baris);
+
+  for baris := 1 to jumlah_baris do
+    begin
+      writeln('ini baris ke-', baris);
+    end;
+end.
+```
+
+Jika kita masukkan 5, maka program akan mengeluarkan
+
+```
+masukkan jumlah baris: 5
+jumlah baris: 5
+ini baris ke-1
+ini baris ke-2
+ini baris ke-3
+ini baris ke-4
+ini baris ke-5
+```
+
+
+## Perulangan Piramida Karakter
+
+Kita sudah berhasil mencetak baris sesuai dengan input *jumlah_baris*. Sekarang
+kita coba untuk membuat perulangan karakter \* yang membentuk seperti piramida.
+
+### Rumus Jumlah Karater pada Setiap Baris
+
+Lihat lagi output pada soal dan hitung jumlah karakter \* pada setiap baris:
+
+```
+    *     <- 1
+   ***    <- 3
+  *****   <- 5
+ *******  <- 7
+********* <- 9
+```
+
+Kita bisa menyimpulkan bahwa setiap baris mempunyai jumlah karakter **ganjil**.
+
+Rumus untuk pola bilangan ganjil adalah <K>Un = 2n - 1</K>. Kalau digunakan
+variabel pada program maka rumus tersebut menjadi:
+
+<K block={true}>jumlah\\_karakter = (2 * baris) - 1</K>
+
+### Penerapan
+
+Deklarasikan variabel *jumlah_karakter* dan *karakter*.
+
+Didalam perulangan baris, ubah nilai variabel *jumlah_karakter* dengan rumus diatas.
+
+Lalu buat lagi perulangan dengan variabel awal *karakter* dimulai dari 1 dan
+berakhir sampai *jumlah_karakter*. Cetak sebuah karakter \* dalam perulangan
+tersebut dengan `write`.
+
+Jangan lupa untuk membuat baris baru dengan `writeln`.
+
+```pascal
+program piramida;
+var
+  { dipisah agar lebih jelas }
+  jumlah_baris, baris: integer;
+  jumlah_karakter, karakter : integer;
+
+begin
+  write('masukkan jumlah baris: ');
+  readln(jumlah_baris);
+
+  for baris := 1 to jumlah_baris do
+    begin
+      jumlah_karakter := 2 * baris - 1;
+      for karakter := 1 to jumlah_karakter do write('*');
+      writeln;
+    end;
+end.
+```
+
+Berikut output jika kita memasukkan 5:
+
+```
+masukkan jumlah baris: 5
+*
+***
+*****
+*******
+*********
+```
+
+Jumlah karakter di setiap baris pada output sudah sama dengan jumlah karakter
+pada soal, namun karakter tersebut belum membentuk sebuah piramida.
+
+## Menjajarkan Piramida Karakter
+
+Output sebelumnya belum sesuai dengan pada soal, jadi kita harus membuat spasi
+agar karakter \* bisa disejajarkan.
+
+### Rumus Jumlah Spasi pada Setiap Baris
+
+Perhatikan lagi output pada soal dan hitung jumlah spasi pada setiap baris:
+
+```
+    *     <- 4 spasi
+   ***    <- 3 spasi
+  *****   <- 2 spasi
+ *******  <- 1 spasi
+********* <- 0 spasi
+```
+
+Pola disini sudah jelas kalau jumlah spasi pada setiap baris adalah jumlah baris
+dikurangi oleh baris itu sendiri. Sehingga
+
+<K block={true}>jumlah\\_spasi = jumlah\\_baris - baris</K>
+
+### Penerapan
+
+Deklarasikan variabel *jumlah_spasi* dan *spasi*.
+
+Didalam perulangan baris, ubah nilai variabel *jumlah_spasi* dengan rumus diatas.
+
+Seperti sebelumnya, buat lagi perulangan **diatas perulangan sebelumnya** dengan
+variabel awal *spasi* dimulai dari 1 dan berakhir sampai *jumlah_spasi*. Cetak
+spasi ' ' dalam perulangan tersebut dengan `write`.
+
+Kali ini, tidak perlu membuat baris baru dengan `writeln` karena akan dilakukan
+setelah membuat barisan karakter \*.
+
+```pascal
+program piramida;
+var
+  { dipisah agar lebih jelas }
+  jumlah_baris, baris: integer;
+  jumlah_spasi, spasi : integer;
+  jumlah_karakter, karakter : integer;
+
+begin
+  write('masukkan jumlah baris: ');
+  readln(jumlah_baris);
+
+  for baris := 1 to jumlah_baris do
+    begin
+      jumlah_spasi := jumlah_baris - baris;
+      for spasi := 1 to jumlah_spasi do write(' ');
+
+      jumlah_karakter := 2 * baris - 1;
+      for karakter := 1 to jumlah_karakter do write('*');
+      writeln;
+    end;
+end.
+```
+
+Jika kita input 5, maka akan menghasilkan:
+
+```
+masukkan jumlah baris: 5
+    *
+   ***
+  *****
+ *******
+*********
+```
+
+Pada akhirnya, program kita sudah mengeluarkan output yang sama dengan soal.
+Selamat!! [redeem hadiah](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
+
+# Penyederhanaan
+
+Tahap ini opsional, tapi kalau merasa kode program terlalu panjang atau *verbose*
+dapat dilakukan:
+
+- Hapus variabel *jumlah_spasi* dan *jumlah_karakter* karena hanya sekali pakai, dan
+- Gunakan hanya satu variabel saja untuk setiap perulangan dalam setiap baris.
+
+```pascal
+program piramida;
+var jumlah_baris, baris, karakter: integer;
+
+begin
+  write('masukkan jumlah baris: ');
+  readln(jumlah_baris);
+
+  for baris := 1 to jumlah_baris do
+    begin
+      for karakter := 1 to jumlah_baris - baris do write(' ');
+      for karakter := 1 to 2 * baris - 1 do write('*');
+      writeln;
+    end;
+end.
+```
+
+**Catatan:** Kode yang bagus bukanlah kode yang terpendek, tetapi kode yang mudah
+dibaca dan dipahami oleh orang lain, jadi tidak salah untuk menggunakan variabel
+di setiap perhitungan.
+
+# Akhir Kata
+
+Semoga post ini bisa membantu, jangan lupakan penempatan titik koma yang baik
+dan benar. Perbanyak membaca dan praktek karena kita semua tahu kalau otak
+manusia ga bisa yang namanya *compile* kode komputer.
+<small>(sarkasin tugas ngoding di kertas)</small>
+
+**Sekian terima kasih.**

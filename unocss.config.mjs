@@ -9,7 +9,8 @@ export default defineConfig({
       cssExtend: {
         a: {
           'text-decoration-thickness': '1px',
-          'text-underline-position': 'under'
+          'text-underline-position': 'under',
+          'overflow-wrap': 'break-word'
         },
         button: {
           color: 'var(--un-prose-links)'
@@ -68,6 +69,19 @@ export default defineConfig({
         table: {
           margin: 'auto auto 2em',
           display: 'table'
+        },
+        details: {
+          padding: '0',
+          'background-color': 'transparent'
+        },
+        summary: {
+          'margin-left': '1.5em',
+          'padding-left': '0.5em',
+          'list-style-position': 'outside'
+        },
+        rt: {
+          'margin-bottom': '1em',
+          'font-size': '0.75em'
         }
       }
     })
