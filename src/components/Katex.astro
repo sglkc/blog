@@ -5,10 +5,11 @@ import 'katex/dist/katex.min.css';
 type Props = {
   block?: true;
   class?: string;
+  expr?: string;
 }
 
-const { block, class: className } = Astro.props;
-const render = await Astro.slots.render('default');
+const { block, class: className, expr } = Astro.props;
+const render = expr ?? await Astro.slots.render('default');
 const isBlock = block || render.includes('<p>');
 const text = render.replace(/^<p>|<\/p>$/g, '');
 const html = katex.renderToString(text);

@@ -1,0 +1,127 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Constructing an Expression Tree
+description: |
+  The step-by-step process of constructing an expression tree to evaluate
+  mathematical expressions
+thumbnail: constructing-expression-tree/thumbnail.webp
+language: en
+created: 15 January 2023
+tags:
+  - compsci
+  - theory
+---
+
+import K from '@/components/Katex.astro';
+
+# Definition
+
+Expression tree is a binary tree data structure that can be used to represent
+mathematical expressions. An expression tree has the following properties:
+
+- Each leaf node is an operand. Example: 1, 72, a, x, y
+- The root node and internal nodes are operators. Example: +, -, *, /, ^
+- The tree is organized in a way that reflects the order of operations
+- The tree can be traversed in various techniques such as *inorder*, *preorder*,
+  and *postorder* traversal
+
+# Structure
+
+<K block={true} expr="(2*2)+(4/2)" />
+
+The expression tree consists of nodes, there must always be a **root node**
+to connect the expression together. A node that doesn't connect with another
+node is called as **leaf node**, if it connects with another node then it's
+called as **internal node** or just a node for short.
+
+![A basic structure of the expression tree](/assets/post/constructing-expression-tree/example.webp)
+
+# Construction
+
+The construction of an expression tree can be done in various ways, usually
+using the stack data structure. In this post, we'll do it without the help of
+stack.
+
+We'll have to know operator precedence:
+
+1. Parentheses ((...))
+2. Exponent (^)
+3. Multiplication and divison (*, /)
+4. Addition and substraction (+, -)
+
+To begin with, let's start with a simple expression <K>a+b</K>.
+
+1. First, find the operator. In this example, it's an addition (+)
+
+![Create a node with the operator](/assets/post/constructing-expression-tree/example-1-1.webp)
+
+2. Find both of the operands and make sure the placement is correct. In this
+   example, <K>a</K> for the left leaf and <K>b</K> for the right leaf
+
+![Create each leaf nodes with the operand](/assets/post/constructing-expression-tree/example-1-2.webp)
+
+In just 2 steps, we have successfully made an expression tree.
+
+**What if there are a lot of operations?**
+
+Consider the following expression:
+
+<K
+  block={true}
+  class="text-center sm:text-xl"
+  expr="\left( \frac{x^{2}}{y-xz} \right)+\left\{ \left( 2\frac{yz}{x+y} \right) / \left( x+y^{2} \right) \right\}"
+/>
+
+It sure looks very complicated, but we can do this slowly and carefully by
+separating each operation and assuming "deeper" operations as a variable.
+
+Assuming the following:
+
+<K
+  block={true}
+  class="text-center sm:text-xl"
+  expr="a=\frac{x^{2}}{y-xz}; b=\left( 2\frac{yz}{x+y} \right) / \left( x+y^{2} \right)"
+/>
+
+Start with getting the first operation for the root node.
+
+<K
+  block={true}
+  class="text-center sm:text-xl"
+  expr="a+b"
+/>
+
+![Yet another a + b expression tree](/assets/post/constructing-expression-tree/example-2-1.webp)
+
+Right after getting the root node, we could start working from left-to-right.
+Let's break this down:
+
+<K
+  block={true}
+  class="text-center sm:text-xl"
+  expr="a=\frac{x^{2}}{y-xz}; a_1=x^{2}; a_2=y-xz"
+/>
+
+![Adding leaf nodes to the "a" node](/assets/post/constructing-expression-tree/example-2-2.webp)
+
+![Substitute x ^ 2 to a1, don't forget to change the operator node](/assets/post/constructing-expression-tree/example-2-3.webp)
+
+<K>a_2=y-xz</K> is a substraction of <K>y</K> and <K>x * z</K>.
+
+![Add the other nodes](/assets/post/constructing-expression-tree/example-2-4.webp)
+
+At this point, the process has gotten repetitive. In short, you have to repeat
+this way until every operation has been included in the tree.
+
+Try to construct the expression tree for <K>b</K> by yourself, you may compare
+yours with the completed tree below:
+
+![Finalized expression tree](/assets/post/constructing-expression-tree/tree.svg)
+
+**Are there any other methods?**
+
+Yes, just like mentioned earlier, using stack data structure is one of the most
+common way to make expression trees. Another method is to construct your tree
+from the bottom by finding the deepest operations first. While there is no right
+or wrong with any method, you may want to try the others and see which one's
+easier.

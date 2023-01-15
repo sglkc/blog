@@ -48,7 +48,7 @@ export default defineConfig({
           padding: '0 auto',
         },
         'article img': {
-          'margin-top': '1.5rem'
+          'margin': '1.5rem auto 0'
         },
         figcaption: {
           'margin-top': '0.5rem',
