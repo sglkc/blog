@@ -8,7 +8,7 @@ const { title, description, thumbnail, stack } = frontmatter;
 ---
 
 <div class="flex flex-col gap-4 mx-auto">
-  <a class="decoration-none" rel="prefetch" href={url} target="_self">
+  <a class="decoration-none" rel="prefetch" href={url + '/'} target="_self">
     <img
       class="aspect-video object-cover"
       src={'/assets/project/' + thumbnail}
