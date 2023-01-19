@@ -1,0 +1,101 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: X-orders and X-fixes in Expression Tree Traversal
+description: |
+  X can be 'in', 'pre', or 'post'. They are used in similar context, but they
+  refer to different things. What are the differences?
+language: en
+created: 19 January 2023
+tags:
+  - compsci
+  - theory
+---
+
+import K from '@/components/Katex.astro';
+
+# X-order
+
+X-orders are typically used to describe the specific order in which the nodes
+are visited in a tree traversal algorithm.
+
+- **Inorder traversal**: visits the left subtree, root, and right subtree.
+- **Preorder traversal**: visits the root, left subtree, and right subtree.
+- **Postorder traversal**: visits the left subtree, right subtree, and root.
+
+Each traversal algorithm has its own
+use cases, and the choice of algorithm depends on the specific problem being
+solved.
+
+For example, inorder traversal is often used to visit all the nodes of a binary
+search tree in ascending order, while postorder traversal is used to delete all
+nodes of a binary tree.
+
+![Difference between inorder, preorder, and postorder](/assets/post/x-orders-and-x-fixes/differences.webp)
+
+# X-fix
+
+X-fix, also called x-fix notation is a way of writing mathematical expressions.
+
+- **Infix notation** is the standard notation used in most programming languages,
+  and it is the notation that people are most familiar with. In infix notation,
+  the operator is placed <u>between</u> the operands.
+- **Prefix notation**, also called *Polish notation*, is a way of writing
+  mathematical expressions in which the operator comes <u>before</u> the operands.
+- **Postfix notation**, also called *reverse Polish notation*, is a way of
+  writing mathematical expressions in which the operator comes <u>after</u> the
+  operands.
+
+In summary, each of these notation has its own characteristics and use cases.
+The differences between the three notations are the position of the operator in
+relation to the operands.
+
+## Simple Example
+
+Take a look at the following expression tree:
+
+![Expression tree example](/assets/post/x-orders-and-x-fixes/example.webp)
+
+This tree could be represented in every fixes, pay attention to the position of
+the operator:
+
+- Infix notation: <K>a + b</K>
+- Prefix notation: <K>+\ a\ b</K>
+- Postfix notation: <K>a\ b\ +</K>
+
+## Complex Example
+
+The expression below comes from the last post:
+
+<K
+  display={true}
+  expr="\left( \frac{x^{2}}{y-xz} \right)+\left\{ \left( 2\frac{yz}{x+y} \right) / \left( x+y^{2} \right) \right\}"
+/>
+
+And we've made the expression tree for it:
+
+![Expression tree example 2](/assets/post/x-orders-and-x-fixes/example-2.svg)
+
+If we try to form the infix notation, we'll get
+
+<K center={true} expr="x\land2/y-x*z+2*y*z/x+y/x+y\land2" />
+
+That's why in infix notation we have to use brackets to indicate the order of
+operations and to group together sub-expressions that should be evaluated as
+one. This ensure that the expressions are evaluated in the intended order and
+make it more readable.
+
+- Infix notation
+
+<K center={true} expr="(x\land2/y-x*z)+((2*(y*z)/(x+y)/x+y\land2)" />
+
+- Prefix notation
+
+<K center={true} expr="+\ /\ \land\ x\ 2\ -\ y\ *\ x\ z\ /\ *\ 2\ /\ *\ y\ z\ +\ x\ y\ +\ x\ \land\ y\ 2" />
+
+- Postfix notation
+
+<K center={true} expr="x\ 2\ \land\ y\ x\ z\ *\ -\ /\ 2\ y\ z\ *\ x\ y\ +\ /\ *\ x\ y\ z\ \land\ +\ /\ +" />
+
+While the prefix and postfix looked like they're the inverse of each other,
+they actually have different orders. Be careful not to easily get trapped on
+this slight similarity.

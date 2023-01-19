@@ -3,20 +3,19 @@ import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
 type Props = {
-  block?: true;
-  class?: string;
+  center?: true;
+  display?: true;
   expr?: string;
 }
 
-const { block, class: className, expr } = Astro.props;
+const { center, display, expr } = Astro.props;
 const render = expr ?? await Astro.slots.render('default');
-const isBlock = block || render.includes('<p>');
 const text = render.replace(/^<p>|<\/p>$/g, '');
-const html = katex.renderToString(text);
+const html = katex.renderToString(text, { displayMode: display });
 ---
 
-{ isBlock ?
-  <div class={className || 'my-2 text-center'}>
+{ center ?
+  <div class="my-2 block text-center">
     <Fragment set:html={html} />
   </div>
   :

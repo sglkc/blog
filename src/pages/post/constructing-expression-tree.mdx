@@ -7,6 +7,7 @@ description: |
 thumbnail: constructing-expression-tree/thumbnail.webp
 language: en
 created: 15 January 2023
+updated: 19 January 2023
 tags:
   - compsci
   - theory
@@ -27,7 +28,7 @@ mathematical expressions. An expression tree has the following properties:
 
 # Structure
 
-<K block={true} expr="(2*2)+(4/2)" />
+<K display={true} expr="(2*2)+(4/2)" />
 
 The expression tree consists of nodes, there must always be a **root node**
 to connect the expression together. A node that doesn't connect with another
@@ -67,8 +68,7 @@ In just 2 steps, we have successfully made an expression tree.
 Consider the following expression:
 
 <K
-  block={true}
-  class="text-center sm:text-xl"
+  display={true}
   expr="\left( \frac{x^{2}}{y-xz} \right)+\left\{ \left( 2\frac{yz}{x+y} \right) / \left( x+y^{2} \right) \right\}"
 />
 
@@ -78,18 +78,16 @@ separating each operation and assuming "deeper" operations as a variable.
 Assuming the following:
 
 <K
-  block={true}
-  class="text-center sm:text-xl"
-  expr="a=\frac{x^{2}}{y-xz}; b=\left( 2\frac{yz}{x+y} \right) / \left( x+y^{2} \right)"
+  display={true}
+  expr="\begin{align}
+  a&=\frac{x^{2}}{y-xz} \notag \\[1em]
+  b&=\left( 2\frac{yz}{x+y} \right) / \left( x+y^{2} \right) \notag \\
+  \end{align}"
 />
 
 Start with getting the first operation for the root node.
 
-<K
-  block={true}
-  class="text-center sm:text-xl"
-  expr="a+b"
-/>
+<K display={true} expr="a+b" />
 
 ![Yet another a + b expression tree](/assets/post/constructing-expression-tree/example-2-1.webp)
 
@@ -97,9 +95,12 @@ Right after getting the root node, we could start working from left-to-right.
 Let's break this down:
 
 <K
-  block={true}
-  class="text-center sm:text-xl"
-  expr="a=\frac{x^{2}}{y-xz}; a_1=x^{2}; a_2=y-xz"
+  display={true}
+  expr="\begin{align}
+  a&=\frac{x^{2}}{y-xz} \notag \\[0.75em]
+  a_1&=x^{2} \notag \\
+  a_2&=y-xz \notag
+  \end{align}"
 />
 
 ![Adding leaf nodes to the "a" node](/assets/post/constructing-expression-tree/example-2-2.webp)
