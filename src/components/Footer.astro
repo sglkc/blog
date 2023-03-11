@@ -9,18 +9,22 @@ const { footer = '' } = Astro.props;
 <footer>
   <hr class="mt-12" />
   <span class="flex flex-col gap-2 not-prose text-sm text-right">
-    <p><a class="underline" href="#" data-to-top>Scroll to Top</a></p>
+    <p>
+      <a class="underline" target="_self" href="#" data-to-top>Scroll to Top</a>
+    </p>
     <p>{footer}</p>
     <p>
-      <a class="underline" href="https://github.com/sglkc/blog/blob/master/LICENSE"
+      <a
+        class="underline"
+        href="https://github.com/sglkc/blog/blob/master/LICENSE"
       >MIT License</a>
       <span>(c) 2023 sglkc</span>
     </p>
   </span>
 </footer>
 
-<script>
-const anchor = document.querySelector('a[data-to-top]') as HTMLAnchorElement;
+<script lang="js">
+const anchor = document.querySelector('footer a[data-to-top]');
 
 anchor.addEventListener('click', (e) => {
   e.preventDefault();

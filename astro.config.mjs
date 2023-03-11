@@ -16,7 +16,10 @@ export default defineConfig({
     extendDefaultPlugins: true,
     rehypePlugins: [
       rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+      [
+        rehypeAutolinkHeadings,
+        { behavior: 'wrap', properties: { target: '_self' } }
+      ],
       rehypeFigure
     ],
     shikiConfig: {

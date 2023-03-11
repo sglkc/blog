@@ -10,7 +10,9 @@ const List = depth < 4 ? 'ol' : 'ul';
       ? (<Astro.self items={item} />)
       : (
         <li>
-          <a class="underline-dotted" href={'#' + item.slug}>{item.text}</a>
+          <a class="underline-dotted" target="_self" href={'#' + item.slug}>
+            {item.text}
+          </a>
         </li>
       )
   ))}
