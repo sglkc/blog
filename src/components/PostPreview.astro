@@ -6,7 +6,7 @@ type Props = CollectionEntry<'posts'>;
 const { slug, data } = Astro.props;
 const { title, description, created, thumbnail, tags } = data;
 ---
-<div class="my-6 py-2 flex gap-6 justify-between w-full">
+<li class="my-6 py-2 flex gap-6 justify-between w-full">
   <div class="flex flex-col">
     <p class="mt-0 text-xs sm:text-sm">{created}</p>
     <a class="decoration-none" href={`/post/${slug}/`} target="_self">
@@ -27,4 +27,4 @@ const { title, description, created, thumbnail, tags } = data;
       height="100%"
     />
   }
-</div>
+</li>
