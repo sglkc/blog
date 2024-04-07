@@ -46,6 +46,9 @@ dependencies:
     version: 5.4.4
 
 devDependencies:
+  '@iconify-json/iconoir':
+    specifier: ^1.1.42
+    version: 1.1.42
   '@unocss/preset-typography':
     specifier: ^0.59.0
     version: 0.59.0
@@ -893,6 +896,12 @@ packages:
   /@fontsource/overpass-mono@5.0.17:
     resolution: {integrity: sha512-5DFbbQ26odjeIjIfqm23ZP5/cI4pgK89Qff/QGy/jcdtDlVGdq3E768s7TrWYrlih7I4Qk71syG46Nz0Nu08Bg==}
     dev: false
+
+  /@iconify-json/iconoir@1.1.42:
+    resolution: {integrity: sha512-5FQfS+dSAvHWCBtsp/E+4AKK6jYVCxw98R4LLsY5s8mSUm9BFstjCA5bmTcIl+iYDgc+vUmtW26jYmBEf4gLIA==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
 
   /@iconify/tools@3.0.7:
     resolution: {integrity: sha512-DxfhFLMnooS34dHelpGUnnYrxLZHs0czC1CgrBhAbuL8ddVzBb2VEQm8kh9qGh7A34qeXAB5iSHH3A72rAaFrg==}

@@ -7,6 +7,7 @@ import Unocss from 'unocss/astro';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeFigure from 'rehype-figure';
+import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,7 +31,7 @@ export default defineConfig({
     }
   },
   integrations: [
-    mdx(), preact(), sitemap(), Unocss()
+    mdx(), preact(), sitemap(), Unocss(), icon(),
   ],
   vite: {
     resolve: {
