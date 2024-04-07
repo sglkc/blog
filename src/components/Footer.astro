@@ -23,10 +23,8 @@ const { footer = '' } = Astro.props;
   </span>
 </footer>
 
-<script lang="js">
-const anchor = document.querySelector('footer a[data-to-top]');
-
-anchor.addEventListener('click', (e) => {
+<script>
+document.querySelector('a[data-to-top]')!.addEventListener('click', (e) => {
   e.preventDefault();
   window.scroll({ top: 0, behavior: 'smooth' });
 });
