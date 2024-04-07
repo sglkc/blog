@@ -1,53 +1,62 @@
-<div class="giscus animate-pulse">
-  <p>Loading comments...</p>
-</div>
+<giscus-container>
+  <p class="animate-pulse">Loading comments...</p>
+</giscus-container>
 
-<script type="module">
-const giscus = document.querySelector('.giscus');
-const observer = new IntersectionObserver(([e]) => {
-  if (!e.isIntersecting) return;
+<script>
+class Giscus extends HTMLElement {
+  constructor() {
+    super();
 
-  observer.unobserve(giscus);
+    const observer = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
 
-  const theme = window.localStorage.getItem('theme');
-  const giscusTheme = theme === 'dark' ? 'transparent_dark' : 'light';
-  const props = {
-    'src': 'https://giscus.app/client.js',
-    'data-repo': 'sglkc/blog',
-    'data-repo-id': 'R_kgDOIdgpXA',
-    'data-category': 'Announcements',
-    'data-category-id': 'DIC_kwDOIdgpXM4CSsGQ',
-    'data-mapping': 'pathname',
-    'data-strict': '0',
-    'data-reactions-enabled': '1',
-    'data-emit-metadata': '0',
-    'data-input-position': 'bottom',
-    'data-theme': giscusTheme,
-    'data-lang': 'en',
-    'data-loading': 'lazy',
-    'crossorigin': 'anonymous',
-    'async': true
-  };
+      observer.unobserve(this);
 
-  const giscusScript = document.createElement('script');
+      const theme = window.localStorage.getItem('theme');
+      const giscusTheme = theme === 'dark' ? 'transparent_dark' : 'light';
+      const props = {
+        'src': 'https://giscus.app/client.js',
+        'data-repo': 'sglkc/blog',
+        'data-repo-id': 'R_kgDOIdgpXA',
+        'data-category': 'Announcements',
+        'data-category-id': 'DIC_kwDOIdgpXM4CSsGQ',
+        'data-mapping': 'pathname',
+        'data-strict': '0',
+        'data-reactions-enabled': '1',
+        'data-emit-metadata': '0',
+        'data-input-position': 'bottom',
+        'data-theme': giscusTheme,
+        'data-lang': 'en',
+        'data-loading': 'lazy',
+        'crossorigin': 'anonymous',
+        'async': 'true'
+      };
 
-  Object.entries(props)
-    .forEach(([key, value]) => giscusScript.setAttribute(key, value));
+      const giscusScript = document.createElement('script');
 
-  setTimeout(() => {
-    giscus.appendChild(giscusScript);
-    giscus.classList.remove('animate-pulse');
-    giscus.style.marginTop = '-1rem';
-  }, 1000);
-},
-  { threshold: [0] }
-);
+      Object.entries(props)
+        .forEach(([key, value]) => giscusScript.setAttribute(key, value));
 
-observer.observe(giscus);
+      setTimeout(() => {
+        this.replaceChildren();
+        this.appendChild(giscusScript);
+      }, 1000);
+    },
+      { threshold: [0] }
+    );
 
-window.giscusSend = (message) => {
-  const iframe = document.querySelector('iframe.giscus-frame');
-  if (!iframe) return;
-  iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    observer.observe(this);
+
+    // @ts-ignore
+    window.giscusSend = (message: string) => {
+      const iframe = document.querySelector('iframe.giscus-frame') as HTMLIFrameElement;
+
+      if (!iframe || !iframe.contentWindow) return;
+
+      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    }
+  }
 }
+
+customElements.define('giscus-container', Giscus);
 </script>
