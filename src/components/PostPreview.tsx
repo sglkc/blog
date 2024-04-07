@@ -1,13 +1,18 @@
-import type { ExtractedPost } from "@/types/Post";
+import type { CollectionEntry } from "astro:content";
 
-export default function PostPreview(props: ExtractedPost) {
+type Props = Omit<CollectionEntry<'posts'>['data'], 'tags'> & {
+  url: string
+  tags: string
+}
+
+export default function PostPreview(props: Props) {
   const { url, title, description, created, thumbnail, tags } = props;
 
   return (
     <div class="my-6 py-2 flex gap-6 justify-between w-full">
       <div class="flex flex-col">
         <p class="mt-0 text-xs sm:text-sm">{created}</p>
-        <a class="decoration-none" href={url + '/'} target="_self">
+        <a class="decoration-none" href={url} target="_self">
           <h1
             class="my-0 text-lg sm:text-xl"
             dangerouslySetInnerHTML={{ __html: title }}

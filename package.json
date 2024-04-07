@@ -26,6 +26,7 @@
     "typescript": "^5.4.4"
   },
   "devDependencies": {
+    "@astrojs/ts-plugin": "^1.6.1",
     "@iconify-json/iconoir": "^1.1.42",
     "@unocss/preset-typography": "^0.59.0",
     "@unocss/preset-wind": "^0.59.0",

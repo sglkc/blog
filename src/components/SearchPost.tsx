@@ -1,12 +1,17 @@
-import type { ExtractedPost } from '@/types/Post';
+import type { CollectionEntry } from 'astro:content';
 import { useRef, useState } from 'preact/hooks';
 import fuzzysort from 'fuzzysort';
 import PostPreview from './PostPreview';
 
+type Post = Omit<CollectionEntry<'posts'>['data'], 'tags'> & {
+  url: string
+  tags: string
+}
+
 type fuzzysort = {
-  options: Fuzzysort.KeysOptions<ExtractedPost>;
-  results: Fuzzysort.KeysResults<ExtractedPost>;
-  result: Fuzzysort.KeysResult<ExtractedPost>;
+  options: Fuzzysort.KeysOptions<Post>;
+  results: Fuzzysort.KeysResults<Post>;
+  result: Fuzzysort.KeysResult<Post>;
 }
 
 type Props = {
@@ -15,10 +20,10 @@ type Props = {
 
 export default function SearchPost({ main }: Props) {
   const [message, _setMessage] = useState<string | false>(false);
-  const [posts, setPosts] = useState<ExtractedPost[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const resultDiv = useRef<HTMLDivElement>(null);
   const loading = useRef<boolean>(false);
-  const data = useRef<ExtractedPost[] | null>(null);
+  const data = useRef<Post[] | null>(null);
   const mainDiv = document.getElementById(main);
 
   const setMessage = (message: string | false) => {
@@ -69,13 +74,13 @@ export default function SearchPost({ main }: Props) {
       keys
     }
 
-    const results: fuzzysort['results'] = fuzzysort.go<ExtractedPost>(
+    const results: fuzzysort['results'] = fuzzysort.go<Post>(
       value, data.current, options
     );
 
     setMessage(results.length + ' results found');
 
-    const mapped: ExtractedPost[] = results.map(
+    const mapped: Post[] = results.map(
       (result: fuzzysort['result']) => {
         let title: string = result.obj.title;
         let description: string = result.obj.description;
@@ -126,7 +131,7 @@ export default function SearchPost({ main }: Props) {
       </div>
       { message &&
         <div ref={resultDiv}>
-          { posts.map((post: ExtractedPost) => <PostPreview {...post} />) }
+          { posts.map((post: Post) => <PostPreview {...post} />) }
         </div>
       }
     </section>

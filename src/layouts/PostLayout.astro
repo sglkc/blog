@@ -1,9 +1,6 @@
 ---
-import type { PostProps } from '@/types/Post';
 import Giscus from '@/components/Giscus.astro';
 import ArticleLayout from './ArticleLayout.astro';
-
-type Props = PostProps;
 
 const post = Astro.props.frontmatter;
 const headings = Astro.props.headings;
