@@ -1,12 +1,9 @@
 ---
-import type PageProps from '@/types/Page';
 import Footer from '@/components/Footer.astro';
 import Navbar from '@/components/Navbar.astro';
 import BaseLayout from './BaseLayout.astro';
 
-type Props = PageProps;
-
-const props = Astro.props as Props;
+const props = Astro.props;
 const { title, description, footer } = props.frontmatter ?? props;
 ---
 

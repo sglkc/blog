@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
-import Unocss from 'unocss/astro';
+import unocss from 'unocss/astro';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeFigure from 'rehype-figure';
@@ -31,7 +31,7 @@ export default defineConfig({
     }
   },
   integrations: [
-    mdx(), preact(), sitemap(), Unocss(), icon(),
+    mdx(), preact(), sitemap(), unocss(), icon(),
   ],
   vite: {
     resolve: {

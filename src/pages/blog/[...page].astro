@@ -27,7 +27,7 @@ const description = 'This is where I put my thoughts into writing';
 
 <PageLayout {title} {description}>
   <section class="min-h-6 sm:min-h-8">
-    <SearchPost client:only="preact" />
+    <SearchPost client:load client:only="preact" />
   </section>
   <ol id="posts" class="p-0">
     { page.data.map((post) => <PostPreview {...post} />) }

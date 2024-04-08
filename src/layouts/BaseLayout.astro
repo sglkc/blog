@@ -1,11 +1,20 @@
 ---
-import type HeadProps from '@/types/Head';
-import BaseHead from '@/components/BaseHead.astro';
 import '@fontsource/overpass-mono';
-import '@/styles/scrollbar.css';
 import '@unocss/reset/tailwind.css';
+import '@/styles/scrollbar.css';
 
-const props = Astro.props as HeadProps;
+const props = Astro.props;
+const { title, description: desc, post, project } = props;
+const description = desc.replace('\n', '');
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = (project && project.thumbnail)
+  ? '/assets/project/' + project.thumbnail
+  : (post && post.thumbnail)
+    ? '/assets/post/' + post.thumbnail
+    : '/assets/logo.webp';
+
+const image = new URL(imageUrl, Astro.site).href;
+const date = (date: string) => new Date(date).toISOString();
 ---
 
 <html
@@ -13,7 +22,71 @@ const props = Astro.props as HeadProps;
   lang={(props && props.post) ? props.post.language : 'en'}
 >
   <head>
-    <BaseHead {...props} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base target="_blank" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={url} />
+    <link
+      rel="alternate"
+      href={url}
+      hreflang={(post && post.language) ? post.language : 'en'}
+    />
+
+    <title>{title} // sglkc</title>
+
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ECC7BC" />
+    <meta
+      http-equiv="content-language"
+      content={(post && post.language) ? post.language : 'en'}
+    />
+
+    <meta
+      name="keywords"
+      content="personal site, blogging, personal blog, blog project, portfolio, astro"
+    />
+
+    <meta property="og:type" content={(post || project) ? 'article' : 'website'} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="id_ID" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:site_name" content="sglkc.my.id">
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <meta
+      property="twitter:card"
+      content={(post || project) ? 'summary_large_image' : 'summary'}
+    />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+
+    { post &&
+      <>
+        <meta property="article:published_time" content={date(post.created)} />
+        { post.updated &&
+          <meta property="article:modified_time" content={date(post.updated)} />
+        }
+        <meta property="article:author" content="sglkc" />
+        <meta property="article:section" content="Blog" />
+        <meta property="article:tag" content={post.tags.join(',')} />
+      </>
+    }
+
+    { project &&
+      <>
+        <meta property="article:published_time" content={date(project.created)} />
+        <meta property="article:author" content="sglkc" />
+        <meta property="article:section" content="Project" />
+        <meta property="article:tag" content={project.stack.join(',')} />
+      </>
+    }
     <script type="module" is:inline>
     const classList = document.documentElement.classList;
     const prefDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -23,6 +96,8 @@ const props = Astro.props as HeadProps;
       localStorage.setItem('theme', 'dark');
       classList.add('dark');
     }
+
+    classList.add('loaded');
 
     document.addEventListener('DOMContentLoaded', () => {
       const prefMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

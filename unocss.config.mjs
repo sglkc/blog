@@ -1,10 +1,9 @@
 import { defineConfig } from 'unocss/vite';
-import presetWind from '@unocss/preset-wind';
-import presetTypography from '@unocss/preset-typography';
+import { presetUno, presetTypography } from 'unocss';
 
 export default defineConfig({
   presets: [
-    presetWind(),
+    presetUno(),
     presetTypography({
       cssExtend: {
         a: {
@@ -97,6 +96,9 @@ export default defineConfig({
   preflights: [
     {
       getCSS: () => `
+      html:not(.loaded) {
+        visibility: hidden;
+      }
       .no-transitions * {
         transition: none!important;
         transition-property: none!important;
