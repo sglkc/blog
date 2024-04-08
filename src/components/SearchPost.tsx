@@ -106,7 +106,7 @@ export default function SearchPost() {
 
   return (
     <>
-      <div class="flex gap-2 items-center sticky top-16 text-sm sm:text-base">
+      <div class="flex gap-2 items-center text-sm sm:text-base">
         <span>[</span>
         <input
           class="appearance-none bg-transparent outline-0 flex-grow"

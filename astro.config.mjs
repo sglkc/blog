@@ -27,7 +27,7 @@ export default defineConfig({
       rehypeFigure
     ],
     shikiConfig: {
-      theme: 'slack-dark'
+      theme: 'aurora-x'
     }
   },
   integrations: [

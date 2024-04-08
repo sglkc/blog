@@ -10,7 +10,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
 
 <ArticleLayout {title} {description} {headings} {post}>
   <header slot="header" class="text-center">
-    <h1 class="text-3xl font-semibold mt-8">{title}</h1>
+    <h1 class="mt-8 text-3xl font-semibold text-balance">{title}</h1>
     { thumbnail && (
       <img
         class="aspect-video object-contain"
@@ -21,7 +21,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
         height="100%"
       />
     )}
-    <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-base sm:text-lg">
+    <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-base sm:text-lg text-balance">
       { description }
     </h2>
     <ul class="pl-0 my-6 flex flex-wrap gap-x-4 justify-center">
@@ -32,7 +32,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
       { updated &&
         <li class="list-none">Last Updated on { updated }</li>
       }
-      <li class="list-none" data-read-time>.. min read</li>
+      <li class="list-none" data-read-time>0.0 min read</li>
     </ul>
   </header>
   <slot />

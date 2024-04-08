@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@fontsource-variable/overpass-mono@5.0.17':
+    hash: rwz5ifypixkrrexzl645a6gysq
+    path: patches/@fontsource-variable__overpass-mono@5.0.17.patch
+
 dependencies:
   '@astrojs/mdx':
     specifier: ^2.2.4
@@ -14,9 +19,9 @@ dependencies:
   '@astrojs/sitemap':
     specifier: ^3.1.2
     version: 3.1.2
-  '@fontsource/overpass-mono':
+  '@fontsource-variable/overpass-mono':
     specifier: ^5.0.17
-    version: 5.0.17
+    version: 5.0.17(patch_hash=rwz5ifypixkrrexzl645a6gysq)
   astro:
     specifier: ^4.5.16
     version: 4.5.16(typescript@5.4.4)
@@ -968,9 +973,10 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@fontsource/overpass-mono@5.0.17:
-    resolution: {integrity: sha512-5DFbbQ26odjeIjIfqm23ZP5/cI4pgK89Qff/QGy/jcdtDlVGdq3E768s7TrWYrlih7I4Qk71syG46Nz0Nu08Bg==}
+  /@fontsource-variable/overpass-mono@5.0.17(patch_hash=rwz5ifypixkrrexzl645a6gysq):
+    resolution: {integrity: sha512-Ont6bOZlHx3F6TW1IrsUalSzeqSL4XYjvfyXaEt6+weyeTJmqOkPCCmr5ro4RzadX1wRnW7ce36Vw+9r32/cZg==}
     dev: false
+    patched: true
 
   /@iconify-json/iconoir@1.1.42:
     resolution: {integrity: sha512-5FQfS+dSAvHWCBtsp/E+4AKK6jYVCxw98R4LLsY5s8mSUm9BFstjCA5bmTcIl+iYDgc+vUmtW26jYmBEf4gLIA==}

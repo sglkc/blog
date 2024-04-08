@@ -10,9 +10,9 @@ const { title, description, created, thumbnail, tags } = data;
   <div class="flex flex-col">
     <p class="mt-0 text-xs sm:text-sm">{created}</p>
     <a class="decoration-none" href={`/post/${slug}/`} target="_self">
-      <h1 class="my-0 text-lg sm:text-xl">{title}</h1>
+      <h1 class="my-0 text-lg sm:text-xl text-balance">{title}</h1>
     </a>
-    <p class="mt-2 text-sm sm:text-base">{description}</p>
+    <p class="mt-2 text-sm sm:text-base text-balance">{description}</p>
     <div class="my-0 flex flex-wrap gap-x-4 text-sm">
       { tags.map((tag: string) => <span>#{tag}</span>) }
     </div>

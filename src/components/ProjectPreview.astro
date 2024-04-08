@@ -17,9 +17,9 @@ const { title, description, thumbnail, stack } = data;
       width="100%"
       height="100%"
     />
-    <h1 class="mt-6 mb-0 text-xl">{title}</h1>
+    <h1 class="mt-6 mb-0 text-xl text-balance">{title}</h1>
   </a>
-  <p class="font-light my-0 text-sm sm:text-base">{description}</p>
+  <p class="font-light my-0 text-sm sm:text-base text-balance">{description}</p>
   <div class="flex flex-wrap gap-x-2 gap-y-1 text-sm mt-auto">
     { stack.map((s: string) => <span>[{s}]</span>) }
   </div>

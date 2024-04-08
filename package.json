@@ -15,7 +15,7 @@
     "@astrojs/mdx": "^2.2.4",
     "@astrojs/preact": "^3.1.2",
     "@astrojs/sitemap": "^3.1.2",
-    "@fontsource/overpass-mono": "^5.0.17",
+    "@fontsource-variable/overpass-mono": "^5.0.17",
     "astro": "^4.5.16",
     "astro-icon": "^1.1.0",
     "fuzzysort": "^2.0.4",
@@ -32,5 +32,10 @@
     "@iconify-json/iconoir": "^1.1.42",
     "@unocss/reset": "^0.59.0",
     "unocss": "^0.59.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@fontsource-variable/overpass-mono@5.0.17": "patches/@fontsource-variable__overpass-mono@5.0.17.patch"
+    }
   }
 }
