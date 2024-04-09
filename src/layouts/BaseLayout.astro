@@ -27,6 +27,7 @@ const date = (date: string) => new Date(date).toISOString();
     <base target="_blank" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="canonical" href={url} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="alternate"
       href={url}
@@ -38,6 +39,7 @@ const date = (date: string) => new Date(date).toISOString();
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#ECC7BC" />
+    <meta name="generator" content={Astro.generator} />
     <meta
       http-equiv="content-language"
       content={(post && post.language) ? post.language : 'en'}
