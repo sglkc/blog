@@ -8,33 +8,34 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.14.0",
-    "@astrojs/preact": "^1.2.0",
-    "@astrojs/prefetch": "^0.1.1",
-    "@astrojs/sitemap": "^1.0.0",
-    "@fontsource/overpass-mono": "^4.5.10",
-    "astro": "^1.8.0",
-    "astro-icon": "^0.8.0",
+    "@astrojs/mdx": "^2.2.4",
+    "@astrojs/preact": "^3.1.2",
+    "@astrojs/sitemap": "^3.1.2",
+    "@fontsource-variable/overpass-mono": "^5.0.17",
+    "astro": "^4.5.16",
+    "astro-icon": "^1.1.0",
     "fuzzysort": "^2.0.4",
-    "katex": "^0.16.4",
-    "preact": "^10.11.3",
-    "rehype-autolink-headings": "^6.1.1",
+    "katex": "^0.16.10",
+    "preact": "^10.20.1",
+    "rehype-autolink-headings": "^7.1.0",
     "rehype-figure": "^1.0.1",
-    "rehype-slug": "^5.1.0",
-    "typescript": "^4.9.4"
+    "rehype-slug": "^6.0.0",
+    "typescript": "^5.4.4"
   },
   "devDependencies": {
-    "@unocss/preset-typography": "^0.48.0",
-    "@unocss/preset-wind": "^0.48.0",
-    "@unocss/reset": "^0.48.0",
-    "unocss": "^0.48.0"
+    "@astrojs/check": "^0.5.10",
+    "@astrojs/ts-plugin": "^1.6.1",
+    "@iconify-json/iconoir": "^1.1.42",
+    "@unocss/reset": "^0.59.0",
+    "unocss": "^0.59.0"
   },
   "pnpm": {
-    "overrides": {
-      "json5@<2.2.2": ">=2.2.2"
+    "patchedDependencies": {
+      "@fontsource-variable/overpass-mono@5.0.17": "patches/@fontsource-variable__overpass-mono@5.0.17.patch"
     }
   }
 }

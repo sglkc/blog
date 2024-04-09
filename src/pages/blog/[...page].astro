@@ -1,23 +1,24 @@
 ---
-import type { PostProps } from '@/types/Post';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
 import PostPreview from '@/components/PostPreview.astro';
 import Pagination from '@/components/Pagination.astro';
 import SearchPost from '@/components/SearchPost';
-import PageLayout from '@/layouts/PageLayout.astro';
 
-export async function getStaticPaths({ paginate }: any) {
-  const posts = await Astro.glob('../post/*.mdx')
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection('posts');
   const sorted = posts
-    .filter((post) => !(import.meta.env.PROD && post.frontmatter.draft))
+    .filter((post) => !(import.meta.env.PROD && post.data.draft))
     .sort((a, b) => {
-      const first = new Date(b.frontmatter.created).valueOf();
-      const last = new Date(a.frontmatter.created).valueOf();
+      const first = new Date(b.data.created).valueOf();
+      const last = new Date(a.data.created).valueOf();
 
       return first - last;
     });
 
   return paginate(sorted, { pageSize: 10 });
-}
+}) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 const title = 'Blog';
@@ -25,9 +26,11 @@ const description = 'This is where I put my thoughts into writing';
 ---
 
 <PageLayout {title} {description}>
-  <SearchPost main="main" client:only />
-  <main id="main">
-    { page.data.map((post: PostProps) => <PostPreview {...post} />) }
+  <section class="min-h-6 sm:min-h-8">
+    <SearchPost client:load client:only="preact" />
+  </section>
+  <ol id="posts" class="p-0">
+    { page.data.map((post) => <PostPreview {...post} />) }
     <Pagination {page} />
-  </main>
+  </ol>
 </PageLayout>

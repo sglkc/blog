@@ -1,6 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
-import ThemeButton from './ThemeButton.jsx';
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
   class?: string;
@@ -27,14 +26,14 @@ const { class: className, grow, sticky } = Astro.props;
     ></span>
   }
   <a class="animate-margin" rel="prefetch" href="/" target="_self">
-    <Icon class="hidden group-[.sticked]:block" name="iconoir:home" size="32" />
+    <Icon class="hidden group-[.sticked]:block" name="iconoir:home" size={32} />
     <span class="group-[.sticked]:hidden">Home</span>
   </a>
   <a class="animate-margin" rel="prefetch" href="/blog/" target="_self">
     <Icon
       class="hidden group-[.sticked]:block"
       name="iconoir:multiple-pages"
-      size="30"
+      size={32}
     />
     <span class="group-[.sticked]:hidden">Blog</span>
   </a>
@@ -42,24 +41,21 @@ const { class: className, grow, sticky } = Astro.props;
     <Icon
       class="hidden group-[.sticked]:block"
       name="iconoir:code-brackets-square"
-      size="32"
+      size={32}
     />
     <span class="group-[.sticked]:hidden">Projects</span>
   </a>
   <a class="animate-margin" href="https://me.sglkc.my.id">
-    <Icon class="hidden group-[.sticked]:block" name="iconoir:user" size="32" />
+    <Icon class="hidden group-[.sticked]:block" name="iconoir:user" size={32} />
     <span class="group-[.sticked]:hidden">About</span>
   </a>
-  <ThemeButton
-    class="cursor-pointer animate-margin"
-    client:load
-  >
+  <button id="theme" class="text-start cursor-pointer animate-margin">
     <span class="hidden group-[.sticked]:block">
-      <Icon class="dark:hidden" name="iconoir:sun-light" size="28" />
-      <Icon class="hidden dark:block" name="iconoir:half-moon" size="28" />
+      <Icon class="dark:hidden" name="iconoir:sun-light" size={32} />
+      <Icon class="hidden dark:block" name="iconoir:half-moon" size={32} />
     </span>
     <span class="group-[.sticked]:hidden">Theme</span>
-  </ThemeButton>
+  </button>
 </nav>
 
 <style>
@@ -93,4 +89,20 @@ if ('sticky' in nav.dataset) {
 
   observer.observe(nav);
 }
+
+const theme = document.querySelector('#theme') as HTMLElement;
+
+theme.addEventListener('click', () => {
+    const theme = localStorage.getItem('theme') === 'light' ? 'dark' : 'light';
+    const isDark = theme === 'dark';
+
+    localStorage.setItem('theme', theme);
+    document.documentElement.classList.toggle('dark', isDark);
+
+    if ('giscusSend' in window) {
+      const giscusTheme = isDark ? 'transparent_dark' : 'light';
+      // @ts-ignore
+      window.giscusSend({ setConfig: { theme: giscusTheme } });
+    }
+});
 </script>

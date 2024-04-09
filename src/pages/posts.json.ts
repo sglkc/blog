@@ -1,12 +1,11 @@
-import type { APIRoute } from 'astro';
-import type { PostProps } from '@/types/Post';
+import { getCollection } from 'astro:content';
 
-export const get: APIRoute = async function get() {
-  const posts = import.meta.glob<PostProps>('./post/*.mdx', { eager: true });
+export async function GET() {
+  const posts = await getCollection('posts');
   const mapped = Object.values(posts)
-    .filter((post) => !(import.meta.env.PROD && post.frontmatter.draft))
-    .map((post: PostProps) => {
-      const props = post.frontmatter;
+    .filter((post) => !(import.meta.env.PROD && post.data.draft))
+    .map((post) => {
+      const props = post.data;
 
       // @ts-ignore
       delete props.layout;
@@ -15,9 +14,16 @@ export const get: APIRoute = async function get() {
       return {
         ...props,
         tags: props.tags.join(','),
-        url: post.url,
+        url: `/post/${post.slug}/`,
       }
     });
 
-  return { body: JSON.stringify(mapped) };
+  return new Response(
+    JSON.stringify(mapped), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+  );
 }

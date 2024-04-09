@@ -18,15 +18,13 @@ const { footer = '' } = Astro.props;
         class="underline"
         href="https://github.com/sglkc/blog/blob/master/LICENSE"
       >MIT License</a>
-      <span>(c) 2023 sglkc</span>
+      <span>(c) 2024 sglkc</span>
     </p>
   </span>
 </footer>
 
-<script lang="js">
-const anchor = document.querySelector('footer a[data-to-top]');
-
-anchor.addEventListener('click', (e) => {
+<script>
+document.querySelector('a[data-to-top]')!.addEventListener('click', (e) => {
   e.preventDefault();
   window.scroll({ top: 0, behavior: 'smooth' });
 });

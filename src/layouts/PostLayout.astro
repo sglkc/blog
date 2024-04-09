@@ -1,9 +1,6 @@
 ---
-import type { PostProps } from '@/types/Post';
 import Giscus from '@/components/Giscus.astro';
 import ArticleLayout from './ArticleLayout.astro';
-
-type Props = PostProps;
 
 const post = Astro.props.frontmatter;
 const headings = Astro.props.headings;
@@ -13,7 +10,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
 
 <ArticleLayout {title} {description} {headings} {post}>
   <header slot="header" class="text-center">
-    <h1 class="text-3xl font-semibold mt-8">{title}</h1>
+    <h1 class="mt-8 text-3xl font-semibold text-balance">{title}</h1>
     { thumbnail && (
       <img
         class="aspect-video object-contain"
@@ -24,7 +21,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
         height="100%"
       />
     )}
-    <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-base sm:text-lg">
+    <h2 class="mx-4 sm:mx-6 my-6 font-italic font-normal text-base sm:text-lg text-balance">
       { description }
     </h2>
     <ul class="pl-0 my-6 flex flex-wrap gap-x-4 justify-center">
@@ -35,7 +32,7 @@ const showComment = !(import.meta.env.DEV || post.draft);
       { updated &&
         <li class="list-none">Last Updated on { updated }</li>
       }
-      <li class="list-none" data-read-time>.. min read</li>
+      <li class="list-none" data-read-time>0.0 min read</li>
     </ul>
   </header>
   <slot />
@@ -45,11 +42,10 @@ const showComment = !(import.meta.env.DEV || post.draft);
   </section>
 </ArticleLayout>
 
-<script lang="js">
-const timeElm = document.querySelector('[data-read-time]');
-const article = document.querySelector('article');
+<script>
+const article = document.querySelector('article')!;
 const words = article.innerText.trim().split(/\W+/).length;
-const time = (words / 175).toString().substring(0, 3);
+const time = (words / 200).toString().substring(0, 3);
 
-timeElm.innerText = time + ' min read';
+document.querySelector('[data-read-time]')!.textContent = time + ' min read';
 </script>

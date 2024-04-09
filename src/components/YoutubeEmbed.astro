@@ -4,21 +4,32 @@ type Props = {
 };
 
 const { youtube_id } = Astro.props as Props;
-const slot = await Astro.slots.render('default');
 ---
 
-<details id={youtube_id} class="my-6">
-  <summary>{ slot || 'YouTube Video' }</summary>
-  <div class="mt-2 relative pb-[56.25%] h-0 overflow-hidden max-w-full">
-    <iframe class="absolute inset-0 w-full h-full" />
-  </div>
-</details>
+<youtube-embed data-youtube-id={youtube_id}>
+  <details class="my-6">
+    <summary>
+      <slot>
+        <p>YouTube Video</p>
+      </slot>
+    </summary>
+    <div class="mt-2 relative pb-[56.25%] h-0 overflow-hidden max-w-full">
+      <iframe class="absolute inset-0 w-full h-full" />
+    </div>
+  </details>
+</youtube-embed>
 
-<script define:vars={{ youtube_id }} lang="js">
-function addSrc() {
-  this.querySelector('iframe').src = 'https://youtube.com/embed/' + this.id;
-  this.removeEventListener('click', addSrc);
+<script>
+class YoutubeEmbed extends HTMLElement {
+  constructor() {
+    super();
+
+    this.addEventListener('click', () => {
+      const url = 'https://youtube.com/embed/' + this.dataset.youtubeId;
+      this.querySelector('iframe')!.src = url;
+    }, { once: true });
+  }
 }
 
-document.getElementById(youtube_id).addEventListener('click', addSrc);
+customElements.define('youtube-embed', YoutubeEmbed);
 </script>

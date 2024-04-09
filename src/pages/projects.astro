@@ -1,10 +1,11 @@
 ---
 import ProjectPreview from '@/components/ProjectPreview.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
 
-const projects = await Astro.glob('./project/*.mdx');
-const sorted = projects.sort(
-  (a, b) => new Date(b.frontmatter.created).valueOf() - new Date(a.frontmatter.created).valueOf()
+const projects = await getCollection('projects');
+const sorted = projects.sort((a, b) =>
+  new Date(b.data.created).valueOf() - new Date(a.data.created).valueOf()
 );
 
 const title = 'Projects';
@@ -13,6 +14,6 @@ const description = 'List of my projects that are worth mentioning';
 
 <PageLayout {title} {description}>
   <main class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
-    {sorted.map((project: any) => <ProjectPreview {...project} />)}
+    {sorted.map((project) => <ProjectPreview {...project} />)}
   </main>
 </PageLayout>

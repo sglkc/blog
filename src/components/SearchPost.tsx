@@ -1,32 +1,24 @@
-import type { ExtractedPost } from '@/types/Post';
+import type { CollectionEntry } from 'astro:content';
 import { useRef, useState } from 'preact/hooks';
 import fuzzysort from 'fuzzysort';
-import PostPreview from './PostPreview';
 
-type fuzzysort = {
-  options: Fuzzysort.KeysOptions<ExtractedPost>;
-  results: Fuzzysort.KeysResults<ExtractedPost>;
-  result: Fuzzysort.KeysResult<ExtractedPost>;
+type Post = Omit<CollectionEntry<'posts'>['data'], 'tags'> & {
+  url: string
+  tags: string
 }
 
-type Props = {
-  main: string;
-};
+type fuzzysort = {
+  options: Fuzzysort.KeysOptions<Post>;
+  results: Fuzzysort.KeysResults<Post>;
+  result: Fuzzysort.KeysResult<Post>;
+}
 
-export default function SearchPost({ main }: Props) {
-  const [message, _setMessage] = useState<string | false>(false);
-  const [posts, setPosts] = useState<ExtractedPost[]>([]);
-  const resultDiv = useRef<HTMLDivElement>(null);
+export default function SearchPost() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const resultsContainer = useRef<HTMLOListElement>(null);
+  const messageContainer = useRef<HTMLElement>(null);
   const loading = useRef<boolean>(false);
-  const data = useRef<ExtractedPost[] | null>(null);
-  const mainDiv = document.getElementById(main);
-
-  const setMessage = (message: string | false) => {
-    _setMessage(message);
-
-    if (message) mainDiv!.style.display = 'none';
-    else mainDiv!.style.display = '';
-  };
+  const data = useRef<Post[] | null>(null);
 
   const getHighlight = (result: Fuzzysort.Result) => {
     if (!result) return null;
@@ -55,8 +47,12 @@ export default function SearchPost({ main }: Props) {
 
     const target = e.target as HTMLInputElement;
     const value: string = target.value.replace('#', '');
+    const hasValue = Boolean(value.length)
 
-    if (!value.length) return setMessage(false);
+    document.querySelector('#posts')!.classList.toggle('hidden', hasValue);
+    resultsContainer.current!.classList.toggle('hidden', !hasValue);
+
+    if (!value.length) return messageContainer.current!.classList.add('hidden');
 
     const isTag: boolean = target.value.startsWith('#');
     const keys: string[] = isTag
@@ -69,13 +65,14 @@ export default function SearchPost({ main }: Props) {
       keys
     }
 
-    const results: fuzzysort['results'] = fuzzysort.go<ExtractedPost>(
+    const results: fuzzysort['results'] = fuzzysort.go<Post>(
       value, data.current, options
     );
 
-    setMessage(results.length + ' results found');
+    messageContainer.current!.textContent = results.length + ' results found';
+    messageContainer.current!.classList.remove('hidden');
 
-    const mapped: ExtractedPost[] = results.map(
+    const mapped: Post[] = results.map(
       (result: fuzzysort['result']) => {
         let title: string = result.obj.title;
         let description: string = result.obj.description;
@@ -108,27 +105,54 @@ export default function SearchPost({ main }: Props) {
   }
 
   return (
-    <section>
-      <div class="background flex gap-2 sticky top-10 pt-2 sm:pt-4 pb-2 -mt-4">
-        <span class="my-0">[</span>
+    <>
+      <div class="flex gap-2 items-center text-sm sm:text-base">
+        <span>[</span>
         <input
-          class="bg-transparent outline-0 flex-grow py-2 -my-2 min-w-[0]"
-          type="text"
+          class="appearance-none bg-transparent outline-0 flex-grow"
+          type="search"
           placeholder="search posts | # for tags"
           spellcheck={false}
           onFocus={onFocus}
           onInput={onInput}
         />
-        <span class="my-0">]</span>
-        { message &&
-          <small class="my-auto whitespace-nowrap">{ message }</small>
-        }
+        <span>]</span>
+        <small ref={messageContainer} class="hidden whitespace-nowrap" />
       </div>
-      { message &&
-        <div ref={resultDiv}>
-          { posts.map((post: ExtractedPost) => <PostPreview {...post} />) }
-        </div>
-      }
-    </section>
+      <ol ref={resultsContainer} class="p-0">
+        { posts.map(({ title, description, url, created, thumbnail, tags }) => (
+          <li class="my-6 py-2 flex gap-6 justify-between w-full">
+            <div class="flex flex-col">
+              <p class="mt-0 text-xs sm:text-sm">{created}</p>
+              <a class="decoration-none" href={url} target="_self">
+                <h1
+                  class="my-0 text-lg sm:text-xl"
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
+              </a>
+              <p
+                class="mt-2 text-sm sm:text-base"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+              <div
+                class="my-0 flex flex-wrap gap-x-4 text-sm"
+                dangerouslySetInnerHTML={{ __html: tags }}
+              />
+            </div>
+            { thumbnail &&
+              <img
+                class="my-auto aspect-square object-cover w-[25%]"
+                src={'/assets/post/' + thumbnail}
+                alt={title + ' thumbnail image'}
+                draggable={false}
+                width="25%"
+                height="100%"
+              />
+            }
+          </li>
+        ))
+        }
+      </ol>
+    </>
   );
 }

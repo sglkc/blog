@@ -4,9 +4,15 @@
     "baseUrl": ".",
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
     "paths": {
       "@/*": ["src/*"]
-    },
-    "types": ["astro/client"]
-  }
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist"]
 }

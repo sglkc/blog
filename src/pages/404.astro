@@ -11,18 +11,18 @@ const description = 'Page Not Found';
     <h1 class="mt-0 mb-8">Page Not Found</h1>
     <Navbar class="mb-8 flex gap-5" />
     <blockquote>
-      <p class="mb-2 font-bold italic" data-quote></p>
+      <p class="mb-2 font-bold italic text-balance" data-quote></p>
       <p class="my-0" data-author></p>
     </blockquote>
   </div>
 </BaseLayout>
 
-<script lang="js">
+<script>
 fetch('https://api.quotable.io/random?maxLength=50')
   .then(async (data) => {
     const quote = await data.json();
 
-    document.querySelector('p[data-quote]').innerText = `"${quote.content}"`;
-    document.querySelector('p[data-author]').innerText = `- ${quote.author}`;
+    document.querySelector('[data-quote]')!.textContent = `"${quote.content}"`;
+    document.querySelector('[data-author]')!.textContent= `- ${quote.author}`;
   });
 </script>

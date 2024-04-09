@@ -1,10 +1,9 @@
 import { defineConfig } from 'unocss/vite';
-import presetWind from '@unocss/preset-wind';
-import presetTypography from '@unocss/preset-typography';
+import { presetUno, presetTypography } from 'unocss';
 
 export default defineConfig({
   presets: [
-    presetWind(),
+    presetUno(),
     presetTypography({
       cssExtend: {
         a: {
@@ -29,8 +28,11 @@ export default defineConfig({
         'blockquote, hr, th, td': {
           transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
-        'tr, :not(pre.astro-code) > code': {
+        'tr:nth-child(2n)': {
           transition: 'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        },
+        'li::marker, figcaption': {
+          transition: 'color 300ms cubic-bezier(0.4, 0, 0.2, 1)'
         },
         hr: {
           border: 'unset',
@@ -55,16 +57,8 @@ export default defineConfig({
           'text-align': 'center',
           'font-size': '0.875rem'
         },
-        ':not(pre.astro-code) > code': {
-          'background-color': 'var(--un-prose-bg-soft)!important',
-          'font-size': '1em',
-          filter: 'invert(0.15)'
-        },
         pre: {
           padding: '1rem 1.25rem'
-        },
-        'pre.astro-code': {
-          'line-height': '1.5'
         },
         table: {
           margin: 'auto auto 2em',
@@ -82,21 +76,24 @@ export default defineConfig({
         rt: {
           'margin-bottom': '1em',
           'font-size': '0.75em'
-        }
+        },
       }
     })
   ],
   theme: {
     fontFamily: {
-      overpass: '"Overpass Mono", monospace'
+      overpass: '"Overpass Mono Variable", monospace'
     },
   },
   shortcuts: {
-    'background': 'bg-zinc-100 dark:bg-dark-500 transition-property-[background-color] duration-300 ease-in-out',
+    'background': 'bg-zinc-100 dark:bg-dark-500 transition-property-[background-color,color] duration-300 ease-in-out',
   },
   preflights: [
     {
       getCSS: () => `
+      html:not(.loaded) {
+        visibility: hidden;
+      }
       .no-transitions * {
         transition: none!important;
         transition-property: none!important;
