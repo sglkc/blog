@@ -7,6 +7,7 @@ const props = Astro.props;
 const { title, description: desc, post, project } = props;
 const description = desc.replace('\n', '');
 const url = new URL(Astro.url.pathname, Astro.site).href;
+
 const imageUrl = (project && project.thumbnail)
   ? '/assets/project/' + project.thumbnail
   : (post && post.thumbnail)
@@ -15,6 +16,38 @@ const imageUrl = (project && project.thumbnail)
 
 const image = new URL(imageUrl, Astro.site).href;
 const date = (date: string) => new Date(date).toISOString();
+
+const metaTags = {
+  'og:type': (post || project) ? 'article' : 'website',
+  'og:locale': (post && post.language) ?? 'en_US',
+  'og:locale:alternate': 'id_ID',
+  'og:site_name': 'sglkc.my.id',
+  'og:url': url,
+  'og:title': title,
+  'og:description': description,
+  'og:image': image,
+
+  'twitter:card': (imageUrl !== 'logo') ? 'summary_large_image' : 'summary',
+  'twitter:url': url,
+  'twitter:title': title,
+  'twitter:description': description,
+  'twitter:image': image,
+
+  ...(post) && {
+    'article:published_time': date(post.created),
+    'article:modified_time': date(post.updated ?? post.created),
+    'article:author': 'sglkc',
+    'article:section': 'Blog',
+    'article:tag': post.tags.join(',')
+  },
+
+  ...(project) && {
+    'article:published_time': date(project.created),
+    'article:author': 'sglkc',
+    'article:section': 'Project',
+    'article:tag': project.stack.join(',')
+  }
+}
 ---
 
 <html
@@ -40,55 +73,17 @@ const date = (date: string) => new Date(date).toISOString();
     <meta name="description" content={description} />
     <meta name="theme-color" content="#ECC7BC" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      http-equiv="content-language"
-      content={(post && post.language) ? post.language : 'en'}
-    />
+    <meta http-equiv="content-language" content="en, id" />
 
     <meta
       name="keywords"
       content="personal site, blogging, personal blog, blog project, portfolio, astro"
     />
 
-    <meta property="og:type" content={(post || project) ? 'article' : 'website'} />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="id_ID" />
-    <meta property="og:url" content={url} />
-    <meta property="og:title" content={title} />
-    <meta property="og:site_name" content="sglkc.my.id">
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    { Object.entries(metaTags).map(([ property, content ]) =>
+      <meta property={property} content={content} />
+    )}
 
-    <meta
-      property="twitter:card"
-      content={(post || project) ? 'summary_large_image' : 'summary'}
-    />
-    <meta property="twitter:url" content={url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
-
-
-    { post &&
-      <>
-        <meta property="article:published_time" content={date(post.created)} />
-        { post.updated &&
-          <meta property="article:modified_time" content={date(post.updated)} />
-        }
-        <meta property="article:author" content="sglkc" />
-        <meta property="article:section" content="Blog" />
-        <meta property="article:tag" content={post.tags.join(',')} />
-      </>
-    }
-
-    { project &&
-      <>
-        <meta property="article:published_time" content={date(project.created)} />
-        <meta property="article:author" content="sglkc" />
-        <meta property="article:section" content="Project" />
-        <meta property="article:tag" content={project.stack.join(',')} />
-      </>
-    }
     <script type="module" is:inline>
     const classList = document.documentElement.classList;
     const prefDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
