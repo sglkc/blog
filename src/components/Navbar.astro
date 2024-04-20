@@ -76,23 +76,24 @@ const { class: className, grow, sticky } = Astro.props;
 </style>
 
 <script>
-const nav = document.querySelector('nav') as HTMLElement;
+document.addEventListener('astro:page-load', () => {
+  const nav = document.querySelector('nav') as HTMLElement;
 
-if ('sticky' in nav.dataset) {
-  const observer = new IntersectionObserver(
-    ([e]) => e.target.classList.toggle(
-      'sticked',
-      e.intersectionRatio < 1
-    ),
-    { threshold: [1] }
-  );
+  if ('sticky' in nav.dataset) {
+    const observer = new IntersectionObserver(
+      ([e]) => e.target.classList.toggle(
+        'sticked',
+        e.intersectionRatio < 1
+      ),
+      { threshold: [1] }
+    );
 
-  observer.observe(nav);
-}
+    observer.observe(nav);
+  }
 
-const theme = document.querySelector('#theme') as HTMLElement;
+  const theme = document.querySelector('#theme') as HTMLElement;
 
-theme.addEventListener('click', () => {
+  theme.addEventListener('click', () => {
     const theme = localStorage.getItem('theme') === 'light' ? 'dark' : 'light';
     const isDark = theme === 'dark';
 
@@ -104,5 +105,6 @@ theme.addEventListener('click', () => {
       // @ts-ignore
       window.giscusSend({ setConfig: { theme: giscusTheme } });
     }
+  });
 });
 </script>

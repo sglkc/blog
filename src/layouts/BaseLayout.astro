@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '@fontsource-variable/overpass-mono';
 import '@unocss/reset/tailwind.css';
 import '@/styles/scrollbar.css';
@@ -6,18 +7,17 @@ import '@/styles/scrollbar.css';
 const props = Astro.props;
 const { title, description: desc, post, project } = props;
 const description = desc.replace('\n', '');
-const url = new URL(Astro.url.pathname, Astro.site).href;
-
+const url = new URL(Astro.url, Astro.site);
 const imageUrl = (project && project.thumbnail)
   ? '/assets/project/' + project.thumbnail
   : (post && post.thumbnail)
     ? '/assets/post/' + post.thumbnail
     : '/assets/logo.webp';
 
-const image = new URL(imageUrl, Astro.site).href;
+const image = new URL(imageUrl, Astro.site);
 const date = (date: string) => new Date(date).toISOString();
 
-const metaTags = {
+const metaTags: Record<string, string> = {
   'og:type': (post || project) ? 'article' : 'website',
   'og:locale': (post && post.language) ?? 'en_US',
   'og:locale:alternate': 'id_ID',
@@ -50,10 +50,7 @@ const metaTags = {
 }
 ---
 
-<html
-  class="no-transitions"
-  lang={(props && props.post) ? props.post.language : 'en'}
->
+<html lang={(props && props.post) ? props.post.language : 'en'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -84,22 +81,25 @@ const metaTags = {
       <meta property={property} content={content} />
     )}
 
-    <script type="module" is:inline>
+    <ViewTransitions />
+
+    <script>
     const classList = document.documentElement.classList;
     const prefDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = localStorage.getItem('theme');
 
-    if (theme === 'dark' || (!theme && prefDark)) {
-      localStorage.setItem('theme', 'dark');
-      classList.add('dark');
+    function onLoad() {
+      const theme = localStorage.getItem('theme');
+
+      if (theme === 'dark' || (!theme && prefDark)) {
+        localStorage.setItem('theme', 'dark');
+        classList.add('dark');
+      }
+
+      classList.add('loaded');
     }
 
-    classList.add('loaded');
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const prefMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (!prefMotion.matches) classList.remove('no-transitions');
-    });
+    document.addEventListener('astro:page-load', onLoad);
+    document.addEventListener('astro:after-swap', onLoad);
     </script>
   </head>
   <body class="background font-overpass">

@@ -26,13 +26,13 @@ export default defineConfig({
           margin: '1.25em 0 0.5em',
         },
         'blockquote, hr, th, td': {
-          transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'border-color 500ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
         'tr:nth-child(2n)': {
-          transition: 'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'background-color 500ms cubic-bezier(0.4, 0, 0.2, 1)',
         },
         'li::marker, figcaption': {
-          transition: 'color 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+          transition: 'color 500ms cubic-bezier(0.4, 0, 0.2, 1)'
         },
         hr: {
           border: 'unset',
@@ -86,15 +86,14 @@ export default defineConfig({
     },
   },
   shortcuts: {
-    'background': 'bg-zinc-100 dark:bg-dark-500 transition-property-[background-color,color] duration-300 ease-in-out',
+    'background': 'bg-zinc-100 dark:bg-dark-500 transition-property-[background-color,color] duration-500 ease-in-out',
   },
   preflights: [
     {
       getCSS: () => `
-      html:not(.loaded) {
-        visibility: hidden;
-      }
-      .no-transitions * {
+      html:not(.loaded) * {
+        display: none!important;
+        visibility: hidden!important;
         transition: none!important;
         transition-property: none!important;
         transition-duration: 0ms!important;
